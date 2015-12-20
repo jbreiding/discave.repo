@@ -13,4 +13,18 @@
 		<platform>all</platform>
 	</extension>
 </addon>
+
+<addon id="plugin.video.AdrianoTV" name="Adriano TV" version="0.0.1" provider-name="Discave">
+    <requires>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="player.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary>A tua lista de IPTV</summary>
+        <description>Junta-te a nos, no GitHub</description>
+    </extension>
+</addon>
 </addons>
