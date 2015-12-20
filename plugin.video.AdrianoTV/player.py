@@ -69,11 +69,10 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
-	add_dir('[B]<<<  SEARCH  >>>[/B]', 'searchlink', 99, icon, fanart)
 	if len(online_m3u) > 0:	
-		add_dir('[COLOR yellow][B]>> ONLINE M3U <<[/B][/COLOR]', u_tube, 2, icon, fanart)
+		add_dir('[COLOR yellow][B]>> MUSICA [/B][/COLOR]', u_tube, 2, icon, fanart)
 	if len(filmes_m3u) > 0:	
-		add_dir('[COLOR yellow][B]>> FILMES <<[/B][/COLOR]', u_tube, 3, icon, fanart)
+		add_dir('[COLOR yellow][B]>> FILMES [/B][/COLOR]', u_tube, 3, icon, fanart)
 	if len(local_m3u) > 0:	
 		add_dir('[COLOR magenta][B]>> LOCAL M3U <<[/B][/COLOR]', u_tube, 4, icon, fanart)
 	if len(online_xml) > 0:	
@@ -86,7 +85,7 @@ def main():
 
 def search(): 	
 	try:
-		keyb = xbmc.Keyboard('', 'Enter search text')
+		keyb = xbmc.Keyboard('', 'Procurar por:')
 		keyb.doModal()
 		if (keyb.isConfirmed()):
 			searchText = urllib.quote_plus(keyb.getText()).replace('+', ' ')

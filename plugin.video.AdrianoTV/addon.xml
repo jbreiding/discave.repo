@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.AdrianoTV" name="Adriano TV" version="0.0.1" provider-name="Discave">
+<addon id="plugin.video.AdrianoTV" name="Adriano TV" version="0.0.2" provider-name="Discave">
     <requires>
     </requires>
     <extension point="xbmc.python.pluginsource"
