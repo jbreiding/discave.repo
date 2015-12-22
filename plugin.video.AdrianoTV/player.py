@@ -106,7 +106,7 @@ def main():
 			if len(pessoal_local_m3u) > 0:	
 		add_dir('[COLOR magenta][B]>> MINHA LISTA LOCAL M3U <<[/B][/COLOR]', u_tube, 14, icon, fanart)
 	if len(pessoal_online_xml) > 0:	
-		add_dir('[COLOR cyan][B]>> MINHA LISTA ONLINE ONLINE XML <<[/B][/COLOR]', u_tube, 15, icon, fanart)
+		add_dir('[COLOR cyan][B]>> MINHA LISTA ONLINE XML <<[/B][/COLOR]', u_tube, 15, icon, fanart)
 	if len(pessoal_local_xml) > 0:	
 		add_dir('[COLOR lime][B]>> MINHA LISTA LOCAL XML <<[/B][/COLOR]', u_tube, 16, icon, fanart)		
 	if (len(musica_m3u) < 1 and len(noticias_m3u) < 1 and len(praias_m3u) < 1 and len(filmes_m3u) < 1 and len(series_m3u) < 1 and len(desporto_m3u) < 1 and len(uk_m3u) < 1 and len(ru_m3u) < 1 and len(pt_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(pessoal_local_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_xml) < 1 and len(pessoal_online_xml) < 1 ):		
@@ -119,7 +119,7 @@ def search():
 		keyb.doModal()
 		if (keyb.isConfirmed()):
 			searchText = urllib.quote_plus(keyb.getText()).replace('+', ' ')
-		if len(online_m3u) > 0:		
+		if len(musica_m3u) > 0:		
 			content = make_request(musica_m3u)
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
@@ -213,7 +213,7 @@ def search():
 		pass
 		
 def m3u_musica():		
-	content = make_request(online_m3u)
+	content = make_request(musica_m3u)
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
 		try:
