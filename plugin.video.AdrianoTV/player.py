@@ -28,7 +28,7 @@ home = mysettings.getAddonInfo('path')
 fanart = xbmc.translatePath(os.path.join(home, 'fanart.jpg'))
 icon = xbmc.translatePath(os.path.join(home, 'icon.png'))
 
-online_m3u = mysettings.getSetting('musica_m3u')
+musica_m3u = mysettings.getSetting('musica_m3u')
 filmes_m3u = mysettings.getSetting('filmes_m3u')
 infantil_m3u = mysettings.getSetting('infantil_m3u')
 nasa_m3u = mysettings.getSetting('nasa_m3u')
