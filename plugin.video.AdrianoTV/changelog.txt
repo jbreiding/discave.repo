@@ -1,8 +1,0 @@
-Version 0.0.3
-Adicionado opção lista pessoal
-
-Version 0.0.2
-Adicionado listas m3u Adriano TV
-
-Version 0.0.1
-Inicio da coisa.
