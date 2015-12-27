@@ -1,0 +1,15 @@
+<settings>
+	<category label="[COLOR red][B]Listas Adriano TV[/B][/COLOR]">
+		<setting label="[B]MUSICA[/B]" type="text"  id="online_m3u" default="http://bit.ly/1PjijuT" />
+		<setting label="[B]FILMES[/B]" type="text"  id="filmes_m3u" default="http://bit.ly/1TaI9k3" />			
+		<setting label="[B]INFANTIL[/B]" type="text"  id="infantil_m3u" default="http://bit.ly/1Ys2cAU" />
+		<setting label="[B]NASA[/B]" type="text"  id="nasa_m3u" default="http://bit.ly/1U0mJpL" />
+		<setting label="[B]NOTICIAS[/B]" type="text"  id="noticias_m3u" default="http://bit.ly/1U0mNWy" />
+		<setting label="[B]PORTUGAL[/B]" type="text"  id="pt_m3u" default="http://bit.ly/1NHJLOq" />
+		<setting label="[B]RUSSIA[/B]" type="text"  id="ru_m3u" default="http://bit.ly/1PjGTvN" />
+		<setting label="[B]DESPORTO[/B]" type="text"  id="desporto_m3u" default="http://bit.ly/1mwyEkC" />
+		<setting label="[B]SERIES[/B]" type="text"  id="series_m3u" default="http://bit.ly/1Tdb1YR" />
+		<setting label="[B]INGLATERRA[/B]" type="text"  id="uk_m3u" default="http://bit.ly/1QCyipB" />	
+		<setting label="[B]PRAIAS[/B]" type="text"  id="praias_m3u" default="http://bit.ly/1OjmOGY" />		
+	</category>
+</settings>
