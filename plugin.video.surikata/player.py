@@ -28,8 +28,34 @@ plugin_handle = int(sys.argv[1])
 mysettings = xbmcaddon.Addon(id = 'plugin.video.surikata')
 profile = mysettings.getAddonInfo('profile')
 home = mysettings.getAddonInfo('path')
+artfolder = (home + '/resources/img/')
 fanart = xbmc.translatePath(os.path.join(home, 'fanart.jpg'))
 icon = xbmc.translatePath(os.path.join(home, 'icon.png'))
+#############################
+f_music = xbmc.translatePath(os.path.join(artfolder, 'music.jpg'))
+f_sport = xbmc.translatePath(os.path.join(artfolder, 'sport.jpg'))
+f_beach = xbmc.translatePath(os.path.join(artfolder, 'beach.jpg'))
+f_child = xbmc.translatePath(os.path.join(artfolder, 'child.jpg'))
+f_movie = xbmc.translatePath(os.path.join(artfolder, 'movie.jpg'))
+f_nasa = xbmc.translatePath(os.path.join(artfolder, 'nasa.jpg'))
+f_news = xbmc.translatePath(os.path.join(artfolder, 'news.jpg'))
+f_pt = xbmc.translatePath(os.path.join(artfolder, 'pt.jpg'))
+f_ru = xbmc.translatePath(os.path.join(artfolder, 'ru.jpg'))
+f_tvshow = xbmc.translatePath(os.path.join(artfolder, 'tvshow.jpg'))
+f_uk = xbmc.translatePath(os.path.join(artfolder, 'uk.jpg'))
+##############################3
+i_music = xbmc.translatePath(os.path.join(artfolder, 'music.png'))
+i_sport = xbmc.translatePath(os.path.join(artfolder, 'sport.png'))
+i_beach = xbmc.translatePath(os.path.join(artfolder, 'beach.png'))
+i_child = xbmc.translatePath(os.path.join(artfolder, 'child.png'))
+i_movie = xbmc.translatePath(os.path.join(artfolder, 'movie.png'))
+i_nasa = xbmc.translatePath(os.path.join(artfolder, 'nasa.png'))
+i_news = xbmc.translatePath(os.path.join(artfolder, 'news.png'))
+i_pt = xbmc.translatePath(os.path.join(artfolder, 'pt.png'))
+i_ru = xbmc.translatePath(os.path.join(artfolder, 'ru.png'))
+i_tvshow = xbmc.translatePath(os.path.join(artfolder, 'tvshow.png'))
+i_uk = xbmc.translatePath(os.path.join(artfolder, 'uk.png'))
+
 
 online_m3u = mysettings.getSetting('online_m3u')
 filmes_m3u = mysettings.getSetting('filmes_m3u')
@@ -44,7 +70,12 @@ uk_m3u = mysettings.getSetting('uk_m3u')
 praias_m3u = mysettings.getSetting('praias_m3u')
 pessoal_m3u = mysettings.getSetting('pessoal_m3u')
 pessoal_local_m3u = mysettings.getSetting('pessoal_local_m3u')
+online_xml = mysettings.getSetting('online_xml')
+local_xml = mysettings.getSetting('local_xml')
+####################################
+log_m3u = mysettings.getSetting('log_m3u')
 
+xml_regex = '<title>(.*?)</title>\s*<link>(.*?)</link>\s*<thumbnail>(.*?)</thumbnail>'
 m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
 
@@ -79,33 +110,39 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
+	if len(log_m3u) > 0:	
+		add_dir('[COLOR red]Versao:0.0.4[/COLOR]', u_tube, 111, icon, fanart)
 	if len(online_m3u) > 0:	
-		add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, icon, fanart)
+		add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	if len(filmes_m3u) > 0:	
-		add_dir('[COLOR blue][B] FILMES [/B][/COLOR]', u_tube, 3, icon, fanart)
+		add_dir('[COLOR blue][B] FILMES [/B][/COLOR]', u_tube, 3, i_movie, f_movie)
 	if len(infantil_m3u) > 0:	
-		add_dir('[COLOR blue][B] INFANTIL [/B][/COLOR]', u_tube, 4, icon, fanart)
+		add_dir('[COLOR blue][B] INFANTIL [/B][/COLOR]', u_tube, 4, i_child, f_child)
 	if len(nasa_m3u) > 0:	
-		add_dir('[COLOR green][B] NASA [/B][/COLOR]', u_tube, 5, icon, fanart)
+		add_dir('[COLOR green][B] NASA [/B][/COLOR]', u_tube, 5, i_nasa, f_nasa)
 	if len(noticias_m3u) > 0:	
-		add_dir('[COLOR yellow][B] NOTICIAS [/B][/COLOR]', u_tube, 6, icon, fanart)
+		add_dir('[COLOR yellow][B] NOTICIAS [/B][/COLOR]', u_tube, 6, i_news, f_news)
 	if len(pt_m3u) > 0:	
-		add_dir('[COLOR yellow][B] PORTUGAL [/B][/COLOR]', u_tube, 7, icon, fanart)
+		add_dir('[COLOR yellow][B] PORTUGAL [/B][/COLOR]', u_tube, 7, i_pt, f_pt)
 	if len(ru_m3u) > 0:	
-		add_dir('[COLOR yellow][B] RUSSIA [/B][/COLOR]', u_tube, 8, icon, fanart)
+		add_dir('[COLOR yellow][B] RUSSIA [/B][/COLOR]', u_tube, 8, i_ru, f_ru)
 	if len(desporto_m3u) > 0:	
-		add_dir('[COLOR red][B] DESPORTO [/B][/COLOR]', u_tube, 9, icon, fanart)
+		add_dir('[COLOR red][B] DESPORTO [/B][/COLOR]', u_tube, 9, i_sport, f_sport)
 	if len(series_m3u) > 0:	
-		add_dir('[COLOR red][B] SERIES [/B][/COLOR]', u_tube, 10, icon, fanart)
+		add_dir('[COLOR red][B] SERIES [/B][/COLOR]', u_tube, 10, i_tvshow, f_tvshow)
 	if len(uk_m3u) > 0:	
-		add_dir('[COLOR red][B] INGLATERRA[/B][/COLOR]', u_tube, 11, icon, fanart)
+		add_dir('[COLOR red][B] INGLATERRA[/B][/COLOR]', u_tube, 11, i_uk, f_uk)
 	if len(praias_m3u) > 0:	
-		add_dir('[COLOR gray][B] PRAIAS [/B][/COLOR]', u_tube, 12, icon, fanart)
+		add_dir('[COLOR gray][B] MUNDO e PRAIAS [/B][/COLOR]', u_tube, 12, i_beach, f_beach)
 	if len(pessoal_m3u) > 0:	
-		add_dir('[COLOR gray][B] PESSOAL [/B][/COLOR]', u_tube, 13, icon, fanart)
+		add_dir('[COLOR gray][B] MINHA M3U ONLINE [/B][/COLOR]', u_tube, 13, icon, fanart)
 	if len(pessoal_local_m3u) > 0:	
-		add_dir('[COLOR gray][B] PESSOAL LOCAL [/B][/COLOR]', u_tube, 14, icon, fanart)			
-	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(uk_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 ):		
+		add_dir('[COLOR gray][B] MINHA M3U LOCAL [/B][/COLOR]', u_tube, 14, icon, fanart)
+	if len(online_xml) > 0:	
+		add_dir('[COLOR gray][B] MINHA XML ONLINE [/B][/COLOR]', u_tube, 15, icon, fanart)
+	if len(local_xml) > 0:	
+		add_dir('[COLOR gray][B] MINHA XML LOCAL [/B][/COLOR]', u_tube, 16, icon, fanart)	
+	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(uk_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 and len(online_xml) < 1 and len(local_xml) < 1 and len(log_m3u) < 1 ):
 		mysettings.openSettings()
 		xbmc.executebuiltin("Container.Refresh")		
 
@@ -192,10 +229,32 @@ def search():
 			match = re.compile(m3u_regex).findall(content)		
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)					
+					m3u_playlist(name, url, thumb)
+		if len(online_xml) > 0:					
+			content = make_request(online_xml)
+			match = re.compile(xml_regex).findall(content)	
+			for name, url, thumb in match:
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					xml_playlist(name, url, thumb)	
+		if len(local_xml) > 0:		
+			content = read_file(local_xml)
+			match = re.compile(xml_regex).findall(content)		
+			for name, url, thumb in match:
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					xml_playlist(name, url, thumb)					
 	except:
 		pass
+	
 		
+def m3u_log():		
+	content = make_request(log_m3u)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+			
 def m3u_online():		
 	content = make_request(online_m3u)
 	match = re.compile(m3u_regex).findall(content)
@@ -313,6 +372,24 @@ def m3u_pessoal_local():
 		except:
 			pass
 
+def xml_online():			
+	content = make_request(online_xml)
+	match = re.compile(xml_regex).findall(content)
+	for name, url, thumb in match:
+		try:
+			xml_playlist(name, url, thumb)
+		except:
+			pass
+			
+def xml_local():		
+	content = read_file(local_xml)
+	match = re.compile(xml_regex).findall(content)
+	for name, url, thumb in match:	
+		try:
+			xml_playlist(name, url, thumb)
+		except:
+			pass
+			
 def m3u_playlist(name, url, thumb):	
 	name = re.sub('\s+', ' ', name).strip()			
 	url = url.replace('"', ' ').replace('&amp;', '&').strip()
@@ -334,14 +411,35 @@ def m3u_playlist(name, url, thumb):
 			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
 			add_link(name, url, 1, thumb, thumb)			
 		else:				
-			add_link(name, url, 1, icon, fanart)	
+			add_link(name, url, 1, icon, fanart)
+
+def xml_playlist(name, url, thumb):
+	name = re.sub('\s+', ' ', name).strip()			
+	url = url.replace('"', ' ').replace('&amp;', '&').strip()
+	if ('youtube.com/user/' in url) or ('youtube.com/channel/' in url) or ('youtube/user/' in url) or ('youtube/channel/' in url):
+		if len(thumb) > 0:	
+			add_dir(name, url, '', thumb, thumb)			
+		else:	
+			add_dir(name, url, '', icon, fanart)
+	else:
+		if 'youtube.com/watch?v=' in url:
+			url = 'plugin://plugin.video.youtube/play/?video_id=%s' % (url.split('=')[-1])
+		elif 'dailymotion.com/video/' in url:
+			url = url.split('/')[-1].split('_')[0]
+			url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url	
+		else:			
+			url = url
+		if len(thumb) > 0:		
+			add_link(name, url, 1, thumb, thumb)			
+		else:			
+			add_link(name, url, 1, icon, fanart)			
 					
 def play_video(url):
 	media_url = url
 	item = xbmcgui.ListItem(name, path = media_url)
 	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
 	return
-
+			
 def get_params():
 	param = []
 	paramstring = sys.argv[2]
@@ -411,9 +509,12 @@ print "iconimage: " + str(iconimage)
 if mode == None or url == None or len(url) < 1:
 	main()
 
+
 elif mode == 1:
 	play_video(url)
 
+elif mode == 111:
+	m3u_log()
 elif mode == 2:
 	m3u_online()
 	
@@ -452,6 +553,12 @@ elif mode == 13:
 	
 elif mode == 14:
 	m3u_pessoal_local()
+	
+elif mode == 15:
+	xml_online()
+	
+elif mode == 16:
+	xml_local()
 
 elif mode == 99:
 	search()

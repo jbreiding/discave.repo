@@ -2,8 +2,11 @@
 	<category label="[COLOR red][B]As Minhas Listas[/B][/COLOR]">
 		<setting label="[B]Minha M3U Online[/B]" type="text"  id="pessoal_m3u" default="" />
 		<setting label="[B]Minha M3U Local[/B]" type="file"  id="pessoal_local_m3u" default="" />
+		<setting type="sep" />
+		<setting label="[B]Minha XML Online[/B]" type="text"  id="online_xml" default="" />
+		<setting label="[B]Minha XML Local[/B]" type="file"  id="local_xml" default="" />
 	</category>
-	<category label="[COLOR red][B]Listas Adriano Afonso[/B][/COLOR]">
+	<category label="[COLOR red][B]Listas myIPTVChannels[/B][/COLOR]">
 		<setting label="[B]MUSICA[/B]" type="text"  id="online_m3u" default="http://bit.ly/1IxL5qr" />
 		<setting label="[B]FILMES[/B]" type="text"  id="filmes_m3u" default="http://bit.ly/1mlrIqg" />			
 		<setting label="[B]INFANTIL[/B]" type="text"  id="infantil_m3u" default="http://bit.ly/1mJjjgR" />
@@ -14,6 +17,9 @@
 		<setting label="[B]DESPORTO[/B]" type="text"  id="desporto_m3u" default="http://bit.ly/1NSnvl5" />
 		<setting label="[B]SERIES[/B]" type="text"  id="series_m3u" default="http://bit.ly/1ZwhamC" />
 		<setting label="[B]INGLATERRA[/B]" type="text"  id="uk_m3u" default="http://bit.ly/1SikmAj" />	
-		<setting label="[B]PRAIAS[/B]" type="text"  id="praias_m3u" default="http://bit.ly/1JbsHUl" />			
+		<setting label="[B]PRAIAS[/B]" type="text" id="praias_m3u" default="http://bit.ly/1JbsHUl" />			
 	</category>
+	<category label="[COLOR red][B]Listas Externas[/B][/COLOR]">
+		<setting label="[B]Changelog[/B]" type="text"  id="log_m3u" default="http://pastebin.com/raw/sdM3jLt4"  visible="false"/>
+		</category>
 </settings>
