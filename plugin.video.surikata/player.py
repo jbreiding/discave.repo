@@ -21,6 +21,7 @@ Desenvolvido por Discave para Surikata TV
 
 import urllib, urllib2, sys, re, os, unicodedata
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon
+import xbmcvfs,socket,urlparse,time,threading,HTMLParser
 
 plugin_handle = int(sys.argv[1])
 
@@ -41,6 +42,8 @@ desporto_m3u = mysettings.getSetting('desporto_m3u')
 series_m3u = mysettings.getSetting('series_m3u')
 uk_m3u = mysettings.getSetting('uk_m3u')
 praias_m3u = mysettings.getSetting('praias_m3u')
+pessoal_m3u = mysettings.getSetting('pessoal_m3u')
+pessoal_local_m3u = mysettings.getSetting('pessoal_local_m3u')
 
 m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
@@ -97,8 +100,12 @@ def main():
 	if len(uk_m3u) > 0:	
 		add_dir('[COLOR red][B] INGLATERRA[/B][/COLOR]', u_tube, 11, icon, fanart)
 	if len(praias_m3u) > 0:	
-		add_dir('[COLOR gray][B] PRAIAS [/B][/COLOR]', u_tube, 12, icon, fanart)		
-	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(uk_m3u) < 1 and len(praias_m3u) < 1 ):		
+		add_dir('[COLOR gray][B] PRAIAS [/B][/COLOR]', u_tube, 12, icon, fanart)
+	if len(pessoal_m3u) > 0:	
+		add_dir('[COLOR gray][B] PESSOAL [/B][/COLOR]', u_tube, 13, icon, fanart)
+	if len(pessoal_local_m3u) > 0:	
+		add_dir('[COLOR gray][B] PESSOAL LOCAL [/B][/COLOR]', u_tube, 14, icon, fanart)			
+	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(uk_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 ):		
 		mysettings.openSettings()
 		xbmc.executebuiltin("Container.Refresh")		
 
@@ -170,6 +177,18 @@ def search():
 					m3u_playlist(name, url, thumb)
 		if len(praias_m3u) > 0:		
 			content = make_request(praias_m3u)
+			match = re.compile(m3u_regex).findall(content)		
+			for thumb, name, url in match:
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		if len(pessoal_m3u) > 0:		
+			content = make_request(pessoal_m3u)
+			match = re.compile(m3u_regex).findall(content)		
+			for thumb, name, url in match:
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		if len(pessoal_local_m3u) > 0:		
+			content = read_file(pessoal_local_m3u)
 			match = re.compile(m3u_regex).findall(content)		
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -269,6 +288,24 @@ def m3u_uk():
 			
 def m3u_praias():
 	content = make_request(praias_m3u)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:	
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+			
+def m3u_pessoal():
+	content = make_request(pessoal_m3u)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:	
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+			
+def m3u_pessoal_local():
+	content = read_file(pessoal_local_m3u)
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:	
 		try:
@@ -409,6 +446,12 @@ elif mode == 11:
 	
 elif mode == 12:
 	m3u_praias()
+	
+elif mode == 13:
+	m3u_pessoal()
+	
+elif mode == 14:
+	m3u_pessoal_local()
 
 elif mode == 99:
 	search()
