@@ -40,7 +40,7 @@ f_movie = xbmc.translatePath(os.path.join(artfolder, 'movie.jpg'))
 f_nasa = xbmc.translatePath(os.path.join(artfolder, 'nasa.jpg'))
 f_news = xbmc.translatePath(os.path.join(artfolder, 'news.jpg'))
 f_pt = xbmc.translatePath(os.path.join(artfolder, 'pt.jpg'))
-f_ru = xbmc.translatePath(os.path.join(artfolder, 'ru.jpg'))
+f_ru = xbmc.translatePath(os.path.join(artfolder, 'radio.jpg'))
 f_tvshow = xbmc.translatePath(os.path.join(artfolder, 'tvshow.jpg'))
 f_uk = xbmc.translatePath(os.path.join(artfolder, 'uk.jpg'))
 ##############################3
@@ -52,7 +52,7 @@ i_movie = xbmc.translatePath(os.path.join(artfolder, 'movie.png'))
 i_nasa = xbmc.translatePath(os.path.join(artfolder, 'nasa.png'))
 i_news = xbmc.translatePath(os.path.join(artfolder, 'news.png'))
 i_pt = xbmc.translatePath(os.path.join(artfolder, 'pt.png'))
-i_ru = xbmc.translatePath(os.path.join(artfolder, 'ru.png'))
+i_ru = xbmc.translatePath(os.path.join(artfolder, 'radio.png'))
 i_tvshow = xbmc.translatePath(os.path.join(artfolder, 'tvshow.png'))
 i_uk = xbmc.translatePath(os.path.join(artfolder, 'uk.png'))
 
@@ -111,7 +111,7 @@ def make_request(url):
 			
 def main():
 	if len(log_m3u) > 0:	
-		add_dir('[COLOR red]Versao: 0.0.5[/COLOR]', u_tube, 111, icon, fanart)
+		add_dir('[COLOR red]Versao: 0.0.5.1[/COLOR]', u_tube, 111, icon, fanart)
 	if len(online_m3u) > 0:	
 		add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	if len(filmes_m3u) > 0:	
