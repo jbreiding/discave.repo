@@ -14,7 +14,7 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.surikata" name="surikata TV" version="0.0.4" provider-name="Discave">
+<addon id="plugin.video.surikata" name="surikata TV" version="0.0.5" provider-name="Discave">
     <requires>
     </requires>
     <extension point="xbmc.python.pluginsource"

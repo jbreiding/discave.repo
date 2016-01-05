@@ -111,7 +111,7 @@ def make_request(url):
 			
 def main():
 	if len(log_m3u) > 0:	
-		add_dir('[COLOR red]Versao:0.0.4[/COLOR]', u_tube, 111, icon, fanart)
+		add_dir('[COLOR red]Versao: 0.0.5[/COLOR]', u_tube, 111, icon, fanart)
 	if len(online_m3u) > 0:	
 		add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	if len(filmes_m3u) > 0:	
@@ -125,7 +125,7 @@ def main():
 	if len(pt_m3u) > 0:	
 		add_dir('[COLOR yellow][B] PORTUGAL [/B][/COLOR]', u_tube, 7, i_pt, f_pt)
 	if len(ru_m3u) > 0:	
-		add_dir('[COLOR yellow][B] RUSSIA [/B][/COLOR]', u_tube, 8, i_ru, f_ru)
+		add_dir('[COLOR yellow][B] RADIOS [/B][/COLOR]', u_tube, 8, i_ru, f_ru)
 	if len(desporto_m3u) > 0:	
 		add_dir('[COLOR red][B] DESPORTO [/B][/COLOR]', u_tube, 9, i_sport, f_sport)
 	if len(series_m3u) > 0:	

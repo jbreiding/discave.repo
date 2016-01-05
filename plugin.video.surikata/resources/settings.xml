@@ -13,13 +13,13 @@
 		<setting label="[B]NASA[/B]" type="text"  id="nasa_m3u" default="http://bit.ly/1Jbsz7e" />
 		<setting label="[B]NOTICIAS[/B]" type="text"  id="noticias_m3u" default="http://bit.ly/1YLrGnQ" />
 		<setting label="[B]PORTUGAL[/B]" type="text"  id="pt_m3u" default="http://bit.ly/1QQKXoN" />
-		<setting label="[B]RUSSIA[/B]" type="text"  id="ru_m3u" default="http://bit.ly/22u6cR5" />
+		<setting label="[B]RUSSIA[/B]" type="text"  id="ru_m3u" default="http://bit.ly/22J3UO8" />
 		<setting label="[B]DESPORTO[/B]" type="text"  id="desporto_m3u" default="http://bit.ly/1NSnvl5" />
 		<setting label="[B]SERIES[/B]" type="text"  id="series_m3u" default="http://bit.ly/1ZwhamC" />
 		<setting label="[B]INGLATERRA[/B]" type="text"  id="uk_m3u" default="http://bit.ly/1SikmAj" />	
 		<setting label="[B]PRAIAS[/B]" type="text" id="praias_m3u" default="http://bit.ly/1JbsHUl" />			
 	</category>
 	<category label="[COLOR red][B]Listas Externas[/B][/COLOR]">
-		<setting label="[B]Changelog[/B]" type="text"  id="log_m3u" default="http://pastebin.com/raw/sdM3jLt4"  visible="false"/>
+		<setting label="[B]Changelog[/B]" type="text"  id="log_m3u" default="http://pastebin.com/raw/sdM3jLt4"  hide="true"/>
 		</category>
 </settings>
