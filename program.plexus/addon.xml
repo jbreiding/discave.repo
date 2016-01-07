@@ -1,33 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addons>
-<addon id="discave.repo" name="Discave Repositorio" version="0.0.3" provider-name="Discave">
-	<extension point="xbmc.addon.repository" name="Discave Repositorio">
-		<info compressed="false">http://raw.github.com/discave/discave.repo/master/addons.xml</info>
-		<checksum>http://raw.github.com/discave/discave.repo/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/discave/discave.repo/master/repo/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Discave Repo</summary>
-		<description>Discave Repositorio</description>
-		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="plugin.video.surikata" name="surikata TV" version="0.0.5.1" provider-name="Discave">
-    <requires>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               library="player.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>A tua lista de IPTV</summary>
-        <description>Junta-te a nos, no GitHub em https://github.com/adrianoafonso/myIPTVchannels, adiciona, edita, faz esta lista ser tua tambem.</description>
-    </extension>
-</addon>
-
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="program.plexus"
        name="Plexus"
        version="0.1.4"
@@ -40,7 +11,7 @@
             library="default.py">
         <provides>executable</provides>
   </extension>
-
+  
   <extension point="xbmc.addon.metadata">
     <summary>SopCast and AceStream for Kodi</summary>
     <description lang="en">Plexus - Any complex structure containing an intricate network of parts. Plexus brings native peer-to-peer support (AceStream and SopCast) for Kodi Entertainment Center for several platforms.[CR][CR]Documentation: (missing)</description>
@@ -51,4 +22,3 @@
     <platform>all</platform>
   </extension>
 </addon>
-</addons>
