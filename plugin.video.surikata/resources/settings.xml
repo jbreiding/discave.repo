@@ -13,13 +13,17 @@
 		<setting label="[B]NASA[/B]" type="text"  id="nasa_m3u" default="http://bit.ly/1Jbsz7e" />
 		<setting label="[B]NOTICIAS[/B]" type="text"  id="noticias_m3u" default="http://bit.ly/1YLrGnQ" />
 		<setting label="[B]PORTUGAL[/B]" type="text"  id="pt_m3u" default="http://bit.ly/1QQKXoN" />
-		<setting label="[B]RUSSIA[/B]" type="text"  id="ru_m3u" default="http://bit.ly/22J3UO8" />
+		<setting label="[B]RADIOS[/B]" type="text"  id="ru_m3u" default="http://bit.ly/22J3UO8" />
 		<setting label="[B]DESPORTO[/B]" type="text"  id="desporto_m3u" default="http://bit.ly/1NSnvl5" />
 		<setting label="[B]SERIES[/B]" type="text"  id="series_m3u" default="http://bit.ly/1ZwhamC" />
 		<setting label="[B]INGLATERRA[/B]" type="text"  id="uk_m3u" default="http://bit.ly/1SikmAj" />	
 		<setting label="[B]PRAIAS[/B]" type="text" id="praias_m3u" default="http://bit.ly/1JbsHUl" />			
 	</category>
 	<category label="[COLOR red][B]Listas Externas[/B][/COLOR]">
-		<setting label="[B]Changelog[/B]" type="text"  id="log_m3u" default="http://pastebin.com/raw/sdM3jLt4"  hide="true"/>
+		<setting label="[B]KITINA[/B]" type="text"  id="kitina_m3u" default="http://bit.ly/1PjhM7R" />
+		<setting label="[B]MARTUNIS[/B]" type="text"  id="martunis_m3u" default="http://bit.ly/1OVblHJ" />
+		<setting label="[B]ARGIVAI[/B]" type="text"  id="argivai_m3u" default="http://bit.ly/1RyDB81" />
+		<setting type="sep" />
+		<setting label="[B]Changelog[/B]" type="text" visible="false" id="log_m3u" default="http://pastebin.com/raw/sdM3jLt4" />
 		</category>
 </settings>

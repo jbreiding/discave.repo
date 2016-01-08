@@ -43,6 +43,7 @@ f_pt = xbmc.translatePath(os.path.join(artfolder, 'pt.jpg'))
 f_ru = xbmc.translatePath(os.path.join(artfolder, 'radio.jpg'))
 f_tvshow = xbmc.translatePath(os.path.join(artfolder, 'tvshow.jpg'))
 f_uk = xbmc.translatePath(os.path.join(artfolder, 'uk.jpg'))
+f_search = xbmc.translatePath(os.path.join(artfolder, 'search.jpg'))
 ##############################3
 i_music = xbmc.translatePath(os.path.join(artfolder, 'music.png'))
 i_sport = xbmc.translatePath(os.path.join(artfolder, 'sport.png'))
@@ -55,6 +56,7 @@ i_pt = xbmc.translatePath(os.path.join(artfolder, 'pt.png'))
 i_ru = xbmc.translatePath(os.path.join(artfolder, 'radio.png'))
 i_tvshow = xbmc.translatePath(os.path.join(artfolder, 'tvshow.png'))
 i_uk = xbmc.translatePath(os.path.join(artfolder, 'uk.png'))
+i_search = xbmc.translatePath(os.path.join(artfolder, 'search.png'))
 
 
 online_m3u = mysettings.getSetting('online_m3u')
@@ -72,6 +74,9 @@ pessoal_m3u = mysettings.getSetting('pessoal_m3u')
 pessoal_local_m3u = mysettings.getSetting('pessoal_local_m3u')
 online_xml = mysettings.getSetting('online_xml')
 local_xml = mysettings.getSetting('local_xml')
+kitina_m3u = mysettings.getSetting('kitina_m3u')
+martunis_m3u = mysettings.getSetting('martunis_m3u')
+argivai_m3u = mysettings.getSetting('argivai_m3u')
 ####################################
 log_m3u = mysettings.getSetting('log_m3u')
 
@@ -110,8 +115,7 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
-	if len(log_m3u) > 0:	
-		add_dir('[COLOR red]Versao: 0.0.5.1[/COLOR]', u_tube, 111, icon, fanart)
+	add_dir('[COLOR red]Versao:0.0.6[/COLOR]', u_tube, 111, icon, fanart)
 	if len(online_m3u) > 0:	
 		add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	if len(filmes_m3u) > 0:	
@@ -133,16 +137,22 @@ def main():
 	if len(uk_m3u) > 0:	
 		add_dir('[COLOR red][B] INGLATERRA[/B][/COLOR]', u_tube, 11, i_uk, f_uk)
 	if len(praias_m3u) > 0:	
-		add_dir('[COLOR gray][B] MUNDO e PRAIAS [/B][/COLOR]', u_tube, 12, i_beach, f_beach)
+		add_dir('[COLOR orange][B] MUNDO e PRAIAS [/B][/COLOR]', u_tube, 12, i_beach, f_beach)
 	if len(pessoal_m3u) > 0:	
-		add_dir('[COLOR gray][B] MINHA M3U ONLINE [/B][/COLOR]', u_tube, 13, icon, fanart)
+		add_dir('[COLOR orange][B] MINHA M3U ONLINE [/B][/COLOR]', u_tube, 13, icon, fanart)
 	if len(pessoal_local_m3u) > 0:	
-		add_dir('[COLOR gray][B] MINHA M3U LOCAL [/B][/COLOR]', u_tube, 14, icon, fanart)
+		add_dir('[COLOR orange][B] MINHA M3U LOCAL [/B][/COLOR]', u_tube, 14, icon, fanart)
 	if len(online_xml) > 0:	
-		add_dir('[COLOR gray][B] MINHA XML ONLINE [/B][/COLOR]', u_tube, 15, icon, fanart)
+		add_dir('[COLOR orange][B] MINHA XML ONLINE [/B][/COLOR]', u_tube, 15, icon, fanart)
 	if len(local_xml) > 0:	
-		add_dir('[COLOR gray][B] MINHA XML LOCAL [/B][/COLOR]', u_tube, 16, icon, fanart)	
-	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(uk_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 and len(online_xml) < 1 and len(local_xml) < 1 and len(log_m3u) < 1 ):
+		add_dir('[COLOR orange][B] MINHA XML LOCAL [/B][/COLOR]', u_tube, 16, icon, fanart)
+	if len(kitina_m3u) > 0:	
+		add_dir('[COLOR gray][B]KITINA[/B][/COLOR]', u_tube, 17, icon, fanart)
+	if len(martunis_m3u) > 0:	
+		add_dir('[COLOR gray][B]MARTUNIS[/B][/COLOR]', u_tube, 18, icon, fanart)
+	if len(argivai_m3u) > 0:	
+		add_dir('[COLOR gray][B]ARGIVAI[/B][/COLOR]', u_tube, 19, icon, fanart)		
+	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(uk_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 and len(online_xml) < 1 and len(local_xml) < 1 and len(log_m3u) < 1 and len(kitina_m3u) < 1 and len(martunis_m3u) < 1 and len(argivai_m3u) < 1 ):
 		mysettings.openSettings()
 		xbmc.executebuiltin("Container.Refresh")		
 
@@ -241,7 +251,25 @@ def search():
 			match = re.compile(xml_regex).findall(content)		
 			for name, url, thumb in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					xml_playlist(name, url, thumb)					
+					xml_playlist(name, url, thumb)
+		if len(kitina_m3u) > 0:		
+			content = read_file(kitina_m3u)
+			match = re.compile(m3u_regex).findall(content)		
+			for thumb, name, url in match:
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		if len(martunis_m3u) > 0:		
+			content = read_file(martunis_m3u)
+			match = re.compile(m3u_regex).findall(content)		
+			for thumb, name, url in match:
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		if len(argivai_m3u) > 0:		
+			content = read_file(argivai_m3u)
+			match = re.compile(m3u_regex).findall(content)		
+			for thumb, name, url in match:
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)					
 	except:
 		pass
 	
@@ -387,6 +415,33 @@ def xml_local():
 	for name, url, thumb in match:	
 		try:
 			xml_playlist(name, url, thumb)
+		except:
+			pass
+			
+def m3u_kitina():
+	content = make_request(kitina_m3u)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:	
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+			
+def m3u_martunis():
+	content = make_request(martunis_m3u)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:	
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+			
+def m3u_argivai():
+	content = make_request(argivai_m3u)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:	
+		try:
+			m3u_playlist(name, url, thumb)
 		except:
 			pass
 			
@@ -559,6 +614,15 @@ elif mode == 15:
 	
 elif mode == 16:
 	xml_local()
+	
+elif mode == 17:
+	m3u_kitina()
+	
+elif mode == 18:
+	m3u_martunis()
+	
+elif mode == 19:
+	m3u_argivai()
 
 elif mode == 99:
 	search()
