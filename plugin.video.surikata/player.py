@@ -42,7 +42,7 @@ f_news = xbmc.translatePath(os.path.join(artfolder, 'news.jpg'))
 f_pt = xbmc.translatePath(os.path.join(artfolder, 'pt.jpg'))
 f_ru = xbmc.translatePath(os.path.join(artfolder, 'radio.jpg'))
 f_tvshow = xbmc.translatePath(os.path.join(artfolder, 'tvshow.jpg'))
-f_uk = xbmc.translatePath(os.path.join(artfolder, 'uk.jpg'))
+f_inter = xbmc.translatePath(os.path.join(artfolder, 'inter.jpg'))
 f_search = xbmc.translatePath(os.path.join(artfolder, 'search.jpg'))
 ##############################3
 i_music = xbmc.translatePath(os.path.join(artfolder, 'music.png'))
@@ -55,7 +55,7 @@ i_news = xbmc.translatePath(os.path.join(artfolder, 'news.png'))
 i_pt = xbmc.translatePath(os.path.join(artfolder, 'pt.png'))
 i_ru = xbmc.translatePath(os.path.join(artfolder, 'radio.png'))
 i_tvshow = xbmc.translatePath(os.path.join(artfolder, 'tvshow.png'))
-i_uk = xbmc.translatePath(os.path.join(artfolder, 'uk.png'))
+i_inter = xbmc.translatePath(os.path.join(artfolder, 'inter.png'))
 i_search = xbmc.translatePath(os.path.join(artfolder, 'search.png'))
 
 
@@ -68,7 +68,7 @@ pt_m3u = mysettings.getSetting('pt_m3u')
 ru_m3u = mysettings.getSetting('ru_m3u')
 desporto_m3u = mysettings.getSetting('desporto_m3u')
 series_m3u = mysettings.getSetting('series_m3u')
-uk_m3u = mysettings.getSetting('uk_m3u')
+inter_m3u = mysettings.getSetting('inter_m3u')
 praias_m3u = mysettings.getSetting('praias_m3u')
 pessoal_m3u = mysettings.getSetting('pessoal_m3u')
 pessoal_local_m3u = mysettings.getSetting('pessoal_local_m3u')
@@ -115,29 +115,18 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
-	add_dir('[COLOR red]Versao:0.0.6[/COLOR]', u_tube, 111, icon, fanart)
-	if len(online_m3u) > 0:	
-		add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
-	if len(filmes_m3u) > 0:	
-		add_dir('[COLOR blue][B] FILMES [/B][/COLOR]', u_tube, 3, i_movie, f_movie)
-	if len(infantil_m3u) > 0:	
-		add_dir('[COLOR blue][B] INFANTIL [/B][/COLOR]', u_tube, 4, i_child, f_child)
-	if len(nasa_m3u) > 0:	
-		add_dir('[COLOR green][B] NASA [/B][/COLOR]', u_tube, 5, i_nasa, f_nasa)
-	if len(noticias_m3u) > 0:	
-		add_dir('[COLOR yellow][B] NOTICIAS [/B][/COLOR]', u_tube, 6, i_news, f_news)
-	if len(pt_m3u) > 0:	
-		add_dir('[COLOR yellow][B] PORTUGAL [/B][/COLOR]', u_tube, 7, i_pt, f_pt)
-	if len(ru_m3u) > 0:	
-		add_dir('[COLOR yellow][B] RADIOS [/B][/COLOR]', u_tube, 8, i_ru, f_ru)
-	if len(desporto_m3u) > 0:	
-		add_dir('[COLOR red][B] DESPORTO [/B][/COLOR]', u_tube, 9, i_sport, f_sport)
-	if len(series_m3u) > 0:	
-		add_dir('[COLOR red][B] SERIES [/B][/COLOR]', u_tube, 10, i_tvshow, f_tvshow)
-	if len(uk_m3u) > 0:	
-		add_dir('[COLOR red][B] INGLATERRA[/B][/COLOR]', u_tube, 11, i_uk, f_uk)
-	if len(praias_m3u) > 0:	
-		add_dir('[COLOR orange][B] MUNDO e PRAIAS [/B][/COLOR]', u_tube, 12, i_beach, f_beach)
+	add_dir('[COLOR red]Versao:0.0.7[/COLOR]', u_tube, 111, icon, fanart)	
+	add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
+	add_dir('[COLOR blue][B] FILMES [/B][/COLOR]', u_tube, 3, i_movie, f_movie)
+	add_dir('[COLOR blue][B] INFANTIL [/B][/COLOR]', u_tube, 4, i_child, f_child)
+	add_dir('[COLOR green][B] NASA [/B][/COLOR]', u_tube, 5, i_nasa, f_nasa)	
+	add_dir('[COLOR yellow][B] NOTICIAS [/B][/COLOR]', u_tube, 6, i_news, f_news)
+	add_dir('[COLOR yellow][B] PORTUGAL [/B][/COLOR]', u_tube, 7, i_pt, f_pt)
+	add_dir('[COLOR yellow][B] RADIOS [/B][/COLOR]', u_tube, 8, i_ru, f_ru)
+	add_dir('[COLOR red][B] DESPORTO [/B][/COLOR]', u_tube, 9, i_sport, f_sport)
+	add_dir('[COLOR red][B] SERIES [/B][/COLOR]', u_tube, 10, i_tvshow, f_tvshow)
+	add_dir('[COLOR red][B] INTERNACIONAL[/B][/COLOR]', u_tube, 11, i_inter, f_inter)
+	add_dir('[COLOR orange][B] MUNDO e PRAIAS (CAM)[/B][/COLOR]', u_tube, 12, i_beach, f_beach)
 	if len(pessoal_m3u) > 0:	
 		add_dir('[COLOR orange][B] MINHA M3U ONLINE [/B][/COLOR]', u_tube, 13, icon, fanart)
 	if len(pessoal_local_m3u) > 0:	
@@ -152,7 +141,7 @@ def main():
 		add_dir('[COLOR gray][B]MARTUNIS[/B][/COLOR]', u_tube, 18, icon, fanart)
 	if len(argivai_m3u) > 0:	
 		add_dir('[COLOR gray][B]ARGIVAI[/B][/COLOR]', u_tube, 19, icon, fanart)		
-	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(uk_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 and len(online_xml) < 1 and len(local_xml) < 1 and len(log_m3u) < 1 and len(kitina_m3u) < 1 and len(martunis_m3u) < 1 and len(argivai_m3u) < 1 ):
+	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(inter_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 and len(online_xml) < 1 and len(local_xml) < 1 and len(log_m3u) < 1 and len(kitina_m3u) < 1 and len(martunis_m3u) < 1 and len(argivai_m3u) < 1 ):
 		mysettings.openSettings()
 		xbmc.executebuiltin("Container.Refresh")		
 
@@ -216,8 +205,8 @@ def search():
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
 					m3u_playlist(name, url, thumb)
-		if len(uk_m3u) > 0:		
-			content = make_request(uk_m3u)
+		if len(inter_m3u) > 0:		
+			content = make_request(inter_m3u)
 			match = re.compile(m3u_regex).findall(content)		
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -272,8 +261,8 @@ def search():
 					m3u_playlist(name, url, thumb)					
 	except:
 		pass
+			
 	
-		
 def m3u_log():		
 	content = make_request(log_m3u)
 	match = re.compile(m3u_regex).findall(content)
@@ -364,8 +353,8 @@ def m3u_series():
 		except:
 			pass
 			
-def m3u_uk():
-	content = make_request(uk_m3u)
+def m3u_inter():
+	content = make_request(inter_m3u)
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:	
 		try:
@@ -570,6 +559,7 @@ elif mode == 1:
 
 elif mode == 111:
 	m3u_log()
+	
 elif mode == 2:
 	m3u_online()
 	
@@ -598,7 +588,7 @@ elif mode == 10:
 	m3u_series()
 	
 elif mode == 11:
-	m3u_uk()
+	m3u_inter()
 	
 elif mode == 12:
 	m3u_praias()
