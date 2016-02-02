@@ -19,9 +19,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 Desenvolvido por Discave para Surikata TV
 """
 
-import urllib, urllib2, sys, re, os, unicodedata
+import urllib, urllib2, sys, re, os, unicodedata, json
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon
 import xbmcvfs,socket,urlparse,time,threading,HTMLParser
+
 
 plugin_handle = int(sys.argv[1])
 
@@ -84,6 +85,7 @@ xml_regex = '<title>(.*?)</title>\s*<link>(.*?)</link>\s*<thumbnail>(.*?)</thumb
 m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
 
+
 u_tube = 'http://www.youtube.com'
 
 def removeAccents(s):
@@ -115,7 +117,8 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
-	add_dir('[COLOR red]Versao:0.0.7[/COLOR]', u_tube, 111, icon, fanart)	
+	add_dir('[COLOR red][B] Versao: 0.0.8  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
+	add_dir('[B] PROCURAR em myIPTVchannels[/B]', 'searchlink', 99, i_search, f_search)
 	add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	add_dir('[COLOR blue][B] FILMES [/B][/COLOR]', u_tube, 3, i_movie, f_movie)
 	add_dir('[COLOR blue][B] INFANTIL [/B][/COLOR]', u_tube, 4, i_child, f_child)
@@ -128,9 +131,9 @@ def main():
 	add_dir('[COLOR red][B] INTERNACIONAL[/B][/COLOR]', u_tube, 11, i_inter, f_inter)
 	add_dir('[COLOR orange][B] MUNDO e PRAIAS (CAM)[/B][/COLOR]', u_tube, 12, i_beach, f_beach)
 	if len(pessoal_m3u) > 0:	
-		add_dir('[COLOR orange][B] MINHA M3U ONLINE [/B][/COLOR]', u_tube, 13, icon, fanart)
+		add_dir('[COLOR orange][B] MINHA LISTA ONLINE [/B][/COLOR]', u_tube, 13, icon, fanart)
 	if len(pessoal_local_m3u) > 0:	
-		add_dir('[COLOR orange][B] MINHA M3U LOCAL [/B][/COLOR]', u_tube, 14, icon, fanart)
+		add_dir('[COLOR orange][B] MINHA LISTA LOCAL [/B][/COLOR]', u_tube, 14, icon, fanart)
 	if len(online_xml) > 0:	
 		add_dir('[COLOR orange][B] MINHA XML ONLINE [/B][/COLOR]', u_tube, 15, icon, fanart)
 	if len(local_xml) > 0:	
@@ -169,12 +172,6 @@ def search():
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
 					m3u_playlist(name, url, thumb)
-		if len(nasa_m3u) > 0:		
-			content = make_request(nasa_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
 		if len(noticias_m3u) > 0:		
 			content = make_request(noticias_m3u)
 			match = re.compile(m3u_regex).findall(content)		
@@ -187,20 +184,8 @@ def search():
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
 					m3u_playlist(name, url, thumb)
-		if len(ru_m3u) > 0:		
-			content = make_request(ru_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
 		if len(desporto_m3u) > 0:		
 			content = make_request(desporto_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-		if len(series_m3u) > 0:		
-			content = make_request(series_m3u)
 			match = re.compile(m3u_regex).findall(content)		
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -210,55 +195,8 @@ def search():
 			match = re.compile(m3u_regex).findall(content)		
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-		if len(praias_m3u) > 0:		
-			content = make_request(praias_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-		if len(pessoal_m3u) > 0:		
-			content = make_request(pessoal_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-		if len(pessoal_local_m3u) > 0:		
-			content = read_file(pessoal_local_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-		if len(online_xml) > 0:					
-			content = make_request(online_xml)
-			match = re.compile(xml_regex).findall(content)	
-			for name, url, thumb in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					xml_playlist(name, url, thumb)	
-		if len(local_xml) > 0:		
-			content = read_file(local_xml)
-			match = re.compile(xml_regex).findall(content)		
-			for name, url, thumb in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					xml_playlist(name, url, thumb)
-		if len(kitina_m3u) > 0:		
-			content = read_file(kitina_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-		if len(martunis_m3u) > 0:		
-			content = read_file(martunis_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-		if len(argivai_m3u) > 0:		
-			content = read_file(argivai_m3u)
-			match = re.compile(m3u_regex).findall(content)		
-			for thumb, name, url in match:
-				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)					
+					m3u_playlist(name, url, thumb)	
+			
 	except:
 		pass
 			
@@ -433,6 +371,7 @@ def m3u_argivai():
 			m3u_playlist(name, url, thumb)
 		except:
 			pass
+			
 			
 def m3u_playlist(name, url, thumb):	
 	name = re.sub('\s+', ' ', name).strip()			
