@@ -122,7 +122,7 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
-	add_dir('[COLOR red][B] Versao: 1.0.1  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
+	add_dir('[COLOR red][B] Versao: 1.0.2  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
 	add_dir('[B] PROCURAR[/B]', 'searchlink', 99, i_search, f_search)
 	add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	add_dir('[COLOR blue][B] FILMES [/B][/COLOR]', u_tube, 3, i_movie, f_movie)
@@ -146,7 +146,7 @@ def main():
 		add_dir('[COLOR orange][B] MINHA XML LOCAL [/B][/COLOR]', u_tube, 16, icon, fanart)
 	if len(algas_m3u) > 0:	
 		add_dir('[COLOR gray][B]TV ALGAS[/B][/COLOR]', u_tube, 22, icon, fanart)
-		if len(kitina_m3u) > 0:	
+		if len(algas_m3u) > 0:	
 		add_dir('[COLOR gray][B]KITINA[/B][/COLOR]', u_tube, 17, icon, fanart)
 	if len(martunis_m3u) > 0:	
 		add_dir('[COLOR gray][B]MARTUNIS[/B][/COLOR]', u_tube, 18, icon, fanart)
