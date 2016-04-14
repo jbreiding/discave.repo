@@ -82,6 +82,7 @@ kitina_m3u = mysettings.getSetting('kitina_m3u')
 martunis_m3u = mysettings.getSetting('martunis_m3u')
 argivai_m3u = mysettings.getSetting('argivai_m3u')
 iptvbrasil_m3u = mysettings.getSetting('iptvbrasil_m3u')
+algas_m3u = mysettings.getSetting('algas_m3u')
 ####################################
 log_m3u = mysettings.getSetting('log_m3u')
 
@@ -121,7 +122,7 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
-	add_dir('[COLOR red][B] Versao: 1.0.0  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
+	add_dir('[COLOR red][B] Versao: 1.0.1  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
 	add_dir('[B] PROCURAR[/B]', 'searchlink', 99, i_search, f_search)
 	add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	add_dir('[COLOR blue][B] FILMES [/B][/COLOR]', u_tube, 3, i_movie, f_movie)
@@ -143,7 +144,9 @@ def main():
 		add_dir('[COLOR orange][B] MINHA XML ONLINE [/B][/COLOR]', u_tube, 15, icon, fanart)
 	if len(local_xml) > 0:	
 		add_dir('[COLOR orange][B] MINHA XML LOCAL [/B][/COLOR]', u_tube, 16, icon, fanart)
-	if len(kitina_m3u) > 0:	
+	if len(algas_m3u) > 0:	
+		add_dir('[COLOR gray][B]TV ALGAS[/B][/COLOR]', u_tube, 22, icon, fanart)
+		if len(kitina_m3u) > 0:	
 		add_dir('[COLOR gray][B]KITINA[/B][/COLOR]', u_tube, 17, icon, fanart)
 	if len(martunis_m3u) > 0:	
 		add_dir('[COLOR gray][B]MARTUNIS[/B][/COLOR]', u_tube, 18, icon, fanart)
@@ -212,6 +215,13 @@ def search():
 					
 		if len(iptvbrasil_m3u) > 0:		
 			content = make_request(iptvbrasil_m3u)
+			match = re.compile(m3u_regex).findall(content)		
+			for thumb, name, url in match:
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+					
+		if len(algas_m3u) > 0:		
+			content = make_request(algas_m3u)
 			match = re.compile(m3u_regex).findall(content)		
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -410,6 +420,15 @@ def m3u_iptvbrasil():
 		except:
 			pass
 			
+def m3u_algas():
+	content = make_request(algas_m3u)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:	
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+			
 			
 def m3u_playlist(name, url, thumb):	
 	name = re.sub('\s+', ' ', name).strip()			
@@ -596,6 +615,9 @@ elif mode == 19:
 	
 elif mode == 21:
 	m3u_iptvbrasil()
+	
+elif mode == 22:
+	m3u_algas()
 
 elif mode == 99:
 	search()
