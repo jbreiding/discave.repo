@@ -122,7 +122,7 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
-	add_dir('[COLOR red][B] Versao: 1.0.2  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
+	add_dir('[COLOR red][B] Versao: 1.0.3  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
 	add_dir('[B] PROCURAR[/B]', 'searchlink', 99, i_search, f_search)
 	add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	add_dir('[COLOR blue][B] FILMES [/B][/COLOR]', u_tube, 3, i_movie, f_movie)
@@ -144,17 +144,17 @@ def main():
 		add_dir('[COLOR orange][B] MINHA XML ONLINE [/B][/COLOR]', u_tube, 15, icon, fanart)
 	if len(local_xml) > 0:	
 		add_dir('[COLOR orange][B] MINHA XML LOCAL [/B][/COLOR]', u_tube, 16, icon, fanart)
-	if len(algas_m3u) > 0:	
-		add_dir('[COLOR gray][B]TV ALGAS[/B][/COLOR]', u_tube, 22, icon, fanart)
-		if len(algas_m3u) > 0:	
+	if len(kitina_m3u) > 0:	
 		add_dir('[COLOR gray][B]KITINA[/B][/COLOR]', u_tube, 17, icon, fanart)
 	if len(martunis_m3u) > 0:	
 		add_dir('[COLOR gray][B]MARTUNIS[/B][/COLOR]', u_tube, 18, icon, fanart)
 	if len(argivai_m3u) > 0:	
 		add_dir('[COLOR gray][B]ARGIVAI[/B][/COLOR]', u_tube, 19, icon, fanart)	
 	if len(iptvbrasil_m3u) > 0:	
-		add_dir('[COLOR gray][B] IPTVBRASILHD[/B][/COLOR]', u_tube, 21, icon, fanart)			
-	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(inter_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 and len(online_xml) < 1 and len(local_xml) < 1 and len(log_m3u) < 1 and len(kitina_m3u) < 1 and len(martunis_m3u) < 1 and len(argivai_m3u) < 1 ):
+		add_dir('[COLOR gray][B] IPTVBRASILHD[/B][/COLOR]', u_tube, 21, icon, fanart)
+	if len(algas_m3u) > 0:	
+		add_dir('[COLOR gray][B]TV ALGAS[/B][/COLOR]', u_tube, 22, icon, fanart)		
+	if (len(online_m3u) < 1 and len(filmes_m3u) < 1 and len(infantil_m3u) < 1 and len(nasa_m3u) < 1 and len(noticias_m3u) < 1 and len(pt_m3u) < 1 and len(ru_m3u) < 1 and len(desporto_m3u) < 1 and len(series_m3u) < 1 and len(inter_m3u) < 1 and len(praias_m3u) < 1 and len(pessoal_m3u) < 1 and len(pessoal_local_m3u) < 1 and len(online_xml) < 1 and len(local_xml) < 1 and len(log_m3u) < 1 and len(kitina_m3u) < 1 and len(martunis_m3u) < 1 and len(argivai_m3u) < 1 and len(algas_m3u) < 1 ):
 		mysettings.openSettings()
 		xbmc.executebuiltin("Container.Refresh")		
 
@@ -211,15 +211,13 @@ def search():
 			match = re.compile(m3u_regex).findall(content)		
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-					
+					m3u_playlist(name, url, thumb)		
 		if len(iptvbrasil_m3u) > 0:		
 			content = make_request(iptvbrasil_m3u)
 			match = re.compile(m3u_regex).findall(content)		
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)
-					
+					m3u_playlist(name, url, thumb)		
 		if len(algas_m3u) > 0:		
 			content = make_request(algas_m3u)
 			match = re.compile(m3u_regex).findall(content)		
