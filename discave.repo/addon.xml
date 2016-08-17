@@ -6,8 +6,8 @@
 		<datadir zip="true">http://raw.github.com/discave/discave.repo/master/repo/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Discave Repo</summary>
-		<description>Discave Repositorio</description>
+		<summary>DiscaveHB Repo</summary>
+		<description>DiscaveHB Repositorio</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
