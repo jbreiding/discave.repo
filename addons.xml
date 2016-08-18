@@ -14,6 +14,27 @@
 	</extension>
 </addon>
 
+<addon id="plugin.video.alive.hd" name="Alive HD" version="1.6" provider-name="frenchdj">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.addon.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" />
+  </requires>
+
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">alive.hd</summary>
+    <description lang="en">[ENG] Concerts and Djs live performances with HD quality. Playlists organized by categories and any source comes from Youtube users. Advised the latest version of youtube 5.2.*
+[PT] Concertos e performances de Djs ao vivo com qualidade HD. Playlists organizadas por categorias com diversas vertentes Musicais. Toda a fonte  vem de utilizadores do Youtube. Aconselhado a ultima versao do youtube 5.2.* </description>
+    <platform>all</platform>
+    <forum></forum>
+    <website></website>
+  </extension>
+</addon>
+
 <addon id="plugin.video.f4mTester" version="2.2.5" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -183,7 +204,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
 
 <addon id="plugin.video.traquinas"
        name="Traquinas"
-       version="1.0"
+       version="1.1"
        provider-name="Kodi Traquinas">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -206,9 +227,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
     <description>Desenhos animados e filmes infantis em [PT] e [BR].
 Categorias com legendas em [PT].
 
-[B][COLOR lime]Para que haja um bom funcionamento deste addon, o URL RESOLVER e o F4M TESTER necessitam de estar activos no kodi.[/COLOR][/B]
-
-Pesquisa de links da autoria de Kodi Traquinas com a preciosa ajuda de Andre Sampaio e Alcides Sousa.</description>
+[B][COLOR lime]Para que haja um bom funcionamento deste addon, o URL RESOLVER e o F4M TESTER necessitam de estar activos no kodi.[/COLOR][/B]</description>
     <platform>all</platform>
   </extension>
 </addon>
