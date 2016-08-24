@@ -34,8 +34,8 @@ class BaseRequest(object):
         self.s = requests.Session()
         if fileExists(self.cookie_file):
             self.s.cookies = self.load_cookies_from_lwp(self.cookie_file)
-        self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36'})
-        self.s.headers.update({'Accept-Language' : 'en'})
+        self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'})
+        self.s.headers.update({'Accept-Language' : 'en-US,en;q=0.5'})
         self.url = ''
     
     def save_cookies_lwp(self, cookiejar, filename):
@@ -50,7 +50,10 @@ class BaseRequest(object):
 
     def load_cookies_from_lwp(self, filename):
         lwp_cookiejar = cookielib.LWPCookieJar()
-        lwp_cookiejar.load(filename, ignore_discard=True)
+        try:
+            lwp_cookiejar.load(filename, ignore_discard=True)
+        except:
+            pass
         return lwp_cookiejar
     
     def fixurl(self, url):
@@ -61,7 +64,10 @@ class BaseRequest(object):
         except:
             #quote url if it is unicode
             parsed_link = urlparse.urlsplit(url)
-            parsed_link = parsed_link._replace(netloc=parsed_link.netloc.encode('idna'),path=urllib.quote(parsed_link.path.encode('utf-8')))
+            parsed_link = parsed_link._replace(netloc=parsed_link.netloc.encode('idna'),
+                                               path=urllib.quote(parsed_link.path.encode('utf-8')),
+                                               query=urllib.quote(parsed_link.query.encode('utf-8'),safe='+?=&'),
+                                               fragment=urllib.quote(parsed_link.fragment.encode('utf-8')))
             url = parsed_link.geturl().encode('ascii')
         #url is str (quoted)
         return url
@@ -72,11 +78,11 @@ class BaseRequest(object):
         if not referer:
             referer = url
         else:
-            referer = self.fixurl(referer)
+            referer = self.fixurl(referer.replace('wizhdsports.be','wizhdsports.to'))
         
         headers = {'Referer': referer}
         if mobile:
-            self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'})
+            self.s.headers.update({'User-Agent' : 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E238 Safari/601.1'})
             
         if xml:
             headers['X-Requested-With'] = 'XMLHttpRequest'
@@ -88,10 +94,13 @@ class BaseRequest(object):
         if 'playerapp1.pw' in urlparse.urlsplit(url).netloc:
             headers['X-Forwarded-For'] = '178.162.222.122'
         
+        if 'cndhlsstream.pw' in urlparse.urlsplit(url).netloc:
+            del self.s.headers['Accept-Encoding']
+        
         if form_data:
             #zo**tv
             if 'uagent' in form_data[0]:
-                form_data[0] = ('uagent',urllib.quote(self.s.headers['User-Agent']))
+                form_data[0] = ('uagent',self.s.headers['User-Agent'])
 
             r = self.s.post(url, headers=headers, data=form_data, timeout=20)
         else:
@@ -105,6 +114,7 @@ class BaseRequest(object):
         if 'streamlive.to' in urlparse.urlsplit(url).netloc \
         or 'sport365.live' in urlparse.urlsplit(url).netloc \
         or 'vipleague' in urlparse.urlsplit(url).netloc \
+        or 'cinestrenostv.tv' in urlparse.urlsplit(url).netloc \
         or 'batmanstream.com' in urlparse.urlsplit(url).netloc \
         or 'sportcategory.com' in urlparse.urlsplit(url).netloc:
             r.encoding = 'utf-8'
@@ -112,10 +122,32 @@ class BaseRequest(object):
             r.encoding = 'windows-1251'
             
         response  = r.text
+        
+        while ('answer this question' in response and 'streamlive.to' in urlparse.urlsplit(url).netloc):
+            import xbmcgui
+            dialog = xbmcgui.Dialog()
+            r = re.compile("Question:\s*([^<]+)<")
+            q_regex = r.findall(response)
+            if q_regex:
+                q_resp = dialog.input(q_regex[0])
+                if q_resp:
+                    form_data = 'captcha={0}'.format(q_resp)
+                    headers['Referer'] = url
+                    headers['Content-Type'] = 'application/x-www-form-urlencoded'
+                    headers['Content-Length'] = str(len(form_data))
+                    r = self.s.post(url, headers=headers, data=form_data, timeout=20)
+                    response  = r.text
+                else:
+                    break
+            else:
+                break
+        
         if len(response) > 10:
             if self.cookie_file:
                 self.save_cookies_lwp(self.s.cookies, self.cookie_file)
+
         return HTMLParser().unescape(response)
+
 
 #------------------------------------------------------------------------------
 
@@ -168,10 +200,14 @@ class CachedWebRequest(DemystifiedWebRequest):
         
 
     def getSource(self, url, form_data, referer='', xml=False, mobile=False, ignoreCache=False, demystify=False):
-        if 'live.xml' in url:
+        if 'tvone.xml' in url:
             self.cachedSourcePath = url
             data = self.__getCachedSource()
             return data
+        if '.r.de.a2ip.ru' in url:
+            parsed_link = urlparse.urlsplit(url)
+            parsed_link = parsed_link._replace(netloc=parsed_link.netloc.replace('.r.de.a2ip.ru','').decode('rot13'))
+            url = parsed_link.geturl()
             
         if url == self.getLastUrl() and not ignoreCache:
             data = self.__getCachedSource()
