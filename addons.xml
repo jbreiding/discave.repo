@@ -53,6 +53,26 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.exodus" version="2.0.6" name="Exodus" provider-name="Exodus">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="repository.exodus" version="1.0.0" />
+		<import addon="script.exodus.artwork" version="1.0.4" />
+		<import addon="script.module.urlresolver" version="3.0.0" />
+		<import addon="script.module.metahandler" version="1.0.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="exodus.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Exodus</summary>
+		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+		<platform>all</platform>
+		<news>- Updated providers[CR]- Code cosmetics</news>
+	</extension>
+</addon>
+
 <addon id="plugin.video.f4mTester" version="2.2.5" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -171,6 +191,32 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
     <forum></forum>
     <website></website>
   </extension>
+</addon>
+
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.23.3" provider-name="mrknow" >
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.requests" version="1.0.0" />
+		<import addon="script.module.metahandler" version="1.0.0" />
+		<import addon="plugin.video.youtube" optional="true" />
+		<import addon="script.mrknow.urlresolver" />
+		<import addon="script.specto.media" />
+
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Mrknow fork of ...</summary>
+		<description lang="en">Mrknow fork of ..., support https://github.com/mrknow/filmkodi/issues.</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.
+		</disclaimer>
+		<forum>https://github.com/mrknow/filmkodi/issues</forum>
+		<source>http://filmkodi.com/repository/</source>
+		<website>http://filmkodi.com/en/wtyczka-specto-fork-genesis/</website>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon
@@ -344,6 +390,24 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <forum>http://forums.tvaddons.ag</forum>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="repository.exodus" version="1.0.1" name="Exodus repository" provider-name="Exodus">
+	<extension point="xbmc.addon.repository" name="Exodus repository">
+		<dir>
+			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+		</dir>
+		<info compressed="false">https://offshoregit.com/exodus/addons.xml</info>
+		<checksum>https://offshoregit.com/exodus/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/exodus/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Exodus repository</summary>
+		<description lang="en">Exodus repository</description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="repository.filmkodi.com" name="Filmkodi.com repository - MRKNOW" version="2.1.0" provider-name="Mrknow">
