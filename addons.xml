@@ -193,6 +193,27 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
   </extension>
 </addon>
 
+<addon id="plugin.video.sembilhete.tv" name="SemBilhete.tv" provider-name="SemBilhete.tv" version="0.5.4">
+ <requires>
+  <import addon="xbmc.python" version="2.7.10"/>
+ </requires>
+ <extension library="addon.py" point="xbmc.python.pluginsource">
+  <provides>video</provides>
+ </extension>
+ <extension point="xbmc.addon.metadata">
+    <summary>SemBilhete.tv</summary>
+    <description>Addon oficial do SemBilhete.tv, os teus Filmes e SÃ©ries do Sem Bilhete agora no Kodi.</description>
+    <disclaimer>Addon oficial do Sem Bilhete, qualquer duvida ou questÃ£o contacte-nos pelo site ou pelo Facebook.</disclaimer>
+    <language>pt</language>
+    <platform>all</platform>
+    <license></license>
+    <forum></forum>
+    <website>https://sembilhete.tv</website>
+    <email></email>
+    <source></source>
+ </extension>
+</addon>
+
 <addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.23.3" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
