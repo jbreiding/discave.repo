@@ -22,7 +22,7 @@ except:
 import SimpleDownloader as downloader
 import time
 import requests
-import _Edit
+import urllib3
 
 
 
@@ -35,7 +35,7 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
        return response
    https_response = http_response
        
-addon = _Edit.addon
+addon = urllib3.addon
 addon_version = addon.getAddonInfo('version')
 profile = xbmc.translatePath(addon.getAddonInfo('profile').decode('utf-8'))
 home = xbmc.translatePath(addon.getAddonInfo('path').decode('utf-8'))
@@ -86,7 +86,7 @@ def makeRequest(url, headers=None):
 def SKindex():
     addon_log("SKindex")
     addDir('Favorites','Favorites',4,'http://goo.gl/TyDD6w' ,  FANART,'','','','')
-    getData(_Edit.MainBase,'')
+    getData(urllib3.MainBase,'')
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 		
 	
@@ -554,7 +554,7 @@ def SearchChannels():
     
     Searchkey = Searchkey.lower()
     List=[]
-    List.append(_Edit.MainBase)
+    List.append(urllib3.MainBase)
     PassedUrls = 0
     FoundChannel = 1 
     ReadChannel = 0
