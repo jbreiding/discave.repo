@@ -14,6 +14,20 @@
 	</extension>
 </addon>
 
+<addon id="frenchdj.repository" name="frenchdj repository" version="0.0.1" provider-name="frenchdj">
+	<extension point="xbmc.addon.repository" name="frenchdj Add-on Repository">
+		<info compressed="false">http://raw.github.com/frenchdj/frenchdj.repository/master/addons.xml</info>
+		<checksum>http://raw.github.com/frenchdj/frenchdj.repository/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/frenchdj/frenchdj.repository/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>frenchdj Addon</summary>
+		<description>frenchdj addons repositorio</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="plugin.video.abelhas"
        name="CopiaPop (ex Abelhas.pt)"
        version="2.0.2"
@@ -480,6 +494,33 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<description lang="pl">Wtyczki z nieoficjalnego, repozytorium polskiego mrknow.pl..</description>
 		<disclaimer lang="en">Repository has non-comercial nature. Created by enthusiasts, acting in good faith.</disclaimer>
 		<disclaimer lang="pl">ZawartoÅ›Ä‡ repozytorium ma charakter niekomercyjny, wtyczki tworzone przez pasjonatÃ³w, .</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.pancas" name="Pancas repository" version="1.0.4" provider-name="Pancas">
+	<extension point="xbmc.addon.repository" name="Pancas Add-on Repository">
+		<info compressed="false">http://raw.github.com/Sup3Roque/Pancas/master/addons.xml</info>
+		<checksum>http://raw.github.com/Sup3Roque/Pancas/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/Sup3Roque/Pancas/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Pancas Repo</summary>
+		<description>TV para todos sempre ao melhor preÃ§o</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.repository.team_inspiration" name="Team Inspiration" version="4.0" provider-name="Inspiration">
+	<extension point="xbmc.addon.repository" name="VietKodi Addon Repository">
+		<info compressed="false">http://teaminspiration.net23.net/Plugins/addons.xml</info>
+		<checksum>http://teaminspiration.net23.net/Plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://teaminspiration.net23.net/Plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Team Inspiration Repo</summary>
+		<description>Repositorio do Team Inspiration</description>
 		<platform>all</platform>
 	</extension>
 </addon>
