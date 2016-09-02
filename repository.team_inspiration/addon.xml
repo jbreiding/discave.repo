@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.repository.team_inspiration" name="Team Inspiration" version="4.0" provider-name="Inspiration">
+<addon id="repository.team_inspiration" name="Team Inspiration" version="4.0" provider-name="Inspiration">
 	<extension point="xbmc.addon.repository" name="VietKodi Addon Repository">
 		<info compressed="false">http://teaminspiration.net23.net/Plugins/addons.xml</info>
 		<checksum>http://teaminspiration.net23.net/Plugins/addons.xml.md5</checksum>
