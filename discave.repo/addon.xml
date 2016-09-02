@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="discave.repo" name="DiscaveHB Repositorio" version="0.0.4" provider-name="Discave">
+<addon id="discave.repo" name="DiscaveHB Repositorio" version="0.0.5" provider-name="Discave">
 	<extension point="xbmc.addon.repository" name="Discave Repositorio">
 		<info compressed="false">http://raw.github.com/discave/discave.repo/master/addons.xml</info>
 		<checksum>http://raw.github.com/discave/discave.repo/master/addons.xml.md5</checksum>
