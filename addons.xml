@@ -337,7 +337,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
 
 <addon id="plugin.video.teamblue"
        name="TeamBlue Live Events"
-       version="1.4"
+       version="1.5"
        provider-name="TeamBlue">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
