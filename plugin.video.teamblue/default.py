@@ -85,7 +85,7 @@ def makeRequest(url, headers=None):
 				
 def SKindex():
     addon_log("SKindex")
-    addDir('Favorites','Favorites',4,'http://goo.gl/TyDD6w' ,  FANART,'','','','')
+    addDir('[B][COLOR deepskyblue]FAVORITOS[/B][/COLOR]','Favorites',4,'http://i.imgur.com/cvUxOsZ.png' ,  FANART,'','','','')
     getData(_Edit.MainBase,'')
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 		
