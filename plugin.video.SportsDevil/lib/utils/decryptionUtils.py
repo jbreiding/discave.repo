@@ -194,7 +194,7 @@ def doDemystify(data):
         if gs:
             for g in gs:
                 _in = json.loads(g).split('.')
-                aes = AES.new('5e4841405044757e4631795f39373837384e313335396d316775336c346e5972'.decode('hex'), AES.MODE_CBC, _in[1].decode('hex'))
+                aes = AES.new('5e41564050447a7e4631795f33373037374f313337396d316862396c34654763'.decode('hex'), AES.MODE_CBC, _in[1].decode('hex'))
                 unpad = lambda s : s[0:-ord(s[-1])]
                 try:
                     _url = unpad(aes.decrypt(_in[0].decode('hex')))
