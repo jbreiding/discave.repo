@@ -532,23 +532,28 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 	</extension>
 </addon>
 
-<addon id="script.video.F4mProxy"
-	     name="F4mProxy"
-	     version="2.5.6"
-	     provider-name="Shani">
+<addon
+   id="service.subtitles.legendastv"
+   name="Legendas.TV"
+   version="2.3.0"
+   provider-name="gfjardim">
   <requires>
-    <import addon="xbmc.python" version="2.1.0" />
-    <import addon="script.module.requests" />
+    <import addon="xbmc.python" version="2.14.0"/>
   </requires>
-  <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.python.pluginsource" library="addon.py">
-		<provides>executable</provides>
-  </extension>
-
+  <extension point="xbmc.subtitle.module" library="service.py" />
   <extension point="xbmc.addon.metadata">
+    <summary lang="en">Legendas.TV</summary>
+    <description lang="en">Search and download subtitles from Legendas.TV</description>
+    <description lang="pt">Procura e baixa legendas de Legendas.TV</description>
+    <disclaimer lang="en">For bugs, requests or general questions visit the 'Subtitle add-on' subforum on the XBMC forum.</disclaimer>
+    <disclaimer lang="pt">Para bugs, pedidos ou perguntas visite o subfÃ³rum 'Subtitle add-on' no fÃ³rum oficial do XBMC.</disclaimer>
+    <language></language>
     <platform>all</platform>
-    <summary lang="en">Proxy for f4m</summary>
-    <description lang="en">Use this addon to play F4m v1 and v2 streams</description>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 3.</license>
+    <forum></forum>
+    <website></website>
+    <email></email>
+    <source>https://github.com/gfjardim/service.subtitles.legendastv</source>
   </extension>
 </addon>
 
@@ -571,28 +576,6 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <website></website>
     <email></email>
     <source>https://github.com/amet/service.subtitles.opensubtitles</source>
-  </extension>
-</addon>
-
-<addon id="service.subtitles.opensubtitlesBeta"
-       name="OpenSubtitles.org (Unofficial)"
-       version="5.0.10"
-       provider-name="amet,Mafarricos">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.subtitle.module"
-             library="service.py" />
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">OpenSubtitles (Unofficial)</summary>
-    <description lang="en">Search and download subtitles from opensubtitles.org. This unofficial version permits to choose preference language in results</description>
-    <disclaimer lang="en"></disclaimer>
-    <summary lang="pt">OpenSubtitles (NÃ£o Oficial)</summary>
-    <description lang="pt">Pesquisa e download de legendas de opensubtitles.org. Esta versÃ£o nÃ£o oficial permite nas definiÃ§Ãµes escolher o idioma para apresentar legendas primeiro</description>
-    <disclaimer lang="pt"></disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <source>https://github.com/Mafarricos/service.subtitles.opensubtitles</source>
   </extension>
 </addon>
 </addons>
