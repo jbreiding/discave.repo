@@ -344,7 +344,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
 
 <addon id="plugin.video.teamblue"
        name="TeamBlue Live Events"
-       version="1.6"
+       version="1.7"
        provider-name="TeamBlue">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -367,8 +367,8 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="pt">Agenda de Eventos Desportivos</summary>
-    <description lang="pt">Listas com canais onde passam eventos desportivos das equipas portuguesas</description>
+    <summary lang="pt">Add-on ao  estilo Agenda</summary>
+    <description lang="pt">Agenda Desportiva Nacional</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -530,6 +530,26 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<description>Repositorio do Team Inspiration</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="script.video.F4mProxy"
+	     name="F4mProxy"
+	     version="2.5.6"
+	     provider-name="Shani">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" />
+    <import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.module" library="lib" />
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>executable</provides>
+  </extension>
+
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">Proxy for f4m</summary>
+    <description lang="en">Use this addon to play F4m v1 and v2 streams</description>
+  </extension>
 </addon>
 
 <addon id="service.subtitles.opensubtitlesBeta"

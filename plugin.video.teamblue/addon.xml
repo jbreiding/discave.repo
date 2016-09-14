@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.teamblue"
        name="TeamBlue Live Events"
-       version="1.6"
+       version="1.7"
        provider-name="TeamBlue">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -24,8 +24,8 @@
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="pt">Agenda de Eventos Desportivos</summary>
-    <description lang="pt">Listas com canais onde passam eventos desportivos das equipas portuguesas</description>
+    <summary lang="pt">Add-on ao  estilo Agenda</summary>
+    <description lang="pt">Agenda Desportiva Nacional</description>
     <platform>all</platform>
   </extension>
 </addon>
