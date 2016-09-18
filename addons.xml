@@ -302,7 +302,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2016.09.11"
+  version="2016.09.16"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
