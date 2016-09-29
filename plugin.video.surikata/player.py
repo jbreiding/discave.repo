@@ -103,7 +103,7 @@ def make_request(url):
 			print 'Reason: ', e.reason
 			
 def main():
-	add_dir('[COLOR red][B] Versao: 1.0.4  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
+	add_dir('[COLOR red][B] Versao: 1.0.5  (changelog) [/B][/COLOR]', u_tube, 111, icon, fanart)	
 	add_dir('[B] PROCURAR[/B]', 'searchlink', 99, i_search, f_search)
 	add_dir('[COLOR blue][B] MUSICA [/B][/COLOR]', u_tube, 2, i_music, f_music)
 	add_dir('[COLOR green][B] NASA [/B][/COLOR]', u_tube, 5, i_nasa, f_nasa)	
