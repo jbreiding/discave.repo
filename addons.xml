@@ -81,7 +81,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.9" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.11" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -97,7 +97,7 @@
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>Updated providers</news>
+		<news>- Added openload to filehosts with captchas[CR]- Updated existing providers[CR]- Added new providers</news>
 	</extension>
 </addon>
 
@@ -244,26 +244,33 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.pt.docs.hd" name="PT DocS HD" version="2.3c" provider-name="frenchdj">
+<addon id="plugin.video.pt.docs.hd"
+       name="PT DocS HD"
+       version="3.0"
+       provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.addon.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" />
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
   </requires>
-
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
-
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">pt.docs.hd</summary>
-    <description lang="en">Documentarios legendados ou dobrados em [PT] e [BR] com qualidade HD.
+    <summary>PT DocS HD</summary>
+    <description>Documentarios legendados ou dobrados em [PT] e [BR] com qualidade HD.
 Playlists organizadas por categorias com assuntos historicos e da actualidade .
 Toda a fonte  vem de utilizadores do Youtube.
-Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
+Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
     <platform>all</platform>
-    <forum></forum>
-    <website></website>
   </extension>
 </addon>
 
@@ -310,7 +317,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
  </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.09.12.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.09.25.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -338,7 +345,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2016.09.16"
+  version="2016.09.24"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -380,7 +387,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.* </description>
 
 <addon id="plugin.video.teamblue"
        name="TeamBlue Live Events"
-       version="1.7"
+       version="1.8"
        provider-name="TeamBlue">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
