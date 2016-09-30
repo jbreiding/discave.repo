@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.teamblue"
        name="TeamBlue Live Events"
-       version="1.8"
+       version="2.0"
        provider-name="TeamBlue">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -25,7 +25,19 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="pt">Add-on ao  estilo Agenda</summary>
-    <description lang="pt">Agenda Desportiva Nacional</description>
+    <description lang="pt">
+	O add-0n TeamBlue apresenta as seguintes seccoes:
+	Agenda desportiva com transmissoes em direto de varias modalidades
+	Sports Replays (Futebol-Desportos Motorizados-WWE-UFC-NBA)
+	Canais Wolrd IPTV (Portugal-Alemanha-Espanha-Franca-Italia-Inglaterra-Brasil) 
+	Canais Arenavision (para ver com o Plexus)
+	Filmes e Series (usando o add-on SPECTO)
+	Webcam's
+	NOTA: para a correta visualizacao de alguns canais e necessario ter instalados: 
+	f4mtester – f4mproxy - Sports Devil – Specto – Plexus
+	O criador deste addon nao possui nem esta ligado de nenhuma forma ao conteudo nele disponibilizado.
+	Apenas disponibiliza conteudos de terceiros	
+	</description>
     <platform>all</platform>
   </extension>
 </addon>
