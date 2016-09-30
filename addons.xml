@@ -101,10 +101,10 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.f4mTester" version="2.2.4" name="f4mTester" provider-name="Shani">
+<addon id="plugin.video.f4mTester" version="2.5.7" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.video.F4mProxy" version="2.2.3"/>
+        <import addon="script.video.F4mProxy" version="2.5.7"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -636,7 +636,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
-	     version="2.5.5"
+	     version="2.5.8"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
