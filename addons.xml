@@ -302,7 +302,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.ratotv" name="RatoTv" version="2.2.0" provider-name="RatoTV.net">
+<addon id="plugin.video.ratotv" name="RatoTv" version="2.3.0" provider-name="ratotv.top">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.1.1"/>
@@ -317,9 +317,9 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
     <language>pt</language>
     <platform>all</platform>
     <summary lang="en">Rato TV</summary>
-    <description lang="en">Filmes e series no Kodi em HD. Visita o site oficial em http://www.ratotv.net. Ã‰ necessÃ¡ria conta no site para aceder aos conteÃºdos do addon.</description>
+    <description lang="en">Filmes e series no Kodi em HD. Visita o site oficial em http://www.ratotv.top. Ã‰ necessÃ¡ria conta no site para aceder aos conteÃºdos do addon.</description>
     <disclaimer lang="en">Os autores nÃ£o alojam nem distribuem nenhum do conteÃºdo acessÃ­vel a partir deste addon. Os autores nÃ£o tÃªm qualquer afiliaÃ§Ã£o com o site em questÃ£o. O addon nÃ£o contem nenhuma ferramenta de tracking.</disclaimer>
-    <website>http://www.ratotv.net/</website>
+    <website>http://www.ratotv.top/</website>
     <platform>all</platform>
   </extension>
 </addon>
@@ -588,6 +588,24 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="repository.rato.tv"
+  version="1.0.0"
+  name="Rato-TV repository"
+  provider-name="Rato">
+  <extension point="xbmc.addon.repository"
+    name="repository with ratotv addons">
+    <info compressed="false">http://tralhas.xyz/kodi/addons.xml</info>
+    <checksum>http://tralhas.xyz/kodi/addons.xml.md5</checksum>
+    <datadir zip="true">http://tralhas.xyz/kodi/repo/</datadir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Rato-TV repository</summary>
+    <description>
+    </description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="repository.team_inspiration" name="Team Inspiration" version="4.0" provider-name="Inspiration">
