@@ -158,6 +158,8 @@ class source:
                     url = url.encode('utf-8')
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+                    if not host in hostDict: raise Exception()
+
                     #if not host in hostDict:
                     #    control.log('watchfree HOST; %s' % host)
                     #    raise Exception()
@@ -176,7 +178,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR Watchfree %s' % e)
             return sources
 
 

@@ -88,7 +88,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.11" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.12" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -104,7 +104,7 @@
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Added openload to filehosts with captchas[CR]- Updated existing providers[CR]- Added new providers</news>
+		<news>- Fixed issue with Trakt Progress (hidden items)[CR]- Fixed issue with urlresolver's openload pair dialog[CR]- Tweaked search and caching of providers[CR]- Updated providers</news>
 	</extension>
 </addon>
 
@@ -125,7 +125,7 @@
 
 <addon id="plugin.video.jami"
        name="Jami"
-       version="5.2"
+       version="5.3"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -352,7 +352,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
  </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.09.25.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.10.06.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -380,7 +380,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2016.09.24"
+  version="2016.10.10"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -465,7 +465,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
 
 <addon id="plugin.video.traquinas"
        name="Traquinas"
-       version="1.1"
+       version="2.0a"
        provider-name="Kodi Traquinas">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -486,9 +486,9 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
   <extension point="xbmc.addon.metadata">
     <summary>Traquinas Entertenimento</summary>
     <description>Desenhos animados e filmes infantis em [PT] e [BR].
-Categorias com legendas em [PT].
+Algumas categorias com legendas em [PT].
 
-[B][COLOR lime]Para que haja um bom funcionamento deste addon, o URL RESOLVER e o F4M TESTER necessitam de estar activos no kodi.[/COLOR][/B]</description>
+[B][COLOR lime]Para que haja um bom funcionamento deste addon, o URL RESOLVER tem de estar activo e atualizado no kodi.[/COLOR][/B]</description>
     <platform>all</platform>
   </extension>
 </addon>
