@@ -352,6 +352,33 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
  </extension>
 </addon>
 
+<addon id="plugin.video.spacetuga"
+       name="Space Tuga"
+       version="1.0.2"
+       provider-name="katuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Addon de Filmes, Series, Radios, Televisao, etc..</summary>
+    <description>No addon Space Tuga podes ver Filmes, Series, Televisao, Radios, Play Listas de Musicas da Vevo e YouTube!</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.10.06.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -718,5 +745,19 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <email></email>
     <source>https://github.com/amet/service.subtitles.opensubtitles</source>
   </extension>
+</addon>
+
+<addon id="teamtuga4ever.repository" name="teamtuga4ever repository" version="1.4" provider-name="teamtuga4ever">
+	<extension point="xbmc.addon.repository" name="teamtuga4ever repository">
+		<info compressed="false">http://teamtuga4ever.net16.net/Repository/addons.xml</info>
+		<checksum>http://teamtuga4ever.net16.net/Repository/addons.xml.md5</checksum>
+		<datadir zip="true">http://teamtuga4ever.net16.net/Repository/instal/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Equipe TeamTuga4ever</summary>
+		<description>teamtuga4ever Repository</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
 </addon>
 </addons>
