@@ -62,7 +62,7 @@
 
 <addon id="plugin.video.alive.hd"
        name="Alive HD"
-       version="2.0"
+       version="2.1"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -81,8 +81,8 @@
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Jami</summary>
-    <description>ENG] Concerts and Djs live performances with HD quality. Playlists organized by categories and any source comes from Youtube users. Advised the latest version of youtube 5.2.*
+    <summary>Alive HD</summary>
+    <description>[ENG] Concerts and Djs live performances with HD quality. Playlists organized by categories and any source comes from Youtube users. Advised the latest version of youtube 5.2.*
 [PT] Concertos e performances de Djs ao vivo com qualidade HD. Playlists organizadas por categorias com diversas vertentes Musicais. Toda a fonte  vem de utilizadores do Youtube. Aconselhado a ultima versao do youtube 5.2.* </description>
     <platform>all</platform>
   </extension>
@@ -108,10 +108,10 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.f4mTester" version="2.5.7" name="f4mTester" provider-name="Shani">
+<addon id="plugin.video.f4mTester" version="2.6.2" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.video.F4mProxy" version="2.5.7"/>
+        <import addon="script.video.F4mProxy" version="2.6.2"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -125,7 +125,7 @@
 
 <addon id="plugin.video.jami"
        name="Jami"
-       version="5.3"
+       version="5.4"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -248,7 +248,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
 
 <addon id="plugin.video.pancas"
        name="PancasTV"
-       version="1.2.0"
+       version="1.2.1"
        provider-name="Pancas">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -260,7 +260,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
     <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
     <import addon="script.module.youtube.dl" optional="true"/>
     <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.urlresolver" optional="false"/>
     <import addon="script.module.simplejson" />
     <import addon="script.module.livestreamer" optional="true"/>
     <import addon="script.module.pyamf" optional="true"/>
@@ -379,7 +379,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.10.06.2" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.10.20.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -492,8 +492,8 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
 
 <addon id="plugin.video.traquinas"
        name="Traquinas"
-       version="2.0a"
-       provider-name="Kodi Traquinas">
+       version="2.1"
+       provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -675,7 +675,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
-	     version="2.5.8"
+	     version="2.6.4"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -685,6 +685,13 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <extension point="xbmc.python.pluginsource" library="addon.py">
 		<provides>executable</provides>
   </extension>
+
+     <extension point="xbmc.addon.repository" name="shani repository">
+        <info compressed="false">https://offshoregit.com/Shani-08/main/addons.xml</info>
+        <checksum>https://offshoregit.com/Shani-08/main/addons.xml.md5</checksum>
+        <datadir zip="true">https://offshoregit.com/Shani-08/main/zips/</datadir>
+    </extension>
+
 
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
