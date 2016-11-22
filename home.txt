@@ -13,7 +13,7 @@
 <channel>
 <name>Movies</name>
 <thumbnail></thumbnail>
-<externallink></externallink>
+<externallink>https://raw.githubusercontent.com/discave/discave.repo/master/movies.txt</externallink>
 <fanart></fanart>
 <info>SimpleKore.com</info>
 </channel>
