@@ -5,8 +5,8 @@
 <fanart></fanart>
 </item>
 <item>
-<title>openload</title>
-<link>https://openload.co/embed/paNAQQs6J_c</link>
+<title>idgelo</title>
+<link>http://vidto.me/embed-0l4npbuq5fhf-900x500.html</link>
 <thumbnail></thumbnail>
 <fanart></fanart>
 </item>
