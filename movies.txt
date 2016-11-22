@@ -6,7 +6,7 @@
 </item>
 <item>
 <title>Ant</title>
-<link>https://openload.co/embed/paNAQQs6J_c</link>
+<link>https://openload.co/paNAQQs6J_c</link>
 <thumbnail></thumbnail>
 <fanart></fanart>
 </item>
