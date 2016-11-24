@@ -60,35 +60,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.video.alive.hd"
-       name="Alive HD"
-       version="3.0"
-       provider-name="frenchdj">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-     <import addon="script.module.livestreamer" optional="true"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Alive HD</summary>
-    <description>[ENG] Concerts and Djs live performances with HD quality. Playlists organized by categories and any source comes from Youtube users. Advised the latest version of youtube 5.2.*
-[PT] Concertos e performances de Djs ao vivo com qualidade HD. Playlists organizadas por categorias com diversas vertentes Musicais. Toda a fonte  vem de utilizadores do Youtube. Aconselhado a ultima versao do youtube 5.2.* </description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.exodus" version="2.0.18" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.20" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -105,14 +77,14 @@
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Fixed issue with Trakt Progress (missing tv shows)[CR]- Tweaked metadata retrieval[CR]- Tweaked indexers[CR]- Updated providers</news>
+		<news>- Updated indexers[CR]- Tweaked pagination of Trakt lists[CR]- Tweaked flatten of tv shows (for external addons and library)[CR]- Tweaked artwork of episode lists[CR]- Updated providers</news>
 	</extension>
 </addon>
 
-<addon id="plugin.video.f4mTester" version="2.6.6" name="f4mTester" provider-name="Shani">
+<addon id="plugin.video.f4mTester" version="2.6.8" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.video.F4mProxy" version="2.6.6"/>
+        <import addon="script.video.F4mProxy" version="2.6.8"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -160,35 +132,6 @@
 [B]Traquinas[/B] - Desenhos animados e filmes infantis em [PT] e [BR].
 
 [B][COLOR lime] Aconselhado a ultima versao do YOUTUBE 5.2.* e o URL RESOLVER tem de estar ativo e atualizado no Kodi.[/COLOR][/B]</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.jami"
-       name="Jami"
-       version="5.5"
-       provider-name="frenchdj">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-     <import addon="script.module.livestreamer" optional="true"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Jami</summary>
-    <description>Videos Infantis em [PT] e [BR].
-Toda a fonte vem do Youtube com playlists dedicadas aos mais pequenos, recheadas de desenhos animados recentes, classicos e musicais.
-Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -420,11 +363,11 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.11.1.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.11.18.3" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
-		<import addon="script.module.metahandler" version="2.9.0" />
+		<import addon="script.module.metahandler" />
 		<import addon="plugin.video.youtube" optional="true" />
 		<import addon="script.mrknow.urlresolver" />
 		<import addon="script.specto.media" />
@@ -448,7 +391,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2016.10.10"
+  version="2016.11.20"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -527,36 +470,6 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
 	O criador deste addon nao possui nem esta ligado de nenhuma forma ao conteudo nele disponibilizado.
 	Apenas disponibiliza conteudos de terceiros
 	</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.traquinas"
-       name="Traquinas"
-       version="2.2"
-       provider-name="frenchdj">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-     <import addon="script.module.livestreamer" optional="true"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Traquinas Entertenimento</summary>
-    <description>Desenhos animados e filmes infantis em [PT] e [BR].
-Algumas categorias com legendas em [PT].
-
-[B][COLOR lime]Para que haja um bom funcionamento deste addon, o URL RESOLVER tem de estar activo e atualizado no kodi.[/COLOR][/B]</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -716,7 +629,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
-	     version="2.6.6"
+	     version="2.6.8"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
