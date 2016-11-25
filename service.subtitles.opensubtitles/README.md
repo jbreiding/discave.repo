@@ -1,5 +1,8 @@
+OpenSubtitles.org by OpenSubtitles KODI add-on
+==============================================
+
 5.1.14
-- Users are able to download subtitles as anonymous without authentication. Updated descriptions, icons, screenshots, fanart etc
+- Users are able to download subtitles as anonymous without authentication. Added localized descriptions, media files
 
 5.0.14
 - Fix for Portuguese (Brazil) broken by 42f6ec9, thx host505
