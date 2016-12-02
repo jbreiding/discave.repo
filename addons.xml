@@ -60,7 +60,36 @@
     </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.20" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.alive.hd"
+       name="Alive HD"
+       version="3.1"
+       provider-name="frenchdj">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Alive HD</summary>
+    <description>Concerts and Djs live performances with HD quality.
+Playlists organized by categories and any source comes from Youtube users. Advised the latest version of youtube 5.2.*
+</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.exodus" version="2.0.21" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -77,11 +106,11 @@
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Updated indexers[CR]- Tweaked pagination of Trakt lists[CR]- Tweaked flatten of tv shows (for external addons and library)[CR]- Tweaked artwork of episode lists[CR]- Updated providers</news>
+		<news>- Tweaked metadata and playback[CR]- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
 	</extension>
 </addon>
 
-<addon id="plugin.video.f4mTester" version="2.6.8" name="f4mTester" provider-name="Shani">
+<addon id="plugin.video.f4mTester" version="2.6.9" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.video.F4mProxy" version="2.6.8"/>
@@ -90,11 +119,6 @@
         <provides>video</provides>
     </extension>
 
-    <extension point="xbmc.addon.repository" name="shani repository">
-        <info compressed="false">https://offshoregit.com/Shani-08/main/addons.xml</info>
-        <checksum>https://offshoregit.com/Shani-08/main/addons.xml.md5</checksum>
-        <datadir zip="true">https://offshoregit.com/Shani-08/main/zips/</datadir>
-    </extension>
 
     <extension point="xbmc.addon.metadata">
         <summary>f4mTester</summary>
@@ -169,7 +193,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.loganaddon" name="loganaddon TV" version="1.8" provider-name="Vitor Pereira e Pedro Selva">
+<addon id="plugin.video.loganaddon" name="loganaddon TV" version="2.0" provider-name="Vitor Pereira e Pedro Selva">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -178,9 +202,9 @@
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
     <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="false"/>
+    <import addon="plugin.video.youtube" optional="false" />
+    <import addon="script.module.urlresolver" optional="false"/>
     <import addon="script.module.simplejson" />
      <import addon="script.module.livestreamer" optional="true"/>
   </requires>
@@ -363,30 +387,7 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
   </extension>
 </addon>
 
-<addon id="service.subtitles.opensubtitles"
-       name="OpenSubtitles.org"
-       version="5.1.14"
-       provider-name="amet">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.subtitle.module"
-             library="service.py" />
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">OpenSubtitles</summary>
-    <description lang="en">Search and download subtitles from opensubtitles.org</description>
-    <description lang="zh">从 opensubtitles.org 搜索并下载字幕</description>
-    <disclaimer lang="en"></disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://forum.xbmc.org/showthread.php?tid=183114</forum>
-    <website></website>
-    <email></email>
-    <source>https://github.com/amet/service.subtitles.opensubtitles</source>    
-  </extension>
-</addon>
-
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.11.18.3" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.11.30.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -684,7 +685,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
-	     version="2.6.8"
+	     version="2.6.9"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -695,17 +696,34 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<provides>executable</provides>
   </extension>
 
-     <extension point="xbmc.addon.repository" name="shani repository">
-        <info compressed="false">https://offshoregit.com/Shani-08/main/addons.xml</info>
-        <checksum>https://offshoregit.com/Shani-08/main/addons.xml.md5</checksum>
-        <datadir zip="true">https://offshoregit.com/Shani-08/main/zips/</datadir>
-    </extension>
 
 
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary lang="en">Proxy for f4m</summary>
     <description lang="en">Use this addon to play F4m v1 and v2 streams</description>
+  </extension>
+</addon>
+
+<addon id="service.subtitles.opensubtitles"
+       name="OpenSubtitles.org"
+       version="5.1.14"
+       provider-name="amet">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.subtitle.module"
+             library="service.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">OpenSubtitles</summary>
+    <description lang="en">Search and download subtitles from opensubtitles.org</description>
+    <disclaimer lang="en"></disclaimer>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://forum.xbmc.org/showthread.php?tid=183114</forum>
+    <website></website>
+    <email></email>
+    <source>https://github.com/amet/service.subtitles.opensubtitles</source>    
   </extension>
 </addon>
 
