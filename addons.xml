@@ -514,9 +514,9 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
     <import addon="script.module.youtube.dl" optional="true"/>
     <import addon="plugin.video.youtube" version="3.0.0"/>
     <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" /> 
+    <import addon="script.module.simplejson" />
     <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>    
+    <import addon="script.module.metahandler" version="2.5.1"/>
     <import addon="script.module.livestreamer" optional="true"/>
 
   </requires>
@@ -686,9 +686,9 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 	</extension>
 </addon>
 
-<addon id="script.video.F4mProxy" 
-	     name="F4mProxy" 
-	     version="2.7.0" 
+<addon id="script.video.F4mProxy"
+	     name="F4mProxy"
+	     version="2.7.0"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -700,7 +700,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
   </extension>
 
 
-    
+
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary lang="en">Proxy for f4m</summary>
