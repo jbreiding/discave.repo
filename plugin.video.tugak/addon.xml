@@ -26,10 +26,10 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Video em audio Pt</summary>
-   <description lang="en">Alguns dos melhores filmes de anima√ß√£o com o audio em Pt-pt
+   <description lang="en">Alguns dos melhores filmes de animaÁ„o com o audio em Pt-pt
 	Necessita do URLResolver, HTTPLib2, Simplejson
 	Qualquer contacto https://www.facebook.com/groups/discavehbrepo/</description>
-	<disclaimer lang="en">Todos os conte√∫dos n√£o s√£o hospedados pelos intervinientes, s√£o link's encontrados na net em qualquer motor de busca</disclaimer>
+	<disclaimer lang="en">Todos os conte˙dos n„o s„o hospedados pelos intervinientes, s„o link's encontrados na net em qualquer motor de busca</disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
