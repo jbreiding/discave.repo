@@ -56,13 +56,17 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            r = client.request(url)
+            h = {'User-Agent': client.agent()}
 
-            s = re.findall('"imdbId"\s*:\s*"(.+?)"\s*,\s*"season"\s*:\s*(\d+)\s*,\s*"provider"\s*:\s*"(.+?)"\s*,\s*"name"\s*:\s*"(.+?)"', r)
+            r = client.request(url, headers=h, output='extended')
+
+            s = client.parseDOM(r[0], 'ul', attrs = {'class': 'episodes'})
+            s = client.parseDOM(s, 'a', ret='data.+?')
+            s = [client.replaceHTMLCodes(i).replace(':', '=').replace(',', '&').replace('"', '').strip('{').strip('}') for i in s]
 
             for u in s:
                 try:
-                    url = '/io/1.0/stream?imdbId=%s&season=%s&provider=%s&name=%s' % (u[0], u[1], u[2], u[3])
+                    url = '/io/1.0/stream?%s' % u
                     url = urlparse.urljoin(self.base_link, url)
 
                     r = client.request(url)
@@ -82,12 +86,6 @@ class source:
 
 
     def resolve(self, url):
-        try:
-            url = client.request(url, output='geturl')
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
-            return url
-        except:
-            return
+        return directstream.googlepass(url)
 
 

@@ -21,27 +21,26 @@
 
 import re,urllib,urlparse,json
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import cache
-from resources.lib.modules import directstream
-from resources.lib.modules import trakt
-from resources.lib.modules import tvmaze
+from resources.lib.libraries import cleantitle
+from resources.lib.libraries import client
+from resources.lib.libraries import cache
+from resources.lib.libraries import trakt
+from resources.lib.libraries import tvmaze
 
 
 class source:
     def __init__(self):
-        self.domains = ['kissanime.to']
-        self.base_link = 'http://kissanime.to'
-        self.search_link = '/Search/Anime'
+        self.base_link = 'http://kissanime.io'
+        self.search_link = 'http://kissanime.io/Search/?s=%s'
         self.showlist_link = '/AnimeList?c=%s&page=%s'
         self.anime_link = '/Anime/%s'
 
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+    def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
             r = 'search/tvdb/%s?type=show&extended=full' % tvdb
             r = json.loads(trakt.getTrakt(r))
+            print "r1",r
             if not r: return '0'
 
             d = r[0]['show']['genres']
@@ -50,18 +49,20 @@ class source:
             tv_maze = tvmaze.tvMaze()
             t = tv_maze.showLookup('thetvdb', tvdb)
             t = tv_maze.showID()
+            print "r2",t, tvshowtitle
             if not t: return '0'
 
             url = self.searchTitle(tvshowtitle)
+            print "r3",url
             url = {'tvMazeID': t, 'title': tvshowtitle, 'items': url}
             url = json.dumps(url).encode('base64')
+            print "URL",url
 
             return url
         except:
             return
 
-
-    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+    def get_episode(self, url, imdb, tvdb, title, date, season, episode):
         try:
             if url == None or url == '0': return
 
@@ -80,7 +81,7 @@ class source:
             try: season_title = tv_maze.showSeasons()[season_no-1]['name']
             except: season_title = None
 
-            try: year = int(premiered.split('-')[0])
+            try: year = int(date.split('-')[0])
             except: year = ''
 
             url = self.getEpisodeURL(items, season_no, episode_no, episode_no_base, title, season_title, year)
@@ -92,8 +93,7 @@ class source:
         except:
             return
 
-
-    def sources(self, url, hostDict, hostprDict):
+    def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
 
@@ -104,7 +104,7 @@ class source:
             r = self.getEpisodeSources(url)
 
             for i in r:
-                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'KissAnime', 'url': i, 'direct': True, 'debridonly': False})
+                try: sources.append({'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'], 'provider': 'KissAnime', 'url': i, 'direct': True, 'debridonly': False})
                 except: pass
 
             return sources
@@ -127,18 +127,19 @@ class source:
         try:
             result = []
 
-            q = urlparse.urljoin(self.base_link, self.search_link)
+            q = urlparse.urljoin(self.base_link, self.search_link % title)
 
             data = {
-                'keyword': title
+                's': title
             }
             post = urllib.urlencode(data)
 
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded',
             }
-
+            print "r4",q, post
             r = client.request(q, post=post, headers=headers)
+            print "r5",r
 
             # Sometimes the search result returns nothing or the only searched item,
             # This changes the content of show instead of search results

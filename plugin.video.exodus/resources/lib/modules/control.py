@@ -88,6 +88,8 @@ makeFile = xbmcvfs.mkdir
 
 deleteFile = xbmcvfs.delete
 
+deleteDir = xbmcvfs.rmdir
+
 listDir = xbmcvfs.listdir
 
 transPath = xbmc.translatePath
@@ -104,7 +106,7 @@ viewsFile = os.path.join(dataPath, 'views.db')
 
 bookmarksFile = os.path.join(dataPath, 'bookmarks.db')
 
-providercacheFile = os.path.join(dataPath, 'providers.10.db')
+providercacheFile = os.path.join(dataPath, 'providers.11.db')
 
 metacacheFile = os.path.join(dataPath, 'meta.4.db')
 
@@ -181,7 +183,7 @@ def selectDialog(list, heading=addonInfo('name')):
 
 
 def moderator():
-    netloc = [urlparse.urlparse(sys.argv[0]).netloc, '', 'plugin.video.live.streamspro', 'plugin.video.phstreams', 'plugin.video.cpstreams', 'plugin.video.tinklepad', 'plugin.video.metallic']
+    netloc = [urlparse.urlparse(sys.argv[0]).netloc, '', 'plugin.video.live.streamspro', 'plugin.video.phstreams', 'plugin.video.cpstreams', 'plugin.video.streamarmy', 'plugin.video.tinklepad', 'plugin.video.metallic']
 
     if not infoLabel('Container.PluginName') in netloc: sys.exit()
 
@@ -216,6 +218,25 @@ def version():
         if i.isdigit(): num += i
         else: break
     return int(num)
+
+
+def cdnImport(uri, name):
+    import imp
+    from resources.lib.modules import client
+
+    path = os.path.join(dataPath, 'py')
+    path = path.decode('utf-8')
+
+    deleteDir(os.path.join(path, ''), force=True)
+    makeFile(dataPath) ; makeFile(path)
+
+    r = client.request(uri)
+    p = os.path.join(path, name + '.py')
+    f = openFile(p, 'w') ; f.write(r) ; f.close()
+    m = imp.load_source(name, p)
+
+    deleteDir(os.path.join(path, ''), force=True)
+    return m
 
 
 def openSettings(query=None, id=addonInfo('id')):
