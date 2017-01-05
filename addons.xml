@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
 <addons>
 <addon id="discave.repo" name="DiscaveHB Repositorio" version="0.0.5" provider-name="Discave">
 	<extension point="xbmc.addon.repository" name="Discave Repositorio">
@@ -287,36 +288,6 @@ Playlists organized by categories and any source comes from Youtube users. Advis
   </extension>
 </addon>
 
-<addon id="plugin.video.pt.docs.hd"
-       name="PT DocS HD"
-       version="3.1"
-       provider-name="frenchdj">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-     <import addon="script.module.livestreamer" optional="true"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>PT DocS HD</summary>
-    <description>Documentarios legendados ou dobrados em [PT] e [BR] com qualidade HD.
-Playlists organizadas por categorias com assuntos historicos e da actualidade .
-Toda a fonte  vem de utilizadores do Youtube.
-Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.ratotv" name="RatoTv" version="2.3.0" provider-name="ratotv.top">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -337,27 +308,6 @@ Nota Importante: Aconselhado a ultima versao do youtube 5.2.*</description>
     <website>http://www.ratotv.top/</website>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.sembilhete.tv" name="SemBilhete.tv" provider-name="SemBilhete.tv" version="0.5.4">
- <requires>
-  <import addon="xbmc.python" version="2.7.10"/>
- </requires>
- <extension library="addon.py" point="xbmc.python.pluginsource">
-  <provides>video</provides>
- </extension>
- <extension point="xbmc.addon.metadata">
-    <summary>SemBilhete.tv</summary>
-    <description>Addon oficial do SemBilhete.tv, os teus Filmes e SÃ©ries do Sem Bilhete agora no Kodi.</description>
-    <disclaimer>Addon oficial do Sem Bilhete, qualquer duvida ou questÃ£o contacte-nos pelo site ou pelo Facebook.</disclaimer>
-    <language>pt</language>
-    <platform>all</platform>
-    <license></license>
-    <forum></forum>
-    <website>https://sembilhete.tv</website>
-    <email></email>
-    <source></source>
- </extension>
 </addon>
 
 <addon id="plugin.video.spacetuga"
