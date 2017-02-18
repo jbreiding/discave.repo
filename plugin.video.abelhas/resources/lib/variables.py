@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs,re,os,sys,urllib,json
+import time
+from random import randint
 
 CopiaPopURL = 'http://copiapop.com'
 SearchParam = '/action/SearchFiles'

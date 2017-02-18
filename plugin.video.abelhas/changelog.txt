@@ -1,3 +1,6 @@
+[B]v2.0.3 (28 de Dezembro de 2016):[/B]
+- Login passa a ser obrigatorio no site.
+
 [B]v2.0.2 (22 de Abril de 2016):[/B]
 - Novo logo (tks sheikr)
 - Pastas adicionadas.

@@ -110,7 +110,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     downloader=F4MDownloader()
                     if not downloader.init(self.wfile,url,proxy,use_proxy_for_chunks,g_stopEvent,maxbitrate,auth,swf):
                         print 'cannot init'
-                        return
+                        raise Exception('HDS.url failed to play\nServer down? check Url.')
                     g_downloader=downloader
                     print 'init...' 
                 
@@ -172,8 +172,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 from interalSimpleDownloader import interalSimpleDownloader
                 downloader=interalSimpleDownloader();
                 if not downloader.init(self.wfile,url,proxy,g_stopEvent,maxbitrate):
-                    print 'cannot init throw error because init'#throw error because init
-                    return
+                    print 'init throw error because init'#throw error because init
+                    raise Exception('SIMPLE.url failed to play\nServer down? check Url.')
                 srange,framgementToSend=(None,None)
                 self.send_response(200)
                 rtype="flv-application/octet-stream"  #default type could have gone to the server to get it.
@@ -184,7 +184,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 downloader=TSDownloader();
                 if not downloader.init(self.wfile,url,proxy,g_stopEvent,maxbitrate):
                     print 'cannot init but will continue to play'
-                    #print 1/0
+                    raise Exception('TS.url failed to play\nServer down? check Url.')
                     #return
                 srange,framgementToSend=(None,None)
                 self.send_response(200)
@@ -196,7 +196,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 downloader=HLSDownloader()
                 if not downloader.init(self.wfile,url,proxy,use_proxy_for_chunks,g_stopEvent,maxbitrate,auth):
                     print 'cannot init'
-                    return
+                    raise Exception('HLS.url failed to play\nServer down? check Url.')
                     
                 srange,framgementToSend=(None,None)
                 self.send_response(200)
@@ -208,7 +208,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 downloader=HLSDownloaderRetry()
                 if not downloader.init(self.wfile,url,proxy,use_proxy_for_chunks,g_stopEvent,maxbitrate,auth , callbackpath, callbackparam):
                     print 'cannot init'
-                    return
+                    raise Exception('HLSR.url failed to play\nServer down? check Url.')
                     
                 srange,framgementToSend=(None,None)
                 self.send_response(200)
@@ -234,13 +234,14 @@ class MyHandler(BaseHTTPRequestHandler):
                 #    xbmc.sleep(200);
 
 
-        except:
+        except Exception as inst:
             #Print out a stack trace
             traceback.print_exc()
             g_stopEvent.set()
+            xbmc.executebuiltin("XBMC.Notification(F4mProxy,%s,4000,'')"%inst.message)
             print 'sending 404'
             
-            self.send_response(404)
+            self.send_error(404)
             
             #Close output stream file
             self.wfile.close()
@@ -282,7 +283,8 @@ class MyHandler(BaseHTTPRequestHandler):
         params=urlparse.parse_qs(url)
         print 'params',params # TODO read all params
         #({'url': url, 'downloadmode': downloadmode, 'keep_file':keep_file,'connections':connections})
-        received_url = params['url'][0]#
+        received_url = params['url'][0].replace('\r','')#
+        print 'received_url',received_url
         use_proxy_for_chunks =False
         proxy=None
         try:

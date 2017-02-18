@@ -51,7 +51,7 @@ class Generator:
         # addon list
         addons = os.listdir( "." )
         # final addons text
-        addons_xml = u("<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"yes\"?>\n<addons>\n")
+        addons_xml = u("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<addons>\n")
         # loop thru and add each addons addon.xml file
         for addon in addons:
             try:
@@ -69,7 +69,7 @@ class Generator:
                     if ( line.find( "<?xml" ) >= 0 ): continue
                     # add line
                     if sys.version < '3':
-                        addon_xml += unicode( line.rstrip() + "\n", "ISO-8859-1" )
+                        addon_xml += unicode( line.rstrip() + "\n", "UTF-8" )
                     else:
                         addon_xml += line.rstrip() + "\n"
                 # we succeeded so add to our final addons.xml text
@@ -80,7 +80,7 @@ class Generator:
         # clean and add closing tag
         addons_xml = addons_xml.strip() + u("\n</addons>\n")
         # save file
-        self._save_file( addons_xml.encode( "ISO-8859-1" ), file="addons.xml" )
+        self._save_file( addons_xml.encode( "UTF-8" ), file="addons.xml" )
  
     def _generate_md5_file( self ):
         # create a new md5 hash
@@ -89,11 +89,11 @@ class Generator:
             m = md5.new( open( "addons.xml", "r" ).read() ).hexdigest()
         except ImportError:
             import hashlib
-            m = hashlib.md5( open( "addons.xml", "r", encoding="ISO-8859-1" ).read().encode( "ISO-8859-1" ) ).hexdigest()
+            m = hashlib.md5( open( "addons.xml", "r", encoding="UTF-8" ).read().encode( "UTF-8" ) ).hexdigest()
  
         # save file
         try:
-            self._save_file( m.encode( "ISO-8859-1" ), file="addons.xml.md5" )
+            self._save_file( m.encode( "UTF-8" ), file="addons.xml.md5" )
         except Exception as e:
             # oops
             print("An error occurred creating addons.xml.md5 file!\n%s" % e)

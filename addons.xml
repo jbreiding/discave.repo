@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
 <addon id="discave.repo" name="DiscaveHB Repositorio" version="0.0.5" provider-name="Discave">
 	<extension point="xbmc.addon.repository" name="Discave Repositorio">
@@ -45,7 +44,7 @@
 
 <addon id="plugin.video.abelhas"
        name="CopiaPop (ex Abelhas.pt)"
-       version="2.0.2"
+       version="2.0.3"
        provider-name="fightnight">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -62,35 +61,32 @@
 </addon>
 
 <addon id="plugin.video.alive.hd"
-       name="Alive HD"
-       version="3.1"
+       name="Alive.HD"
+       version="4.3"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+	<import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-     <import addon="script.module.livestreamer" optional="true"/>
-  </requires>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Alive HD</summary>
-    <description>Concerts and Djs live performances with HD quality.
-Playlists organized by categories and any source comes from Youtube users. Advised the latest version of youtube 5.2.*
-</description>
+    <summary lang="en">Alive.HD</summary>
+    <description>Concerts and Djs live performances in HD quality.
+Plailsts organized by categories and any source comes from Youtube users.
+[B][COLOR lime]Advised the latest version of youtube 5.*.*[/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.23" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.0.5" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -107,7 +103,14 @@ Playlists organized by categories and any source comes from Youtube users. Advis
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Tweaked indexers[CR]- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
+		</assets>
+		<news>- Updated existing providers</news>
 	</extension>
 </addon>
 
@@ -241,11 +244,11 @@ Playlists organized by categories and any source comes from Youtube users. Advis
   <extension point="xbmc.addon.metadata">
     <summary>SopCast and AceStream</summary>
     <description lang="en">AceStream and Sopcast in your favourite media center! Watch peer-to-peer streams in Kodi without the need for external players. Project page: https://github.com/enen92/P2P-Streams-Kodi</description>
-    <description lang="pt">AceStream e Sopcast no seu Media-Center de elei��o! Assista a streams peer-to-peer no Kodi sem a necessidade de players externos. P�gina do projecto: https://github.com/enen92/P2P-Streams-Kodi</description>
+    <description lang="pt">AceStream e Sopcast no seu Media-Center de eleiÃ§Ã£o! Assista a streams peer-to-peer no Kodi sem a necessidade de players externos. PÃ¡gina do projecto: https://github.com/enen92/P2P-Streams-Kodi</description>
     <description lang="nl">Acestream en Sopcast in jouw favoriete media center. Kijk peer-to-peer streams in Kodi zonder de noodzaak voor externe spelers. Project pagina: https://github.com/enen92/P2P-Streams-Kodi/</description>
-    <description lang="it">AceStream e SopCast nel tuo Media Center preferito! Guarda i canali peer-to-peer in Kodi senza la necessit� di player esterni. Pagina del progetto: https://github.com/enen92/P2P-Streams-Kodi/</description>
+    <description lang="it">AceStream e SopCast nel tuo Media Center preferito! Guarda i canali peer-to-peer in Kodi senza la necessitÃ  di player esterni. Pagina del progetto: https://github.com/enen92/P2P-Streams-Kodi/</description>
     <disclaimer lang="en">The authors does not host nor distribute any of the content you may watch using this addon. The authors have no affiliation with any of the content providers. This addon does not track its users.</disclaimer>
-    <disclaimer lang="pt">Os autores n�o alojam nem distribuem nenhum do conte�do acess�vel a partir deste addon. Os autores n�o t�m qualquer afilia��o com nenhum dos sites utilizados por este addon. O addon n�o contem nenhuma ferramenta de tracking.</disclaimer>
+    <disclaimer lang="pt">Os autores nÃ£o alojam nem distribuem nenhum do conteÃºdo acessÃ­vel a partir deste addon. Os autores nÃ£o tÃªm qualquer afiliaÃ§Ã£o com nenhum dos sites utilizados por este addon. O addon nÃ£o contem nenhuma ferramenta de tracking.</disclaimer>
     <disclaimer lang="nl">De auteurs houden of delen niets van de inhoud die u kunt bekijken met behulp van deze addon. De auteurs hebben geen banden met welke leverancier van inhoud dan ook. Deze addon houdt geen gegevens bij van zijn gebruikers.</disclaimer>
     <disclaimer lang="it">L'autore non detiene o distribuisce alcun contenuto fruibile tramite l'utilizzo di questo addon. L'autore non Ã¨ affiliato con nessun fornitore dei contenuti. Questo addon non traccia i suoi utenti.</disclaimer>
     <forum>http://forum.kodi.tv/showthread.php?tid=201894</forum>
@@ -281,9 +284,36 @@ Playlists organized by categories and any source comes from Youtube users. Advis
   <extension point="xbmc.addon.metadata">
     <summary>TV para todos</summary>
     <description>
-        Uma televis�o ao clique de um dedo.
+        Uma televisao ao clique de um dedo.
 
     </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.pt.docs.hd"
+       name="PT.DocS.HD"
+       version="4.3a"
+       provider-name="frenchdj">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">PT.DocS.HD</summary>
+    <description>Documentarios em [COLOR lime][PT][/COLOR] e [COLOR yellow][BR][/COLOR] com qualidade HD.
+Playlists organizadas por categorias com assuntos historicos e da actualidade.
+Toda a fonte  vem de utilizadores do Youtube.
+[B][COLOR lime][ Aconselhado a ultima versao do youtube 5.*.* ][/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -303,8 +333,8 @@ Playlists organized by categories and any source comes from Youtube users. Advis
     <language>pt</language>
     <platform>all</platform>
     <summary lang="en">Rato TV</summary>
-    <description lang="en">Filmes e series no Kodi em HD. Visita o site oficial em http://www.ratotv.top. � necess�ria conta no site para aceder aos conte�dos do addon.</description>
-    <disclaimer lang="en">Os autores n�o alojam nem distribuem nenhum do conte�do acess�vel a partir deste addon. Os autores n�o t�m qualquer afilia��o com o site em quest�o. O addon n�o contem nenhuma ferramenta de tracking.</disclaimer>
+    <description lang="en">Filmes e series no Kodi em HD. Visita o site oficial em http://www.ratotv.top. Ã‰ necessÃ¡ria conta no site para aceder aos conteÃºdos do addon.</description>
+    <disclaimer lang="en">Os autores nao alojam nem distribuem nenhum do conteudo acessivel a partir deste addon. Os autores nÃ£o tÃªm qualquer afiliaÃ§Ã£o com o site em questÃ£o. O addon nÃ£o contem nenhuma ferramenta de tracking.</disclaimer>
     <website>http://www.ratotv.top/</website>
     <platform>all</platform>
   </extension>
@@ -337,7 +367,7 @@ Playlists organized by categories and any source comes from Youtube users. Advis
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.12.24.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.01.29.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -365,7 +395,7 @@ Playlists organized by categories and any source comes from Youtube users. Advis
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2016.11.20"
+  version="2016.12.31"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -374,7 +404,6 @@ Playlists organized by categories and any source comes from Youtube users. Advis
    <import addon="script.module.six" />
    <import addon="script.module.requests" />
    <import addon="script.module.livestreamer" />
-   <import addon="script.module.pydevd" version="4.4.0" optional="true"/>
   </requires>
   <extension
     point="xbmc.python.pluginsource"
@@ -407,8 +436,8 @@ Playlists organized by categories and any source comes from Youtube users. Advis
 
 <addon id="plugin.video.teamblue"
        name="TeamBlue Live Events"
-       version="2.0"
-       provider-name="TeamBlue">
+       version="2.1"
+       provider-name="Eduardo Pinto">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -430,19 +459,19 @@ Playlists organized by categories and any source comes from Youtube users. Advis
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="pt">Add-on ao  estilo Agenda</summary>
+    <summary lang="pt">Add-on ao estilo Agenda Desportiva</summary>
     <description lang="pt">
-	O add-0n TeamBlue apresenta as seguintes seccoes:
-	Agenda desportiva com transmissoes em direto de varias modalidades
-	Sports Replays (Futebol-Desportos Motorizados-WWE-UFC-NBA)
-	Canais Wolrd IPTV (Portugal-Alemanha-Espanha-Franca-Italia-Inglaterra-Brasil)
-	Canais Arenavision (para ver com o Plexus)
-	Filmes e Series (usando o add-on SPECTO)
-	Webcam's
-	NOTA: para a correta visualizacao de alguns canais e necessario ter instalados:
-	f4mtester - f4mproxy - Sports Devil - Specto - Plexus
-	O criador deste addon nao possui nem esta ligado de nenhuma forma ao conteudo nele disponibilizado.
-	Apenas disponibiliza conteudos de terceiros
+    O add-on TeamBlue apresenta as seguintes seccoes:
+    Agenda desportiva com transmissoes em direto de varias modalidades
+    Sports Replays (Futebol-Desportos Motorizados-WWE-UFC-NBA)
+    Canais Wolrd IPTV (Portugal-Alemanha-Espanha-Franca-Italia-Inglaterra-Brasil)
+    Canais Arenavision (para ver com o Plexus)
+    Filmes e Series (usando o add-on SPECTO)
+    Webcam's
+    NOTA: para a correta visualizacao de alguns canais e necessario ter instalados:
+    f4mtester â€“ f4mproxy - Sports Devil â€“ Specto â€“ Plexus
+    O criador deste addon nao possui nem esta ligado de nenhuma forma ao conteudo nele disponibilizado.
+    Apenas disponibiliza conteudos de terceiros
 	</description>
     <platform>all</platform>
   </extension>
@@ -475,10 +504,10 @@ Playlists organized by categories and any source comes from Youtube users. Advis
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Video em audio Pt</summary>
-   <description lang="en">Alguns dos melhores filmes de anima��o com o audio em Pt-pt
+   <description lang="en">Alguns dos melhores filmes de animação com o audio em Pt-pt
 	Necessita do URLResolver, HTTPLib2, Simplejson
 	Qualquer contacto https://www.facebook.com/groups/discavehbrepo/</description>
-	<disclaimer lang="en">Todos os conte�dos n�o s�o hospedados pelos intervinientes, s�o link's encontrados na net em qualquer motor de busca</disclaimer>
+	<disclaimer lang="en">Todos os conteúdos não são hospedados pelos intervinientes, são link's encontrados na net em qualquer motor de busca</disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
@@ -638,7 +667,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
-	     version="2.8.0"
+	     version="2.8.6"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -655,6 +684,28 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <platform>all</platform>
     <summary lang="en">Proxy for f4m</summary>
     <description lang="en">Use this addon to play F4m v1 and v2 streams</description>
+  </extension>
+</addon>
+
+<addon id="service.subtitles.opensubtitles"
+       name="OpenSubtitles.org"
+       version="5.1.14"
+       provider-name="amet">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.subtitle.module"
+             library="service.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">OpenSubtitles</summary>
+    <description lang="en">Search and download subtitles from opensubtitles.org</description>
+    <disclaimer lang="en"></disclaimer>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://forum.xbmc.org/showthread.php?tid=183114</forum>
+    <website></website>
+    <email></email>
+    <source>https://github.com/amet/service.subtitles.opensubtitles</source>    
   </extension>
 </addon>
 
@@ -680,28 +731,6 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <website></website>
     <email></email>
     <source>https://github.com/gfjardim/service.subtitles.legendastv</source>
-  </extension>
-</addon>
-
-<addon id="service.subtitles.opensubtitles"
-       name="OpenSubtitles.org"
-       version="5.1.14"
-       provider-name="amet">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.subtitle.module"
-             library="service.py" />
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">OpenSubtitles</summary>
-    <description lang="en">Search and download subtitles from opensubtitles.org</description>
-    <disclaimer lang="en"></disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://forum.xbmc.org/showthread.php?tid=183114</forum>
-    <website></website>
-    <email></email>
-    <source>https://github.com/amet/service.subtitles.opensubtitles</source>    
   </extension>
 </addon>
 

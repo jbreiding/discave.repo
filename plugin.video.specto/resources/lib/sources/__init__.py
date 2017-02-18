@@ -171,7 +171,9 @@ class sources:
                     item.addContextMenuItems(cm, replaceItems=True)
 
                     control.addItem(handle=int(sys.argv[1]), url='%s?%s' % (sysaddon, query), listitem=item, isFolder=False)
-                except:
+                except Exception as e:
+                    control.log('ERROR Sources.addItem %s' % e)
+
                     pass
             control.content(int(sys.argv[1]), 'files')
             control.directory(int(sys.argv[1]), cacheToDisc=True)
@@ -309,15 +311,25 @@ class sources:
 
         if content == 'movie':
             title = cleantitle.normalize(title)
-            for source in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, year, imdb, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+            for source in sourceDict:
+                try:
+                    threads.append(workers.Thread(self.getMovieSource, title, year, imdb, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+                except Exception as e:
+                    control.log('Source getSources %s ERROR %s' % (source,e))
+                    pass
         else:
             tvshowtitle = cleantitle.normalize(tvshowtitle)
             season, episode = alterepisode.alterepisode().get(imdb, tmdb, tvdb, tvrage, season, episode, alter, title, date)
-            for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+            for source in sourceDict:
+                try:
+                    threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+                except Exception as e:
+                    control.log('Source getSources %s ERROR %s' % (source, e))
+                    pass
 
 
         try: timeout = int(control.setting('sources_timeout_40'))
-        except: timeout = 40
+        except: timeout = 30
 
         [i.start() for i in threads]
 
@@ -393,14 +405,24 @@ class sources:
 
         if content == 'movie':
             title = cleantitle.normalize(title)
-            for source in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, year, imdb, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+            for source in sourceDict:
+                try:
+                    threads.append(workers.Thread(self.getMovieSource, title, year, imdb, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+                except:
+                    control.log('Source checkSources %s ERROR %s' % (source,e))
+                    pass
+
+
         else:
             tvshowtitle = cleantitle.normalize(tvshowtitle)
             season, episode = alterepisode.alterepisode().get(imdb, tmdb, tvdb, tvrage, season, episode, alter, title, date)
             for source in sourceDict:
                 #control.log("SOURCE S2 %s" % source)
-                threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
-
+                try:
+                    threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+                except:
+                    control.log('Source checkSources %s ERROR %s' % (source,e))
+                    pass
 
         try: timeout = int(control.setting('sources_timeout_40'))
         except: timeout = 40
@@ -419,7 +441,7 @@ class sources:
             except:
                 pass
 
-        if len(self.sources) >= 5: return True
+        if len(self.sources) >= 10: return True
         else: return False
 
 

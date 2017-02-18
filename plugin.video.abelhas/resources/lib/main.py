@@ -6,16 +6,46 @@ import cache,requester
 from functions import *
 from variables import *
 
-def first_menu():
-        if setting('warning') == "true":
-                warning_dialog(title="CopiaPop.com",text="Os sites abelhas.pt, toutbox e lolabits vão encerrar dia 31 de Março.\n\nO addon foi migrado para o novo site do grupo Abelhas, o CopiaPop.com. O site é espanhol e é bastante semelhante ao abelhas.\n\nCom a alteração do site, o addon foi re-escrito e as restantes funcionalidades vão sendo adicionadas nos próximos dias.\n\nFaçam upload dos vossos conteúdos para este novo site (CopiaPop.com) para aceder via este addon.")
-                setSetting('warning',value="false")
+def login():
+        import requests
+        headers={'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8','Accept-Encoding':'gzip, deflate, sdch','Accept-Language':'pt-PT,pt;q=0.8,en-US;q=0.6,en;q=0.4','Cache-Control':'no-cache','Connection':'keep-alive','Pragma':'no-cache','Upgrade-Insecure-Requests':'1','User-Agent':user_agent}
+        cookie=requester.request(CopiaPopURL,headers=urllib.urlencode(headers),output='cookie')
         
-        myuser=setting('copiapop-username')
-        addDirectoryItem("[COLOR red][B]Addon em actualização[/B][/COLOR]", 'user', 'movies.png', 'DefaultMovies.png')
+        timestamp = str(int(time.time()))+str(randint(0,9))+str(randint(0,9))+str(randint(0,9))
+        url = CopiaPopURL + '/action/Account/Login?returnUrl=%2F&TimeStamp=' + timestamp
+        headers={'Cookie':cookie,'Connection': 'keep-alive','Pragma': 'no-cache','Cache-Control': 'no-cache','Accept': '*/*','X-Requested-With': 'XMLHttpRequest','User-Agent': user_agent,'Referer': CopiaPopURL,'Accept-Encoding': 'gzip, deflate, sdch','Accept-Language': 'pt-PT,pt;q=0.8,en-US;q=0.6,en;q=0.4'}
+        result = requester.request(url,headers=urllib.urlencode(headers))
+
+        headers={'Cookie':cookie,'Accept':'*/*','Accept-Encoding':'gzip, deflate','Accept-Language':'pt-PT,pt;q=0.8,en-US;q=0.6,en;q=0.4','Cache-Control':'no-cache','Connection':'keep-alive','Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','Origin':CopiaPopURL,'Pragma':'no-cache','Referer':CopiaPopURL,'User-Agent':user_agent,'X-Requested-With':'XMLHttpRequest'}
+        token = requester.parseDOM(result, 'input', ret='value', attrs = {'name': '__RequestVerificationToken'})[0]
+        post={'UserName':setting('copiapop-username'),'Password':setting('copiapop-password'),'__RequestVerificationToken':token}
+        formurl = CopiaPopURL + '/action/Account/Login?returnUrl=%2F'
+        raw=requests.post(formurl,data=post,headers=headers)
+
+        success=raw.json()['Type']
+        if success == 'Redirect':
+                setSetting('request_cookie',raw.headers['Set-Cookie'].split(';')[0])
+        else:
+                dialog.ok('CopiaPop.com','Verifique se os dados de conta introduzidos estão correctos.')
+                execute('Addon.OpenSettings(%s)' % (addon_id))
+                sys.exit(0)
+
+def first_menu():
+        if setting('copiapop-username') == "":
+                dialog.ok('CopiaPop.com','Introduza o username do CopiaPop nas definições.')
+                execute('Addon.OpenSettings(%s)' % (addon_id))
+                sys.exit(0)
+        elif setting('copiapop-password') == "":
+                dialog.ok('CopiaPop.com','Introduza a password do CopiaPop nas definições.')
+                execute('Addon.OpenSettings(%s)' % (addon_id))
+                sys.exit(0)
+        else:
+                login()
+        
+        #addDirectoryItem("[COLOR red][B]Addon em actualização[/B][/COLOR]", 'user', 'movies.png', 'DefaultMovies.png')
         addDirectoryItem("Colecções mais recentes", 'recents', 'movies.png', 'DefaultMovies.png')
         addDirectoryItem("Ir para um utilizador", 'user', 'movies.png', 'DefaultMovies.png')
-        if myuser != "": addDirectoryItem("Ir para o meu utilizador (%s)" % myuser, 'user&query=%s' % myuser, 'movies.png', 'DefaultMovies.png')
+        addDirectoryItem("Ir para o meu utilizador (%s)" % setting('copiapop-username'), 'user&query=%s' % setting('copiapop-username'), 'movies.png', 'DefaultMovies.png')
         addDirectoryItem("Pesquisar", 'search', 'movies.png', 'DefaultMovies.png')
         endDirectory()
 
@@ -143,6 +173,7 @@ def checkvalid(content):
         except: return False
 
 def resolve_url(url,play=False):
+        import requests
         headers={'Accept':'*/*','Accept-Encoding':'gzip,deflate','Connection':'keep-alive','X-Requested-With':'XMLHttpRequest'}
         result = requester.request(url,headers=urllib.urlencode(headers))
         result = result.decode('iso-8859-1').encode('utf-8')
@@ -150,9 +181,9 @@ def resolve_url(url,play=False):
         fileid = requester.parseDOM(result, 'input', ret='value', attrs = {'name': 'fileId'})[0]
         token = requester.parseDOM(result, 'input', ret='value', attrs = {'name': '__RequestVerificationToken'})[0]
         formurl = CopiaPopURL + requester.parseDOM(result, 'form', ret='action', attrs = {'class': 'download_form'})[0]
-        headers={'Accept':'*/*','Accept-Encoding':'gzip,deflate','Connection':'keep-alive','X-Requested-With':'XMLHttpRequest'}
+        headers={'Cookie':setting('request_cookie'),'Accept':'*/*','Accept-Encoding':'gzip,deflate','Connection':'keep-alive','X-Requested-With':'XMLHttpRequest'}
         post={'fileId':fileid,'__RequestVerificationToken':token}
-        result = json.loads(requester.request(formurl,post=urllib.urlencode(post),headers=urllib.urlencode(headers)))
+        result = requests.post(formurl,data=post,headers=headers).json()
         if result['DownloadUrl'].startswith('http'):
                 if play==True: play_url(result['DownloadUrl'],name,original_url=url,original_filename=name)
                 else: return result['DownloadUrl']
