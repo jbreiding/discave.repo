@@ -284,7 +284,7 @@ Plailsts organized by categories and any source comes from Youtube users.
   <extension point="xbmc.addon.metadata">
     <summary>TV para todos</summary>
     <description>
-        Uma televisao ao clique de um dedo.
+        Uma televisÃ£o ao clique de um dedo.
 
     </description>
     <platform>all</platform>
@@ -334,7 +334,7 @@ Toda a fonte  vem de utilizadores do Youtube.
     <platform>all</platform>
     <summary lang="en">Rato TV</summary>
     <description lang="en">Filmes e series no Kodi em HD. Visita o site oficial em http://www.ratotv.top. Ã‰ necessÃ¡ria conta no site para aceder aos conteÃºdos do addon.</description>
-    <disclaimer lang="en">Os autores nao alojam nem distribuem nenhum do conteudo acessivel a partir deste addon. Os autores nÃ£o tÃªm qualquer afiliaÃ§Ã£o com o site em questÃ£o. O addon nÃ£o contem nenhuma ferramenta de tracking.</disclaimer>
+    <disclaimer lang="en">Os autores nÃ£o alojam nem distribuem nenhum do conteÃºdo acessÃ­vel a partir deste addon. Os autores nÃ£o tÃªm qualquer afiliaÃ§Ã£o com o site em questÃ£o. O addon nÃ£o contem nenhuma ferramenta de tracking.</disclaimer>
     <website>http://www.ratotv.top/</website>
     <platform>all</platform>
   </extension>
