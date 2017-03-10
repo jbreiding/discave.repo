@@ -62,6 +62,15 @@ if action == None:
     from resources.lib.indexers import navigator
     navigator.navigator().root()
 
+    try:
+        from resources.lib.modules import control
+
+        if control.has_upgraded():
+            control.announcement()
+            control.setSetting(id='old_version', value=control.addon().getAddonInfo('version'))
+    except:
+        pass
+
 elif action == 'movieNavigator':
     from resources.lib.indexers import navigator
     navigator.navigator().movies()
@@ -190,6 +199,10 @@ elif action == 'tvNetworks':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().networks()
 
+elif action == 'tvLanguages':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().languages()
+
 elif action == 'tvCertificates':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().certifications()
@@ -300,5 +313,4 @@ elif action == 'alterSources':
 elif action == 'clearSources':
     from resources.lib.modules import sources
     sources.sources().clearSources()
-
 

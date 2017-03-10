@@ -35,7 +35,7 @@
 		<setting id="movie25" type="bool" label="Movie25" default="true" />
 		<setting id="moviefree" type="bool" label="MovieFree" default="true" />
 		<setting id="movieshd" type="bool" label="MoviesHD" default="true" />
-		<setting id="moviesxk" type="bool" label="MoviesXK" default="true" />
+		<setting id="onlinemovies" type="bool" label="MoviesXK" default="true" />
 		<setting id="muchmovies" type="bool" label="Muchmovies" default="true" />
 		<setting id="onemovies" type="bool" label="Onemovies" default="true" />
 		<setting id="pelispedia" type="bool" label="Pelispedia" default="true" />
@@ -43,6 +43,7 @@
 		<setting id="pubfilm" type="bool" label="Pubfilm" default="true" />
 		<setting id="putlocker" type="bool" label="Putlocker" default="true" />
 		<setting id="tunemovie" type="bool" label="Tunemovie" default="true" />
+		<setting id="watch5s" type="bool" label="Watch5s" default="true" />
 		<setting id="watchfree" type="bool" label="Watchfree" default="true" />
 		<setting id="vidics" type="bool" label="Vidics" default="true" />
 		<setting id="xmovies" type="bool" label="Xmovies" default="true" />
@@ -59,6 +60,7 @@
 		<setting id="ororo_tv" type="bool" label="Ororo" default="true" />
 		<setting id="onlinedizi_tv" type="bool" label="Onlinedizi" default="true" />
 		<setting id="onemovies_tv" type="bool" label="Onemovies" default="true" />
+		<setting id="onlinemovies_tv" type="bool" label="Onemovies" default="true" />
 		<setting id="onseries_tv" type="bool" label="OnSeries" default="true" />
 		<setting id="primewire_tv" type="bool" label="Primewire" default="true" />
 		<setting id="pelispedia_tv" type="bool" label="Pelispedia" default="true" />
@@ -68,6 +70,7 @@
 		<setting id="tunemovie_tv" type="bool" label="Tunemovie" default="true" />
 		<setting id="tvrelease_tv" type="bool" label="TVrelease" default="true" />
 		<setting id="vidics_tv" type="bool" label="Vidics" default="true" />
+		<setting id="watch5s_tv" type="bool" label="Watch5s" default="true" />
 		<setting id="watchfree_tv" type="bool" label="Watchfree" default="true" />
 		<setting id="watchseries_tv" type="bool" label="Watchfree" default="true" />
 		<setting id="wsonline_tv" type="bool" label="WSOnline" default="true" />
