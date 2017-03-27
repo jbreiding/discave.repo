@@ -22,6 +22,7 @@ import re, urllib, urlparse, json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -34,16 +35,16 @@ class source:
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.__search(title)
-            if not url and title != localtitle: url = self.__search(localtitle)
+            url = self.__search(title, year)
+            if not url and title != localtitle: url = self.__search(localtitle, year)
             return url
         except:
             return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            url = self.__search(tvshowtitle)
-            if not url and tvshowtitle != localtvshowtitle: url = self.__search(localtvshowtitle)
+            url = self.__search(tvshowtitle, year)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(localtvshowtitle, year)
             return url
         except:
             return
@@ -66,9 +67,6 @@ class source:
             if url == None:
                 return sources
 
-            hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            locDict = [i[0] for i in hostDict]
-
             r = client.request(urlparse.urljoin(self.base_link, url))
 
             r = client.parseDOM(r, 'div', attrs={'class': 'hosterSiteVideo'})
@@ -77,10 +75,13 @@ class source:
             r = [(i[0][0], i[1][0].lower()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], i[1], re.findall('(.+?)\s*<br\s*/?>(.+?)$', i[1], re.DOTALL)) for i in r]
             r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '') for i in r]
-            r = [(i[0], i[1], 'HD' if 'hosterhdvideo' in i[2] else 'SD') for i in r if i[1] in locDict]
-            r = [(i[0], [x[1] for x in hostDict if x[0] == i[1]][0], i[2]) for i in r]
+            r = [(i[0], i[1], 'HD' if 'hosterhdvideo' in i[2] else 'SD') for i in r]
 
             for link, host, quality in r:
+                valid, host = source_utils.is_host_valid(host, hostDict)
+                if not valid:
+                    continue
+
                 sources.append({'source': host, 'quality': quality, 'language': 'de', 'url': link, 'direct': False, 'debridonly': False})
 
             return sources
@@ -92,18 +93,22 @@ class source:
         if self.base_link not in url:
             return url
 
-    def __search(self, title):
+    def __search(self, title, year):
         try:
             r = urllib.urlencode({'keyword': cleantitle.getsearch(title)})
             r = client.request(urlparse.urljoin(self.base_link, self.search_link), XHR=True, post=r)
 
             t = cleantitle.get(title)
+            y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             r = json.loads(r)
             r = [(i['link'], re.sub('<.+?>|</.+?>', '', i['title'])) for i in r if 'title' in i and 'link' in i]
             r = [(i[0], i[1], re.findall('(.+?)\s*Movie \d+:.+?$', i[1], re.DOTALL)) for i in r]
             r = [(i[0], i[2][0] if len(i[2]) > 0 else i[1]) for i in r]
-            r = [i[0] for i in r if t == cleantitle.get(i[1])][0]
+            r = [(i[0], i[1], re.findall('(.+?) \((\d{4})\)?', i[1])) for i in r]
+            r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)

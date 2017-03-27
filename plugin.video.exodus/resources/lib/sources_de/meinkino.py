@@ -23,6 +23,7 @@ import re, urllib, urlparse, json
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -51,7 +52,7 @@ class source:
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None:
+            if not url:
                 return
 
             data = urlparse.parse_qs(url)
@@ -68,8 +69,10 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
+
+            hostDict.append('vodcloud.co')  # seems like the internal host
 
             query = urlparse.urljoin(self.base_link, self.get_link % (re.findall('-id(.*?)$', url)[0]))
 
@@ -78,16 +81,22 @@ class source:
             r = [i[1] for i in r.items()]
 
             for i in r:
-                if isinstance(i, list):
-                    for urlData in i:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(urlData['link_mp4'])[0]['quality'], 'language': 'de', 'url': urlData['link_mp4'], 'direct': True, 'debridonly': False})
-                        except: pass
-                elif isinstance(i, dict):
-                    for key, value in i.iteritems():
-                        host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(value.strip().lower()).netloc)[0]
-                        if not host in hostDict: continue
+                try:
+                    if isinstance(i, dict): i = i.values()
+                    if isinstance(i, unicode): i = [i]
 
-                        sources.append({'source': host, 'quality': 'SD', 'language': 'de', 'url': value, 'direct': False, 'debridonly': False})
+                    if isinstance(i, list):
+                        for urlData in i:
+                            if isinstance(i, dict) and urlData.get('link_mp4'):
+                                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(urlData['link_mp4'])[0]['quality'], 'language': 'de', 'url': urlData['link_mp4'], 'direct': True, 'debridonly': False})
+                                except: pass
+                            else:
+                                valid, hoster = source_utils.is_host_valid(urlData, hostDict)
+                                if not valid: continue
+
+                                sources.append({'source': hoster, 'quality': 'SD', 'language': 'de', 'url': urlData, 'direct': False, 'debridonly': False})
+                except:
+                    pass
 
             return sources
         except:

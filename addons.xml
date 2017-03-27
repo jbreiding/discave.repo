@@ -62,7 +62,7 @@
 
 <addon id="plugin.video.alive.hd"
        name="Alive.HD"
-       version="4.5"
+       version="4.7"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -91,7 +91,7 @@ Plailsts organized by categories and any source comes from Youtube users.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.1" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.5" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -123,9 +123,9 @@ Plailsts organized by categories and any source comes from Youtube users.
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
 		<news>- Updated existing providers
-- Tweaked French providers
-- Update Translation
-- Fix skipping for hosters with captchas</news>
+- Removed dead providers
+- Added Polish providers (homik)
+- Added imdb/tvdb-id to directory-items</news>
 	</extension>
 </addon>
 
@@ -175,6 +175,38 @@ Plailsts organized by categories and any source comes from Youtube users.
 [B]Traquinas[/B] - Desenhos animados e filmes infantis em [PT] e [BR].
 
 [B][COLOR lime] Aconselhado a ultima versao do YOUTUBE 5.2.* e o URL RESOLVER tem de estar ativo e atualizado no Kodi.[/COLOR][/B]</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.jami"
+       name="Jami"
+       version="6.1"
+       provider-name="frenchdj">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Desenhos animados para toda a familia</summary>
+    <description>Videos Infantis em [COLOR lime][PT][/COLOR] e [COLOR yellow][BR][/COLOR].
+Playlists organizadas por categorias, totalmente dedicadas aos mais pequenos, com muitos desenhos animados recentes, classicos e musicais.
+Toda a fonte  vem de utilizadores do Youtube.
+[B][COLOR lime][ Aconselhado a ultima versao do youtube 5.*.* ][/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -308,7 +340,7 @@ Plailsts organized by categories and any source comes from Youtube users.
 
 <addon id="plugin.video.pt.docs.hd"
        name="PT.DocS.HD"
-       version="4.5"
+       version="4.7"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -387,10 +419,10 @@ Toda a fonte  vem de utilizadores do Youtube.
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.03.07.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.03.20.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.requests" version="1.0.0" />
+		<import addon="script.module.requests" />
 		<import addon="script.module.metahandler" />
 		<import addon="plugin.video.youtube" optional="true" />
 		<import addon="script.mrknow.urlresolver" />
@@ -415,7 +447,7 @@ Toda a fonte  vem de utilizadores do Youtube.
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2017.02.29"
+  version="2017.03.20"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -431,6 +463,7 @@ Toda a fonte  vem de utilizadores do Youtube.
     library="default.py">
    <provides>video</provides>
   </extension>
+  <extension point="xbmc.service" library="service/proxy_service.py" start="startup" />
   <extension point="xbmc.addon.metadata">
     <summary>Play videos of different sports streaming sites</summary>
     <description>Play videos of different sports streaming sites</description>

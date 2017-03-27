@@ -23,6 +23,7 @@ import re, urllib, urlparse
 from resources.lib.modules import cache
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -30,10 +31,14 @@ class source:
         self.priority = 1
         self.language = ['de']
         self.domains = ['movie4k.to', 'movie4k.tv', 'movie.to', 'movie4k.me', 'movie4k.org', 'movie4k.pe', 'movie4k.am']
-        self.base_link = 'http://movie4k.to'
+        self._base_link = None
         self.search_link = '/movies.php?list=search&search=%s'
 
-        self.base_link = cache.get(self.__get_base_url, 120, self.base_link)
+    @property
+    def base_link(self):
+        if not self._base_link:
+            self._base_link = cache.get(self.__get_base_url, 120, self.domains[0])
+        return self._base_link
 
     def movie(self, imdb, title, localtitle, year):
         try:
@@ -55,15 +60,14 @@ class source:
 
             links = client.parseDOM(r, 'tr', attrs={'id': 'tablemoviesindex2'})
 
-            locDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-
             for i in links:
                 try:
                     host = client.parseDOM(i, 'img', ret='alt')[0]
                     host = host.split()[0].rsplit('.', 1)[0].strip().lower()
-                    host = [x[1] for x in locDict if host == x[0]][0]
-                    if not host in hostDict: raise Exception()
                     host = host.encode('utf-8')
+
+                    valid, host = source_utils.is_host_valid(host, hostDict)
+                    if not valid: continue
 
                     url = client.parseDOM(i, 'a', ret='href')[0]
                     url = client.replaceHTMLCodes(url)
@@ -117,6 +121,7 @@ class source:
             r = [(i[0], i[1], i[2], re.findall('\((.+?)\)$', i[1])) for i in r]
             r = [(i[0], i[1], i[2]) for i in r if not i[3]]
             r = [i for i in r if i[2] in y]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
 
             r = [(client.replaceHTMLCodes(i[0]), i[1], i[2]) for i in r]
 
@@ -149,13 +154,13 @@ class source:
             for domain in self.domains:
                 try:
                     url = 'http://%s' % domain
-                    r = client.request(url)
-                    r = client.parseDOM(r, 'meta', attrs={'name': 'author'})[0]
-                    if 'movie4k.to' in r.lower():
+                    r = client.request(url, limit=1, timeout='10')
+                    r = client.parseDOM(r, 'meta', attrs={'name': 'author'}, ret='content')
+                    if r and 'movie4k.to' in r[0].lower():
                         return url
                 except:
                     pass
-
-            return fallback
         except:
-            return fallback
+            pass
+
+        return fallback

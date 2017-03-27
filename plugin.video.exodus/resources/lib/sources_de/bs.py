@@ -23,6 +23,7 @@ import re, urllib, urlparse, json
 from resources.lib.modules import cache
 from resources.lib.modules import client
 from resources.lib.modules import cleantitle
+from resources.lib.modules import source_utils
 
 
 class source:
@@ -35,14 +36,9 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            t = cleantitle.get(tvshowtitle)
-            j_c = cache.get(self.__get_json, 12, "series")
-            j = [i['id'] for i in j_c if t == cleantitle.get(i["series"])]
-            if len(j) == 0:
-                t = cleantitle.get(localtvshowtitle)
-                j = [i['id'] for i in j_c if t == cleantitle.get(i["series"])]
-
-            return 'series/%s/' % j[0]
+            url = self.__search(tvshowtitle, year)
+            if not url and tvshowtitle != localtvshowtitle: url = self.__search(localtvshowtitle, year)
+            return url
         except:
             return
 
@@ -60,17 +56,15 @@ class source:
             if url == None:
                 return sources
 
-            hostDict = [(i.rsplit('.', 1)[0], i) for i in hostDict]
-            locDict = [i[0] for i in hostDict]
-            locDict.append('openloadhd')
-
             j = self.__get_json(url)
             j = [i for i in j['links'] if 'links' in j]
-            j = [(i['hoster'].lower(), i['id']) for i in j if i['hoster'].lower() in locDict]
+            j = [(i['hoster'].lower(), i['id']) for i in j]
             j = [(re.sub('hd$', '', i[0]), i[1], 'HD' if i[0].endswith('hd') else 'SD') for i in j]
-            j = [([x[1] for x in hostDict if x[0] == i[0]][0], i[1], i[2]) for i in j]
+            j = [(i[0], i[1], i[2]) for i in j]
 
             for hoster, url, quality in j:
+                valid, hoster = source_utils.is_host_valid(hoster, hostDict)
+                if not valid: continue
                 sources.append({'source': hoster, 'quality': quality, 'language': 'de', 'url': ('watch/%s' % url), 'direct': False, 'debridonly': False})
 
             return sources
@@ -88,6 +82,23 @@ class source:
             return json.loads(result)
         except:
             return
+
+    def __search(self, title, year):
+        try:
+            t = cleantitle.get(title)
+            y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
+
+            r = cache.get(self.__get_json, 12, "series")
+            r = [(i.get('id'), i.get('series')) for i in r]
+            r = [(i[0], i[1], re.findall('(.+?) \((\d{4})\)?', i[1])) for i in r if t == cleantitle.get(i[1])]
+            r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y][0]
+
+            return 'series/%s/' % r
+        except:
+            return
+
 
 #############################################################
 

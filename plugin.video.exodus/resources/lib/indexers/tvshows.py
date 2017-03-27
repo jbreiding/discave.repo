@@ -91,7 +91,7 @@ class tvshows:
         self.imdbwatchlist2_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=date_added,desc' % self.imdb_user
 
 
-    def get(self, url, idx=True):
+    def get(self, url, idx=True, create_directory=True):
         try:
             try: url = getattr(self, url + '_link')
             except: pass
@@ -136,7 +136,7 @@ class tvshows:
                 if idx == True: self.worker()
 
 
-            if idx == True: self.tvshowDirectory(self.list)
+            if idx == True and create_directory == True: self.tvshowDirectory(self.list)
             return self.list
         except:
             pass
@@ -531,7 +531,7 @@ class tvshows:
 
             result = client.request(url)
 
-            result = result.replace('\n','')
+            result = result.replace('\n', ' ')
 
             items = client.parseDOM(result, 'div', attrs = {'class': 'lister-item mode-advanced'})
             items += client.parseDOM(result, 'div', attrs = {'class': 'list_item.+?'})
@@ -1050,6 +1050,8 @@ class tvshows:
 
         nextMenu = control.lang(32053).encode('utf-8')
 
+        playRandom = control.lang(32535).encode('utf-8')
+
 
         for i in items:
             try:
@@ -1059,6 +1061,8 @@ class tvshows:
                 imdb, tvdb, year = i['imdb'], i['tvdb'], i['year']
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                meta.update({'code': imdb, 'imdbnumber': imdb, 'imdb_id': imdb})
+                meta.update({'tvdb_id': tvdb})
                 meta.update({'mediatype': 'tvshow'})
                 meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
                 if not 'duration' in i: meta.update({'duration': '60'})
@@ -1083,6 +1087,8 @@ class tvshows:
 
 
                 cm = []
+
+                cm.append((playRandom, 'RunPlugin(%s?action=random&rtype=season&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s)' % (sysaddon, urllib.quote_plus(systitle), urllib.quote_plus(year), urllib.quote_plus(imdb), urllib.quote_plus(tvdb))))
 
                 cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
@@ -1134,6 +1140,9 @@ class tvshows:
                 item.addContextMenuItems(cm)
                 item.setInfo(type='Video', infoLabels = meta)
 
+                video_streaminfo = {'codec': 'h264'}
+                item.addStreamInfo('video', video_streaminfo)
+
                 control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:
                 pass
@@ -1170,6 +1179,8 @@ class tvshows:
 
         queueMenu = control.lang(32065).encode('utf-8')
 
+        playRandom = control.lang(32535).encode('utf-8')
+
         for i in items:
             try:
                 name = i['name']
@@ -1183,6 +1194,8 @@ class tvshows:
                 except: pass
 
                 cm = []
+
+                cm.append((playRandom, 'RunPlugin(%s?action=random&rtype=show&url=%s)' % (sysaddon, urllib.quote_plus(i['url']))))
 
                 if queue == True:
                     cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))

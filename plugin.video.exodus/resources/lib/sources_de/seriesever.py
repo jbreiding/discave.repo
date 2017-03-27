@@ -24,6 +24,8 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
 from resources.lib.modules import control
+from resources.lib.modules import source_utils
+
 
 class source:
     def __init__(self):
@@ -100,8 +102,8 @@ class source:
                             url = url[0]
                             if '/old/seframer.php' in url: url = self.__get_old_url(url)
 
-                        host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                        if not host in hostDict and not 'google' in host: continue
+                        valid, host = source_utils.is_host_valid(url, hostDict)
+                        if not valid: continue
 
                         if i in ['720p', 'HD']: quali = 'HD'
                         elif i in ['1080p', '1440p']: quali = i
@@ -141,6 +143,7 @@ class source:
             r = [(i['url'], i['name']) for i in r if 'name' in i and 'url' in i]
             r = [(i[0], i[1], re.findall('(.+?) \(*(\d{4})?\)*$', i[1])) for i in r]
             r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
+            r = sorted(r, key=lambda i: int(i[2]), reverse=True)  # with year > no year
             r = [i[0] for i in r if cleantitle.get(i[1]) == t and i[2] in y][0]
 
             url = re.findall('(?://.+?|)(/.+).html?', r)[0]
