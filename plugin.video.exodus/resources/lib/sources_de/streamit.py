@@ -26,6 +26,7 @@ import urlparse
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -39,8 +40,8 @@ class source:
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.__search(title, year)
-            if not url and title != localtitle: url = self.__search(localtitle, year)
+            url = self.__search(localtitle, year)
+            if not url and title != localtitle: url = self.__search(title, year)
             return urllib.urlencode({'url': url, 'imdb': re.sub('[^0-9]', '', imdb)}) if url else None
         except:
             return
@@ -74,7 +75,7 @@ class source:
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            url = urlparse.urljoin(self.base_link, data.get('url',''))
+            url = urlparse.urljoin(self.base_link, data.get('url', ''))
             imdb = data.get('imdb')
             season = data.get('season')
             episode = data.get('episode')
@@ -85,14 +86,14 @@ class source:
             else:
                 r = client.request(url)
 
-            l = client.parseDOM(r, 'select', attrs={'id': 'sel_sprache'})
-            l = client.parseDOM(l, 'option', ret='id')
+            l = dom_parser.parse_dom(r, 'select', attrs={'id': 'sel_sprache'})
+            l = dom_parser.parse_dom(l, 'option', req='id')
 
-            r = [(client.parseDOM(r, 'div', attrs={'id': i})) for i in l if i == 'deutsch']
-            r = [(i[0], client.parseDOM(i[0], 'option', ret='id')) for i in r]
-            r = [(id, client.parseDOM(content, 'div', attrs={'id': id})) for content, ids in r for id in ids]
-            r = [(re.findall('hd(\d{3,4})', i[0]), client.parseDOM(i[1], 'a', ret='href')) for i in r if i[1]]
-            r = [(i[0][0] if i[0] else '0', i[1]) for i in r]
+            r = [(dom_parser.parse_dom(r, 'div', attrs={'id': i.attrs['id']})) for i in l if i.attrs['id'] == 'deutsch']
+            r = [(i[0], dom_parser.parse_dom(i[0], 'option', req='id')) for i in r]
+            r = [(id.attrs['id'], dom_parser.parse_dom(content, 'div', attrs={'id': id.attrs['id']})) for content, ids in r for id in ids]
+            r = [(re.findall('hd(\d{3,4})', i[0]), dom_parser.parse_dom(i[1], 'a', req='href')) for i in r if i[1]]
+            r = [(i[0][0] if i[0] else '0', [x.attrs['href'] for x in i[1]]) for i in r if i[1]]
 
             links = [(x[1], '4K') for x in r if int(x[0]) >= 2160]
             links += [(x[1], '1440') for x in r if int(x[0]) >= 1440]
@@ -131,15 +132,12 @@ class source:
             y = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1), '0']
 
             r = client.request(urlparse.urljoin(self.base_link, self.search_link), post=urllib.urlencode({'val': title}), XHR=True)
-            r = client.parseDOM(r, 'li')
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in r if i]
-            r = [(i[0][0], i[1][0], re.findall('\((\d{4})', i[1][0])) for i in r if i[0] and i[1]]
+            r = dom_parser.parse_dom(r, 'li')
+            r = dom_parser.parse_dom(r, 'a', req='href')
+            r = [(i.attrs['href'], i.content, re.findall('\((\d{4})', i.content)) for i in r]
             r = [(i[0], i[1], i[2][0] if i[2] else '0') for i in r]
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and i[2] in y][0]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return source_utils.strip_domain(r)
         except:
             return

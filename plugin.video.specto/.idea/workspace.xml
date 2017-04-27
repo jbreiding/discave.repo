@@ -14,6 +14,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/plugin.video.specto$test10.coverage" NAME="test10 Coverage Results" MODIFIED="1474486253857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/plugin_video_specto$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1490876784766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -24,69 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="movies.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lib/indexers/movies.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="998" column="52" lean-forward="false" selection-start-line="998" selection-start-column="52" selection-end-line="998" selection-end-column="52" />
-              <folding>
-                <element signature="e#20768#27681#0" expanded="false" />
-                <element signature="e#27726#28832#0" expanded="false" />
-                <element signature="e#28879#30057#0" expanded="false" />
-                <element signature="e#30097#36689#0" expanded="false" />
-                <element signature="e#36722#37376#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="easynews_mv_tv.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lib/sources/easynews_mv_tv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-225">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serieswatch_mv_tv.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lib/sources/disabled/serieswatch_mv_tv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-585">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1472678003000" expanded="true" signature="3490:3569" ph="SELECT * FRO... movies" />
-                <marker date="1472678003000" expanded="true" signature="3958:4044" ph="SELECT * FRO... movies" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="xmovies_mv_tv.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lib/sources/xmovies_mv_tv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wmonline_mv.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/lib/sources/disabled/wmonline_mv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="default.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/default.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
+            <state relative-caret-position="249">
               <caret line="36" column="1" lean-forward="false" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
               <folding>
                 <element signature="e#823#842#0" expanded="true" />
@@ -95,45 +37,73 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/settings.xml">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/lib/sources/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="273" column="20" lean-forward="false" selection-start-line="273" selection-start-column="20" selection-end-line="273" selection-end-column="20" />
+              <folding>
+                <element signature="e#1567#3472#0" expanded="false" />
+                <element signature="e#17108#19825#0" expanded="false" />
+                <element signature="e#19899#22403#0" expanded="false" />
+                <element signature="e#22521#26124#0" expanded="false" />
+                <element signature="e#26174#26414#0" expanded="false" />
+                <element signature="e#26453#27063#0" expanded="false" />
+                <element signature="e#33194#34052#0" expanded="false" />
+                <marker date="1490877430804" expanded="true" signature="20020:20179" ph="CREATE TABLE... IF" />
+                <marker date="1490877430804" expanded="true" signature="20210:20381" ph="CREATE TABLE... IF" />
+                <marker date="1490877430804" expanded="true" signature="20484:20581" ph="SELECT * FRO... rel_src" />
+                <marker date="1490877430804" expanded="true" signature="21040:21137" ph="SELECT * FRO... rel_url" />
+                <marker date="1490877430804" expanded="true" signature="21413:21508" ph="DELETE FROM " />
+                <marker date="1490877430804" expanded="true" signature="21563:21605" ph="INSERT INTO rel_url... " />
+                <marker date="1490877430804" expanded="true" signature="22049:22144" ph="DELETE FROM " />
+                <marker date="1490877430804" expanded="true" signature="22199:22244" ph="INSERT INTO rel_src... " />
+                <marker date="1490877430804" expanded="true" signature="22705:22864" ph="CREATE TABLE... IF" />
+                <marker date="1490877430804" expanded="true" signature="22895:23066" ph="CREATE TABLE... IF" />
+                <marker date="1490877430804" expanded="true" signature="23169:23266" ph="SELECT * FRO... rel_src" />
+                <marker date="1490877430804" expanded="true" signature="23846:23943" ph="SELECT * FRO... rel_url" />
+                <marker date="1490877430804" expanded="true" signature="24361:24456" ph="DELETE FROM " />
+                <marker date="1490877430804" expanded="true" signature="24511:24553" ph="INSERT INTO rel_url... " />
+                <marker date="1490877430804" expanded="true" signature="24712:24809" ph="SELECT * FRO... rel_url" />
+                <marker date="1490877430804" expanded="true" signature="25188:25283" ph="DELETE FROM " />
+                <marker date="1490877430804" expanded="true" signature="25347:25389" ph="INSERT INTO rel_url... " />
+                <marker date="1490877430804" expanded="true" signature="25752:25847" ph="DELETE FROM " />
+                <marker date="1490877430804" expanded="true" signature="25911:25956" ph="INSERT INTO rel_src... " />
+                <marker date="1490877430804" expanded="true" signature="26773:26801" ph="DROP TABLE I... " />
+                <marker date="1490877430804" expanded="true" signature="26867:26895" ph="DROP TABLE I... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1485466688167" expanded="true" signature="2693:2752" ph="SELECT * FRO... movies" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lib/sources/__init__.py">
+      <file leaf-file-name="onseries_tv.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/lib/sources/onseries_tv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="670" column="13" lean-forward="false" selection-start-line="670" selection-start-column="13" selection-end-line="670" selection-end-column="13" />
-              <folding>
-                <element signature="e#1567#3472#0" expanded="false" />
-                <marker date="1485580046023" expanded="true" signature="19132:19291" ph="CREATE TABLE... rel_url" />
-                <marker date="1485580046023" expanded="true" signature="19322:19493" ph="CREATE TABLE... rel_src" />
-                <marker date="1485580046023" expanded="true" signature="19596:19693" ph="SELECT * FRO... rel_src" />
-                <marker date="1485580046023" expanded="true" signature="20152:20249" ph="SELECT * FRO... rel_url" />
-                <marker date="1485580046023" expanded="true" signature="20525:20620" ph="DELETE FROM " />
-                <marker date="1485580046023" expanded="true" signature="20675:20717" ph="INSERT INTO rel_url... " />
-                <marker date="1485580046023" expanded="true" signature="21161:21256" ph="DELETE FROM " />
-                <marker date="1485580046023" expanded="true" signature="21311:21356" ph="INSERT INTO rel_src... " />
-                <marker date="1485580046023" expanded="true" signature="21817:21976" ph="CREATE TABLE... rel_url" />
-                <marker date="1485580046023" expanded="true" signature="22007:22178" ph="CREATE TABLE... rel_src" />
-                <marker date="1485580046023" expanded="true" signature="22281:22378" ph="SELECT * FRO... rel_src" />
-                <marker date="1485580046023" expanded="true" signature="22958:23055" ph="SELECT * FRO... rel_url" />
-                <marker date="1485580046023" expanded="true" signature="23473:23568" ph="DELETE FROM " />
-                <marker date="1485580046023" expanded="true" signature="23623:23665" ph="INSERT INTO rel_url... " />
-                <marker date="1485580046023" expanded="true" signature="23824:23921" ph="SELECT * FRO... rel_url" />
-                <marker date="1485580046023" expanded="true" signature="24300:24395" ph="DELETE FROM " />
-                <marker date="1485580046023" expanded="true" signature="24459:24501" ph="INSERT INTO rel_url... " />
-                <marker date="1485580046023" expanded="true" signature="24864:24959" ph="DELETE FROM " />
-                <marker date="1485580046023" expanded="true" signature="25023:25068" ph="INSERT INTO rel_src... " />
-                <marker date="1485580046023" expanded="true" signature="25885:25913" ph="DROP TABLE I... " />
-                <marker date="1485580046023" expanded="true" signature="25979:26007" ph="DROP TABLE I... " />
-              </folding>
+            <state relative-caret-position="315">
+              <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,21 +111,12 @@
       <file leaf-file-name="iwatchonline_mv_tv.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/lib/sources/iwatchonline_mv_tv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="146">
+              <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
               <folding>
+                <element signature="e#736#767#0" expanded="true" />
                 <element signature="e#4195#4418#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="movie25_mv_tv.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lib/sources/movie25_mv_tv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -170,9 +131,15 @@
       <find>client</find>
       <find>client2</find>
       <find>Super_info error</find>
+      <find>playI</find>
+      <find>__path__</find>
+      <find>'provider':</find>
+      <find>sourcesResolve</find>
+      <find>playi</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/resources/lib</dir>
+      <dir>$PROJECT_DIR$/resources/lib/sources</dir>
     </dirStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -186,10 +153,12 @@
         <option value="$PROJECT_DIR$/changelog.txt" />
         <option value="$PROJECT_DIR$/resources/settings.xml" />
         <option value="$PROJECT_DIR$/resources/lib/sources/tunemovie_mv_tv.py" />
-        <option value="$PROJECT_DIR$/default.py" />
-        <option value="$PROJECT_DIR$/resources/lib/sources/__init__.py" />
         <option value="$PROJECT_DIR$/resources/lib/sources/iwatchonline_mv_tv.py" />
         <option value="$PROJECT_DIR$/resources/lib/indexers/movies.py" />
+        <option value="$PROJECT_DIR$/test2.py" />
+        <option value="$PROJECT_DIR$/resources/lib/sources/onseries_tv.py" />
+        <option value="$PROJECT_DIR$/default.py" />
+        <option value="$PROJECT_DIR$/resources/lib/sources/__init__.py" />
       </list>
     </option>
   </component>
@@ -201,9 +170,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1535" />
-    <option name="height" value="876" />
+    <option name="height" value="904" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -246,76 +215,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin.video.specto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin.video.specto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin.video.specto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin.video.specto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin.video.specto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin.video.specto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="disabled" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -327,11 +230,24 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mylib" />
       <recent name="$PROJECT_DIR$/resources/lib/sources" />
       <recent name="$PROJECT_DIR$/resources/lib/sources/disabled" />
     </key>
   </component>
-  <component name="RunManager" selected="Python Remote Debug.kodi">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.test2">
     <configuration default="false" name="test10" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -348,6 +264,37 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test10.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="plugin.video.specto" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -368,6 +315,13 @@
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
@@ -436,6 +390,7 @@
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
@@ -465,26 +420,6 @@
       <scripts />
       <node-interpreter value="project" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Attests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="plugin.video.specto" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -518,15 +453,10 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="plugin.video.specto" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -540,19 +470,40 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="plugin.video.specto" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="plugin.video.specto" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Python Remote Debug.kodi" />
+      <item index="1" class="java.lang.String" itemvalue="Python.test10" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test2" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.test2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test10" />
+      </list>
+    </recent_temporary>
+    <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -570,22 +521,8 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
-      <option name="testToRun" value="" />
-      <option name="keywords" value="" />
-      <option name="params" value="" />
-      <option name="USE_PARAM" value="false" />
-      <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Python Remote Debug.kodi" />
-      <item index="1" class="java.lang.String" itemvalue="Python.test10" />
-    </list>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.test10" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -604,21 +541,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1535" height="876" extended-state="6" />
+    <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32505038" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963988" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32975152" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45641026" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -796,17 +734,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>816</line>
+          <line>825</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>819</line>
+          <line>828</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>817</line>
+          <line>826</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -865,11 +803,6 @@
           <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/default.py</url>
-          <line>228</line>
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/indexers/tvshows.py</url>
           <line>147</line>
           <option name="timeStamp" value="111" />
@@ -880,23 +813,13 @@
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/default.py</url>
-          <line>227</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>597</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>606</line>
+          <line>607</line>
           <option name="timeStamp" value="117" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>618</line>
+          <line>619</line>
           <option name="timeStamp" value="118" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1125,23 +1048,18 @@
           <option name="timeStamp" value="215" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/default.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="220" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
           <line>113</line>
           <option name="timeStamp" value="221" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>378</line>
+          <line>379</line>
           <option name="timeStamp" value="223" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>330</line>
+          <line>331</line>
           <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1151,28 +1069,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>319</line>
+          <line>320</line>
           <option name="timeStamp" value="228" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>349</line>
+          <line>350</line>
           <option name="timeStamp" value="230" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>710</line>
-          <option name="timeStamp" value="233" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>639</line>
-          <option name="timeStamp" value="234" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>637</line>
-          <option name="timeStamp" value="235" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/iwatchonline_mv_tv.py</url>
@@ -1181,32 +1084,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>382</line>
+          <line>383</line>
           <option name="timeStamp" value="237" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>287</line>
+          <line>288</line>
           <option name="timeStamp" value="238" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>314</line>
+          <line>315</line>
           <option name="timeStamp" value="241" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>468</line>
+          <line>469</line>
           <option name="timeStamp" value="242" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>438</line>
+          <line>439</line>
           <option name="timeStamp" value="244" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>447</line>
+          <line>448</line>
           <option name="timeStamp" value="245" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1216,22 +1119,90 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
-          <line>437</line>
+          <line>438</line>
           <option name="timeStamp" value="247" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>600</line>
+          <option name="timeStamp" value="249" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>608</line>
+          <option name="timeStamp" value="250" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>269</line>
+          <option name="timeStamp" value="256" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>759</line>
+          <option name="timeStamp" value="260" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>785</line>
+          <option name="timeStamp" value="261" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>255</line>
+          <option name="timeStamp" value="263" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>266</line>
+          <option name="timeStamp" value="264" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>271</line>
+          <option name="timeStamp" value="265" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>783</line>
+          <option name="timeStamp" value="267" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>782</line>
+          <option name="timeStamp" value="268" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>238</line>
+          <option name="timeStamp" value="269" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>773</line>
+          <option name="timeStamp" value="270" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>774</line>
+          <option name="timeStamp" value="273" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/__init__.py</url>
+          <line>775</line>
+          <option name="timeStamp" value="274" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resources/lib/sources/onseries_tv.py</url>
+          <line>147</line>
+          <option name="timeStamp" value="275" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="248" />
+      <option name="time" value="278" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/lib/indexers/navigator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/language/English/strings.po">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4440">
@@ -1467,20 +1438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1536,7 +1493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1566,7 +1522,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/settings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
+        <state relative-caret-position="645">
           <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
@@ -1574,66 +1530,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/lib/sources/movie25_mv_tv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        <state relative-caret-position="990">
+          <caret line="70" column="40" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/default.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="36" column="1" lean-forward="false" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-          <folding>
-            <element signature="e#823#842#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lib/sources/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="670" column="13" lean-forward="false" selection-start-line="670" selection-start-column="13" selection-end-line="670" selection-end-column="13" />
-          <folding>
-            <element signature="e#1567#3472#0" expanded="false" />
-            <marker date="1485580046023" expanded="true" signature="19132:19291" ph="CREATE TABLE... rel_url" />
-            <marker date="1485580046023" expanded="true" signature="19322:19493" ph="CREATE TABLE... rel_src" />
-            <marker date="1485580046023" expanded="true" signature="19596:19693" ph="SELECT * FRO... rel_src" />
-            <marker date="1485580046023" expanded="true" signature="20152:20249" ph="SELECT * FRO... rel_url" />
-            <marker date="1485580046023" expanded="true" signature="20525:20620" ph="DELETE FROM " />
-            <marker date="1485580046023" expanded="true" signature="20675:20717" ph="INSERT INTO rel_url... " />
-            <marker date="1485580046023" expanded="true" signature="21161:21256" ph="DELETE FROM " />
-            <marker date="1485580046023" expanded="true" signature="21311:21356" ph="INSERT INTO rel_src... " />
-            <marker date="1485580046023" expanded="true" signature="21817:21976" ph="CREATE TABLE... rel_url" />
-            <marker date="1485580046023" expanded="true" signature="22007:22178" ph="CREATE TABLE... rel_src" />
-            <marker date="1485580046023" expanded="true" signature="22281:22378" ph="SELECT * FRO... rel_src" />
-            <marker date="1485580046023" expanded="true" signature="22958:23055" ph="SELECT * FRO... rel_url" />
-            <marker date="1485580046023" expanded="true" signature="23473:23568" ph="DELETE FROM " />
-            <marker date="1485580046023" expanded="true" signature="23623:23665" ph="INSERT INTO rel_url... " />
-            <marker date="1485580046023" expanded="true" signature="23824:23921" ph="SELECT * FRO... rel_url" />
-            <marker date="1485580046023" expanded="true" signature="24300:24395" ph="DELETE FROM " />
-            <marker date="1485580046023" expanded="true" signature="24459:24501" ph="INSERT INTO rel_url... " />
-            <marker date="1485580046023" expanded="true" signature="24864:24959" ph="DELETE FROM " />
-            <marker date="1485580046023" expanded="true" signature="25023:25068" ph="INSERT INTO rel_src... " />
-            <marker date="1485580046023" expanded="true" signature="25885:25913" ph="DROP TABLE I... " />
-            <marker date="1485580046023" expanded="true" signature="25979:26007" ph="DROP TABLE I... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lib/sources/iwatchonline_mv_tv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#4195#4418#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/lib/indexers/movies.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="9480">
           <caret line="998" column="52" lean-forward="false" selection-start-line="998" selection-start-column="52" selection-end-line="998" selection-end-column="52" />
           <folding>
             <element signature="e#20768#27681#0" expanded="false" />
@@ -1647,36 +1552,110 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/lib/sources/easynews_mv_tv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lib/sources/disabled/serieswatch_mv_tv.py">
+    <entry file="file://$PROJECT_DIR$/mylib/disabled/serieswatch_mv_tv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-585">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lib/sources/xmovies_mv_tv.py" />
+    <entry file="file://$PROJECT_DIR$/mylib/disabled/wmonline_mv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="30" column="33" lean-forward="false" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1472678003000" expanded="true" signature="3490:3569" ph="SELECT * FRO... movies" />
-            <marker date="1472678003000" expanded="true" signature="3958:4044" ph="SELECT * FRO... movies" />
+            <marker date="1485466688167" expanded="true" signature="2693:2752" ph="SELECT * FRO... movies" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lib/sources/xmovies_mv_tv.py">
+    <entry file="file://$PROJECT_DIR$/test2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="36" />
+        <state relative-caret-position="120">
+          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lib/sources/disabled/wmonline_mv.py">
+    <entry file="file://$PROJECT_DIR$/resources/lib/sources/iwatchonline_mv_tv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="44" />
+        <state relative-caret-position="146">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding>
+            <element signature="e#736#767#0" expanded="true" />
+            <element signature="e#4195#4418#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lib/sources/onseries_tv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/default.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="36" column="1" lean-forward="false" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+          <folding>
+            <element signature="e#823#842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lib/sources/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="273" column="20" lean-forward="false" selection-start-line="273" selection-start-column="20" selection-end-line="273" selection-end-column="20" />
+          <folding>
+            <element signature="e#1567#3472#0" expanded="false" />
+            <element signature="e#17108#19825#0" expanded="false" />
+            <element signature="e#19899#22403#0" expanded="false" />
+            <element signature="e#22521#26124#0" expanded="false" />
+            <element signature="e#26174#26414#0" expanded="false" />
+            <element signature="e#26453#27063#0" expanded="false" />
+            <element signature="e#33194#34052#0" expanded="false" />
+            <marker date="1490877430804" expanded="true" signature="20020:20179" ph="CREATE TABLE... IF" />
+            <marker date="1490877430804" expanded="true" signature="20210:20381" ph="CREATE TABLE... IF" />
+            <marker date="1490877430804" expanded="true" signature="20484:20581" ph="SELECT * FRO... rel_src" />
+            <marker date="1490877430804" expanded="true" signature="21040:21137" ph="SELECT * FRO... rel_url" />
+            <marker date="1490877430804" expanded="true" signature="21413:21508" ph="DELETE FROM " />
+            <marker date="1490877430804" expanded="true" signature="21563:21605" ph="INSERT INTO rel_url... " />
+            <marker date="1490877430804" expanded="true" signature="22049:22144" ph="DELETE FROM " />
+            <marker date="1490877430804" expanded="true" signature="22199:22244" ph="INSERT INTO rel_src... " />
+            <marker date="1490877430804" expanded="true" signature="22705:22864" ph="CREATE TABLE... IF" />
+            <marker date="1490877430804" expanded="true" signature="22895:23066" ph="CREATE TABLE... IF" />
+            <marker date="1490877430804" expanded="true" signature="23169:23266" ph="SELECT * FRO... rel_src" />
+            <marker date="1490877430804" expanded="true" signature="23846:23943" ph="SELECT * FRO... rel_url" />
+            <marker date="1490877430804" expanded="true" signature="24361:24456" ph="DELETE FROM " />
+            <marker date="1490877430804" expanded="true" signature="24511:24553" ph="INSERT INTO rel_url... " />
+            <marker date="1490877430804" expanded="true" signature="24712:24809" ph="SELECT * FRO... rel_url" />
+            <marker date="1490877430804" expanded="true" signature="25188:25283" ph="DELETE FROM " />
+            <marker date="1490877430804" expanded="true" signature="25347:25389" ph="INSERT INTO rel_url... " />
+            <marker date="1490877430804" expanded="true" signature="25752:25847" ph="DELETE FROM " />
+            <marker date="1490877430804" expanded="true" signature="25911:25956" ph="INSERT INTO rel_src... " />
+            <marker date="1490877430804" expanded="true" signature="26773:26801" ph="DROP TABLE I... " />
+            <marker date="1490877430804" expanded="true" signature="26867:26895" ph="DROP TABLE I... " />
+          </folding>
         </state>
       </provider>
     </entry>

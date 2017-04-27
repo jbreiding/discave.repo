@@ -62,7 +62,7 @@
 
 <addon id="plugin.video.alive.hd"
        name="Alive.HD"
-       version="4.7"
+       version="4.8a"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -91,7 +91,7 @@ Plailsts organized by categories and any source comes from Youtube users.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.5" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.9" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -122,10 +122,9 @@ Plailsts organized by categories and any source comes from Youtube users.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>- Updated existing providers
-- Removed dead providers
-- Added Polish providers (homik)
-- Added imdb/tvdb-id to directory-items</news>
+		<news>- Added new and fix existing providers (satanuke, John Doe)
+- Updated German providers
+- Tweaked new Debrid-Code</news>
 	</extension>
 </addon>
 
@@ -419,7 +418,7 @@ Toda a fonte  vem de utilizadores do Youtube.
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.03.20.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.04.27.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" />
@@ -447,7 +446,7 @@ Toda a fonte  vem de utilizadores do Youtube.
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2017.03.20"
+  version="2017.03.28"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>

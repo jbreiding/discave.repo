@@ -19,142 +19,135 @@
 '''
 
 
-import re,urllib,urlparse,hashlib,random,string,json,base64
+import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import cache
 from resources.lib.modules import directstream
+from resources.lib.modules import jsunfuck
+from resources.lib.modules import cache
+
+CODE = '''def retA():
+    class Infix:
+        def __init__(self, function):
+            self.function = function
+        def __ror__(self, other):
+            return Infix(lambda x, self=self, other=other: self.function(other, x))
+        def __or__(self, other):
+            return self.function(other)
+        def __rlshift__(self, other):
+            return Infix(lambda x, self=self, other=other: self.function(other, x))
+        def __rshift__(self, other):
+            return self.function(other)
+        def __call__(self, value1, value2):
+            return self.function(value1, value2)
+    def my_add(x, y):
+        try: return x + y
+        except Exception: return str(x) + str(y)
+    x = Infix(my_add)
+    return %s
+param = retA()'''
 
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me']
-        self.base_link = 'https://123movies.is'
-        self.base_link_2 = 'https://123movies.net.ru'
+        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me', 'gomovies.to']
+        self.base_link = 'https://gomovies.to'
         self.search_link = '/ajax/suggest_search'
         self.search_link_2 = '/movie/search/%s'
         self.info_link = '/ajax/movie_load_info/%s'
-        self.server_link = '/ajax/get_episodes/%s'
-        self.direct_link = '/ajax/v2_load_episode/'
+        self.server_link = '/ajax/movie_episodes/%s'
         self.embed_link = '/ajax/load_embed/'
+        self.token_link = '/ajax/movie_token?eid=%s&mid=%s'
+        self.sourcelink = '/ajax/movie_sources/%s?x=%s&y=%s'
 
-
-    def request(self, url, post=None, headers=None, XHR=False):
+    def getOriginalTitle(self, imdb):
         try:
-            r = client.request(url, post=post, headers=headers, XHR=XHR, output='extended')
-
-            if r[0] == None: return r
-
-            if 'internetmatters.org' in r[0]:
-                url = re.findall('(?://.+?|)(/.+)', url)[0]
-                url = urlparse.urljoin(self.base_link_2, url)
-                r = client.request(url, post=post, headers=headers, XHR=XHR, output='extended')
-
-            return r
+            tmdb_link = base64.b64decode(
+                'aHR0cHM6Ly9hcGkudGhlbW92aWVkYi5vcmcvMy9maW5kLyVzP2FwaV9rZXk9MTBiYWIxZWZmNzZkM2NlM2EyMzQ5ZWIxMDQ4OTRhNmEmbGFuZ3VhZ2U9ZW4tVVMmZXh0ZXJuYWxfc291cmNlPWltZGJfaWQ=')
+            t = client.request(tmdb_link % imdb, timeout='10')
+            try: title = json.loads(t)['movie_results'][0]['original_title']
+            except: pass
+            try: title = json.loads(t)['tv_results'][0]['original_name']
+            except: pass
+            title = cleantitle.normalize(title)
+            return title
         except:
             return
-
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            t = cleantitle.get(title)
-
-            q = self.search_link_2 % (urllib.quote_plus(cleantitle.query(title)))
-            q = urlparse.urljoin(self.base_link, q)
-
-            u = urlparse.urljoin(self.base_link, self.search_link)
-            p = urllib.urlencode({'keyword': title})
-
-            r = self.request(u, post=p, XHR=True)[0]
-
-            try: r = json.loads(r)['content']
-            except: r = None
+            r = self.searchMovie(title)
 
             if r == None:
-                r = self.request(q)[0]
-                r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-                r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
-            else:
-                r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
+                t = cache.get(self.getOriginalTitle, 900, imdb)
+                if t != title:
+                    r = self.searchMovie(t)
 
-            r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1])][:2]
-            r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
-
-            for i in r:
-                try:
-                    y, q = cache.get(self.onemovies_info, 9000, i[1])
-                    if not y == year: raise Exception()
-                    return urlparse.urlparse(i[0]).path
-                except:
-                    pass
+            return urllib.urlencode({'url': r, 'episode': 0})
         except:
             return
 
+    def searchMovie(self, title):
+        try:
+            title = cleantitle.normalize(title)
+            u = urlparse.urljoin(self.base_link, self.search_link)
+            p = urllib.urlencode({'keyword': title})
+            r = client.request(u, post=p, XHR=True)
+            r = json.loads(r)['content']
+            r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
+            if r:
+                return r
+        except:
+            return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year, 'localtvshowtitle': localtvshowtitle}
             url = urllib.urlencode(url)
             return url
         except:
             return
 
+    def searchShow(self, title, season):
+        try:
+            title = cleantitle.normalize(title)
+            u = urlparse.urljoin(self.base_link, self.search_link)
+            p = urllib.urlencode({'keyword': ('%s - Season %s' % (title, season))})
+            r = client.request(u, post=p, XHR=True)
+            r = json.loads(r)['content']
+            r = zip(client.parseDOM(r, 'a', ret='href', attrs={'class': 'ss-title'}), client.parseDOM(r, 'a', attrs={'class': 'ss-title'}))
+            if r:
+                return r
+        except:
+            return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            t = cleantitle.get(data['tvshowtitle'])
-            year = re.findall('(\d{4})', premiered)[0]
-            years = [str(year), str(int(year)+1), str(int(year)-1)]
             season = '%01d' % int(season)
             episode = '%01d' % int(episode)
 
-            q = self.search_link_2 % (urllib.quote_plus('%s - Season %s' % (data['tvshowtitle'], season)))
-            q = urlparse.urljoin(self.base_link, q)
-
-            u = urlparse.urljoin(self.base_link, self.search_link)
-            p = urllib.urlencode({'keyword': '%s - Season %s' % (data['tvshowtitle'], season)})
-
-            r = self.request(u, post=p, XHR=True)[0]
-
-            try: r = json.loads(r)['content']
-            except: r = None
+            if 'tvshowtitle' in data:
+                r = self.searchShow(data['tvshowtitle'], season)
 
             if r == None:
-                r = self.request(q)[0]
-                r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-                r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
-            else:
-                r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
+                t = cache.get(self.getOriginalTitle, 900, imdb)
+                if t != data['tvshowtitle']:
+                    r = self.searchShow(t, season)
 
-            r = [(i[0], re.findall('(.+?) - season (\d+)$', i[1].lower())) for i in r]
-            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
-            r = [i for i in r if t == cleantitle.get(i[1])]
-            r = [i[0] for i in r if season == '%01d' % int(i[2])][:2]
-            r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
-
-            for i in r:
-                try:
-                    y, q = cache.get(self.onemovies_info, 9000, i[1])
-                    if not y in years: raise Exception()
-                    return urlparse.urlparse(i[0]).path + '?episode=%01d' % int(episode)
-                except:
-                    pass
+            return urllib.urlencode({'url': r, 'episode': episode})
         except:
             return
-
 
     def onemovies_info(self, url):
         try:
             u = urlparse.urljoin(self.base_link, self.info_link)
-            u = self.request(u % url)[0]
+            u = client.request(u % url)
 
             q = client.parseDOM(u, 'div', attrs = {'class': 'jtip-quality'})[0]
 
@@ -165,59 +158,65 @@ class source:
         except:
             return
 
-
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
+            if url is None:
+                return sources
 
-            if url == None: return sources
-
-            if url.startswith('http'): self.base_link = url
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            url = data['url']
+            episode = int(data['episode'])
 
             url = urlparse.urljoin(self.base_link, url)
-            url = referer = url.replace('/watching.html', '')
+            url = url.replace('/watching.html', '')
 
-            try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
-            except: episode = None
-
-            vid_id = re.findall('-(\d+)', url)[-1]
-
-            quality = cache.get(self.onemovies_info, 9000, vid_id)[1].lower()
-            if quality == 'cam' or quality == 'ts': quality = 'CAM'
-            elif quality == 'hd': quality = 'HD'
-            else: quality = 'SD'
-
+            mid = re.findall('-(\d+)', url)[-1]
 
             try:
                 headers = {'Referer': url}
+                u = urlparse.urljoin(self.base_link, self.server_link % mid)
+                r = client.request(u, headers=headers, XHR=True)
+                r = json.loads(r)
+                r = client.parseDOM(r['html'], 'div', attrs = {'class': 'les-content'})
+                ids = client.parseDOM(r, 'a', ret='data-id')
+                servers = client.parseDOM(r, 'a', ret='data-server')
+                labels = client.parseDOM(r, 'a', ret='title')
+                r = zip(ids, servers, labels)
 
-                u = urlparse.urljoin(self.base_link, self.server_link % vid_id)
+                for eid in r:
+                    try:
+                        try:
+                            ep = re.findall('episode.*?(\d+):.*?',eid[2].lower())[0]
+                        except:
+                            ep = 0
+                        if (episode == 0) or (int(ep) == int(episode)):
+                            url = urlparse.urljoin(self.base_link, self.token_link % (eid[0], mid))
+                            script = client.request(url)
 
-                r = self.request(u, headers=headers, XHR=True)[0]
+                            if '$_$' in script:
+                                params = self.uncensored1(script)
+                            elif script.startswith('[]') and script.endswith('()'):
+                                params = self.uncensored2(script)
+                            elif '_x=' in script:
+                                x = re.search('''_x=['"]([^"']+)''', script).group(1)
+                                y = re.search('''_y=['"]([^"']+)''', script).group(1)
 
-                r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
-                r = zip(client.parseDOM(r, 'a', ret='onclick'), client.parseDOM(r, 'a'))
-                r = [(i[0], ''.join(re.findall('(\d+)', i[1])[:1])) for i in r]
-
-                if not episode == None:
-                    r = [i[0] for i in r if '%01d' % int(i[1]) == episode]
-                else:
-                    r = [i[0] for i in r]
-
-                r = [re.findall('(\d+),(\d+)', i) for i in r]
-                r = [i[0][:2] for i in r if len(i) > 0]
-
-                links = []
-
-                links += [{'source': 'gvideo', 'url': self.direct_link + i[1], 'direct': True} for i in r if 2 <= int(i[0]) <= 11]
-
-                links += [{'source': 'openload.co', 'url': self.embed_link + i[1], 'direct': False} for i in r if i[0] == '14']
-
-                links += [{'source': 'videowood.tv', 'url': self.embed_link + i[1], 'direct': False} for i in r if i[0] == '12']
-
-                head = '|' + urllib.urlencode(headers)
-
-                for i in links: sources.append({'source': i['source'], 'quality': quality, 'language': 'en', 'url': urlparse.urljoin(self.base_link, i['url']) + head, 'direct': i['direct'], 'debridonly': False})
+                                params = {'x': x, 'y': y}
+                            else:
+                                raise Exception()
+                            u = urlparse.urljoin(self.base_link, self.sourcelink % (eid[0], params['x'], params['y']))
+                            r = client.request(u)
+                            url = json.loads(r)['playlist'][0]['sources']
+                            url = [i['file'] for i in url if 'file' in i]
+                            url = [directstream.googletag(i) for i in url]
+                            url = [i[0] for i in url if i]
+                            for s in url:
+                                sources.append({'source': 'gvideo', 'quality': s['quality'], 'language': 'en',
+                                                'url': s['url'], 'direct': True, 'debridonly': False})
+                    except:
+                        pass
             except:
                 pass
 
@@ -225,81 +224,61 @@ class source:
         except:
             return sources
 
-
     def resolve(self, url):
-        try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
-        except: headers = None
-
-        link = url.split('|')[0]
-
-        if url.startswith('http'): self.base_link = link
-
         try:
-            if not self.direct_link in link: raise Exception()
+            if self.embed_link in url:
+                result = client.request(url, XHR=True)
+                url = json.loads(result)['embed_url']
+                return url
 
-            vid = link.split('/')[-1]
+            try:
+                if not url.startswith('http'):
+                    url = 'http:' + url
 
-            r = self.request(headers['Referer'], headers=headers, XHR=True)[0]
+                for i in range(3):
+                    u = directstream.googlepass(url)
+                    if not u == None: break
 
-            r = client.parseDOM(r, 'img', ret='src', attrs = {'class': 'hidden'})
-            if r: cookie = self.request(r[0], headers=headers, XHR=True)[4]
-            else: cookie = ''
+                return u
+            except:
+                return
+        except:
+            return
 
-            key = '87wwxtp3dqii' ; key2 = '7bcq9826avrbi6m49vd7shxkn985mhod'
+    def uncensored(a, b):
+        x = '' ; i = 0
+        for i, y in enumerate(a):
+            z = b[i % len(b) - 1]
+            y = int(ord(str(y)[0])) + int(ord(str(z)[0]))
+            x += chr(y)
+        x = base64.b64encode(x)
+        return x
 
-            k = hashlib.md5(vid + key).hexdigest()
-            v = ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(16))
+    def uncensored1(self, script):
+        try:
+            script = '(' + script.split("(_$$)) ('_');")[0].split("/* `$$` */")[-1].strip()
+            script = script.replace('(__$)[$$$]', '\'"\'')
+            script = script.replace('(__$)[_$]', '"\\\\"')
+            script = script.replace('(o^_^o)', '3')
+            script = script.replace('(c^_^o)', '0')
+            script = script.replace('(_$$)', '1')
+            script = script.replace('($$_)', '4')
 
-            cookie = '; '.join([cookie, '%s=%s' % (k, v)])
-
-            url = urllib.quote(uncensored(vid + key2, v))
-            url = '/ajax/v2_get_sources/%s?hash=%s' % (vid, url)
-            url = urlparse.urljoin(self.base_link, url)
-
-            headers['Referer'] = headers['Referer']
-            headers['Cookie'] = cookie
-
-            r = self.request(url, headers=headers, XHR=True)[0]
-
-
-            url = json.loads(r)['playlist'][0]['sources']
-            url = [i['file'] for i in url if 'file' in i]
-            url = [directstream.googletag(i) for i in url]
-            url = [i[0] for i in url if i]
-
-            u = []
-            try: u += [[i for i in url if i['quality'] == '1080p'][0]]
-            except: pass
-            try: u += [[i for i in url if i['quality'] == 'HD'][0]]
-            except: pass
-            try: u += [[i for i in url if i['quality'] == 'SD'][0]]
-            except: pass
-
-            url = client.replaceHTMLCodes(u[0]['url'])
-            url = directstream.googlepass(url)
-            return url
+            vGlobals = {"__builtins__": None, '__name__': __name__, 'str': str, 'Exception': Exception}
+            vLocals = {'param': None}
+            exec (CODE % script.replace('+', '|x|'), vGlobals, vLocals)
+            data = vLocals['param'].decode('string_escape')
+            x = re.search('''_x=['"]([^"']+)''', data).group(1)
+            y = re.search('''_y=['"]([^"']+)''', data).group(1)
+            return {'x': x, 'y': y}
         except:
             pass
 
+    def uncensored2(self, script):
         try:
-            if not self.embed_link in link: raise Exception()
-
-            result = self.request(link, headers=headers, XHR=True)[0]
-
-            url = json.loads(result)['embed_url']
-            return url
+            js = jsunfuck.JSUnfuck(script).decode()
+            x = re.search('''_x=['"]([^"']+)''', js).group(1)
+            y = re.search('''_y=['"]([^"']+)''', js).group(1)
+            return {'x': x, 'y': y}
         except:
             pass
-
-
-
-def uncensored(a,b):
-    x = '' ; i = 0
-    for i, y in enumerate(a):
-        z = b[i % len(b) - 1]
-        y = int(ord(str(y)[0])) + int(ord(str(z)[0]))
-        x += chr(y)
-    x = base64.b64encode(x)
-    return x
-
-

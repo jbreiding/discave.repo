@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     Exodus Add-on
     Copyright (C) 2016 Viper2k4
 
@@ -16,13 +16,18 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
-import re, urllib, urlparse, base64
+import base64
+import re
+import urllib
+import urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import source_utils
+from resources.lib.modules import dom_parser
 
 
 class source:
@@ -36,8 +41,8 @@ class source:
 
     def movie(self, imdb, title, localtitle, year):
         try:
-            url = self.__search(title, year)
-            if not url and title != localtitle: url = self.__search(localtitle, year)
+            url = self.__search(localtitle, year)
+            if not url and title != localtitle: url = self.__search(title, year)
             return url
         except:
             return
@@ -52,29 +57,26 @@ class source:
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None:
+            if not url:
                 return
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            url = self.__search(data['tvshowtitle'], data['year'], season)
-            if not url and data['tvshowtitle'] is not data['localtvshowtitle']: url = self.__search(data['localtvshowtitle'], data['year'], season)
+            url = self.__search(data['localtvshowtitle'], data['year'], season)
+            if not url and data['tvshowtitle'] is not data['localtvshowtitle']: url = self.__search(data['tvshowtitle'], data['year'], season)
             if not url: return
 
             r = client.request(urlparse.urljoin(self.base_link, url))
 
-            r = client.parseDOM(r, 'ul', attrs={'class': 'list-inline list-film'})
-            r = client.parseDOM(r, 'li')
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'ul', attrs={'class': ['list-inline', 'list-film']})
+            r = dom_parser.parse_dom(r, 'li')
+            r = dom_parser.parse_dom(r, 'a', req='href')
+            r = [(i.attrs['href'], i.content) for i in r if i]
             r = [(i[0], i[1] if re.compile("^(\d+)$").match(i[1]) else '0') for i in r]
             r = [i[0] for i in r if int(i[1]) == int(episode)][0]
 
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return source_utils.strip_domain(r)
         except:
             return
 
@@ -82,7 +84,7 @@ class source:
         sources = []
 
         try:
-            if url == None:
+            if not url:
                 return sources
 
             r = re.findall('(\d+)-stream(?:\?episode=(\d+))?', url)
@@ -119,11 +121,11 @@ class source:
 
             r = client.request(query)
 
-            r = client.parseDOM(r, 'ul', attrs={'class': 'products row'})
-            r = client.parseDOM(r, 'div', attrs={'class': 'box-product clearfix'})
-            r = client.parseDOM(r, 'h3', attrs={'class': 'title-product'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in r]
-            r = [(i[0][0], i[1][0].lower()) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = dom_parser.parse_dom(r, 'ul', attrs={'class': ['products', 'row']})
+            r = dom_parser.parse_dom(r, 'div', attrs={'class': ['box-product', 'clearfix']})
+            r = dom_parser.parse_dom(r, 'h3', attrs={'class': 'title-product'})
+            r = dom_parser.parse_dom(r, 'a', req='href')
+            r = [(i.attrs['href'], i.content.lower()) for i in r if i]
             r = [(i[0], i[1], re.findall('(.+?) \(*(\d{4})', i[1])) for i in r]
             r = [(i[0], i[2][0][0] if len(i[2]) > 0 else i[1], i[2][0][1] if len(i[2]) > 0 else '0') for i in r]
             r = [(i[0], i[1], i[2], re.findall('(.+?)\s+(?:staf+el|s)\s+(\d+)', i[1])) for i in r]
@@ -135,9 +137,7 @@ class source:
             url = [i[0] for i in r if t == cleantitle.get(i[1])]
             url = url[0] if len(url) > 0 else [i[0] for i in r if tq == cleantitle.query(i[1])][0]
 
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = source_utils.strip_domain(url)
             url = url.replace('-info', '-stream')
             return url
         except:
