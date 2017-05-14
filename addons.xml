@@ -91,7 +91,7 @@ Plailsts organized by categories and any source comes from Youtube users.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.9" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.1.11" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -122,9 +122,10 @@ Plailsts organized by categories and any source comes from Youtube users.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>- Added new and fix existing providers (satanuke, John Doe)
-- Updated German providers
-- Tweaked new Debrid-Code</news>
+		<news>- Tweaked German providers
+- Updated Polish providers (homik)
+- Fix Trakt sorting
+- Added logging for Trakt and Web-Requests</news>
 	</extension>
 </addon>
 
@@ -488,8 +489,8 @@ Toda a fonte  vem de utilizadores do Youtube.
 </addon>
 
 <addon id="plugin.video.teamblue"
-       name="TeamBlue Live Events"
-       version="2.1"
+       name="[COLOR blue]T[/COLOR]eam[COLOR blue]B[/COLOR]lue Live Events"
+       version="2.3"
        provider-name="Eduardo Pinto">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -514,17 +515,16 @@ Toda a fonte  vem de utilizadores do Youtube.
   <extension point="xbmc.addon.metadata">
     <summary lang="pt">Add-on ao estilo Agenda Desportiva</summary>
     <description lang="pt">
-    O add-on TeamBlue apresenta as seguintes seccoes:
-    Agenda desportiva com transmissoes em direto de varias modalidades
-    Sports Replays (Futebol-Desportos Motorizados-WWE-UFC-NBA)
-    Canais Wolrd IPTV (Portugal-Alemanha-Espanha-Franca-Italia-Inglaterra-Brasil)
-    Canais Arenavision (para ver com o Plexus)
-    Filmes e Series (usando o add-on SPECTO)
-    Webcam's
-    NOTA: para a correta visualizacao de alguns canais e necessario ter instalados:
-    f4mtester â€“ f4mproxy - Sports Devil â€“ Specto â€“ Plexus
-    O criador deste addon nao possui nem esta ligado de nenhuma forma ao conteudo nele disponibilizado.
-    Apenas disponibiliza conteudos de terceiros
+O add-on TeamBlue apresenta as seguintes secÃ§Ãµes:
+Agenda desportiva com transmissÃµes em direto de vÃ¡rias modalidades
+Sports Replays (Futebol-Desportos Motorizados-WWE-UFC-NBA)
+Canais World IPTV (Portugal-Alemanha-Espanha-FranÃ§a-ItÃ¡lia-Inglaterra-Brasil-Estados Unidos-Adultos)
+Canais Arenavision (para ver com o Plexus)
+Webcam's
+NOTA: para a correta visualizaÃ§Ã£o de alguns canais Ã© necessÃ¡rio ter instalados:
+f4mtester â€“ f4mproxy - Sports Devil â€“ Plexus
+O criador deste addon nÃ£o possui nem estÃ¡ ligado de nenhuma forma ao conteÃºdo nele disponibilizado.
+Apenas disponibiliza conteÃºdos de terceiros
 	</description>
     <platform>all</platform>
   </extension>
@@ -561,42 +561,6 @@ Toda a fonte  vem de utilizadores do Youtube.
 	Necessita do URLResolver, HTTPLib2, Simplejson
 	Qualquer contacto https://www.facebook.com/groups/discavehbrepo/</description>
 	<disclaimer lang="en">Todos os conteúdos não são hospedados pelos intervinientes, são link's encontrados na net em qualquer motor de busca</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.TVsupertuga"
-       name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]"
-       version="0.0.6"
-       provider-name="TVsupertuga">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>[COLOR white]tvsupertuga[/COLOR] </summary>
-    <description>[COLOR blue][B]NEW LIST OF CHANNELS FOR IPTV AND PLAYLIST KODI.
-
-	                        Welcome to TVsupertuga
-
-All these streams can be easily found over the internet...
-We do not have any server or broadcast any kind of signal...
-All these streams are the result of many hours
-of research over the Internet.
-CHANNELS REQUESTS OR MORE INFORMATION PLEASE
-SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>

@@ -26,19 +26,18 @@ from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
 
-
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['watch5s.to', 'watch5s.is', 'watch5s.rs']
-        self.base_link = 'https://watch5s.rs'
+        self.domains = ['kingmovies.to']
+        self.base_link = 'https://kingmovies.to'
         self.search_link = '/search?q=%s'
-        self.token_link = 'https://play.watch5s.to/token.php'
-        self.token_v2_link = 'https://play.watch5s.to/token_v2.php?&eid=%s&mid=%s&_=%s'
-        self.grabber_link = 'https://play.watch5s.to/grabber-api-v2/episode/%s?hash=%s&token=%s&_=%s'
-        self.backup_token_link = 'https://play.watch5s.to/embed/go?type=token&eid=%s&mid=%s&_=%s'
-        self.backup_link = 'https://play.watch5s.to/embed/go?type=sources&eid=%s&x=%s&y=%s'
+        self.token_link = 'https://play.kingmovies.to/token.php'
+        self.token_v2_link = 'https://play.kingmovies.to/token_v2.php?&eid=%s&mid=%s&_=%s'
+        self.grabber_link = 'https://play.kingmovies.to/grabber-api-v2/episode/%s?hash=%s&token=%s&_=%s'
+        self.backup_token_link = 'https://play.kingmovies.to/embed/go?type=token&eid=%s&mid=%s&_=%s'
+        self.backup_link = 'https://play.kingmovies.to/embed/go?type=sources&eid=%s&x=%s&y=%s'
         self.backup_token_link_v2 = 'https://embed.streamdor.co/?type=token&eid=%s&mid=%s&_=%s'
         self.backup_link_v2 = 'https://embed.streamdor.co/?type=sources&eid=%s&x=%s&y=%s'
 
@@ -86,12 +85,12 @@ class source:
             search = '%s Season %01d' % (title, int(season))
             url = urlparse.urljoin(self.base_link, self.search_link % urllib.quote_plus(cleantitle.getsearch(search)))
             r = client.request(url, headers=headers, timeout='15')
-            r = client.parseDOM(r, 'div', attrs={'class': 'ml-item'})
+            r = client.parseDOM(r, 'div', attrs={'class': 'item-detail'})
             r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a', ret='title'))
             r = [(i[0], i[1], re.findall('(.*?)\s+-\s+Season\s+(\d)', i[1])) for i in r]
             r = [(i[0], i[1], i[2][0]) for i in r if len(i[2]) > 0]
             url = [i[0] for i in r if self.matchAlias(i[2][0], aliases) and i[2][1] == season][0]
-            url = '%s/watch/' % url
+            url = '%s/watch' % url
             return url
         except:
             return
@@ -101,7 +100,7 @@ class source:
             title = cleantitle.normalize(title)
             url = urlparse.urljoin(self.base_link, self.search_link % urllib.quote_plus(cleantitle.getsearch(title)))
             r = client.request(url, headers=headers, timeout='15')
-            r = client.parseDOM(r, 'div', attrs={'class': 'ml-item'})
+            r = client.parseDOM(r, 'div', attrs={'class': 'item-detail'})
             r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a', ret='title'))
             results = [(i[0], i[1], re.findall('\((\d{4})', i[1])) for i in r]
             try:
@@ -113,7 +112,7 @@ class source:
 
             if (url == None):
                 url = [i[0] for i in results if self.matchAlias(i[1], aliases)][0]
-            url = '%s/watch/' % url
+            url = '%s/watch' % url
             return url
         except:
             return
@@ -144,31 +143,24 @@ class source:
                 url = self.searchMovie(data['title'], data['year'], aliases, headers)
 
             referer = url
-            r = client.request(url, headers=headers)
+            r = client.request(url)
+            if episode == None:
+                y = re.findall('Released\s*:\s*.+?\s*(\d{4})', r)[0]
+                if not year == y: raise Exception()
 
-            y = re.findall('Release\s*:\s*.+?\s*(\d{4})', r)[0]
-
-            if not year == y: raise Exception()
-
-
-            r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
+            r = client.parseDOM(r, 'div', attrs = {'class': 'sli-name'})
             r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a'))
-            r = [(i[0], ''.join(re.findall('(\d+)', i[1])[:1])) for i in r]
 
             if not episode == None:
-                r = [i[0] for i in r if '%01d' % int(i[1]) == episode]
+                r = [i[0] for i in r if i[1].lower().startswith('episode %02d:' % int(data['episode']))]
             else:
                 r = [i[0] for i in r]
 
-            r = [i for i in r if '/server-' in i]
-
             for u in r:
                 try:
-                    p = client.request(u, headers=headers, referer=referer, timeout='10')
-
+                    p = client.request(u, referer=referer, timeout='10')
                     t = re.findall('player_type\s*:\s*"(.+?)"', p)[0]
                     if t == 'embed': raise Exception()
-
                     headers = {'Origin': self.base_link}
                     eid = client.parseDOM(p, 'input', ret='value', attrs = {'name': 'episodeID'})[0].encode('utf-8')
                     r = client.request(self.token_link, post=urllib.urlencode({'id': eid}), headers=headers, referer=referer, timeout='10', XHR=True)
@@ -242,7 +234,6 @@ class source:
                             pass
                     except:
                         pass
-
                 except:
                     pass
 
@@ -253,7 +244,6 @@ class source:
 
     def resolve(self, url):
         return directstream.googlepass(url)
-
 
     def aadecode(self, text):
         text = re.sub(r"\s+|/\*.*?\*/", "", text)
@@ -280,9 +270,7 @@ class source:
             for v in char:
                 c += v
                 try:
-                    x = c
-                    subchar += str(eval(x))
-                    c = ""
+                    x = c; subchar += str(eval(x)); c = ""
                 except:
                     pass
             if subchar != '': txt += subchar + "|"
