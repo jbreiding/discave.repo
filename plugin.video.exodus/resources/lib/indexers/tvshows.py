@@ -62,7 +62,6 @@ class tvshows:
         self.fanart_tv_level_link = 'http://webservice.fanart.tv/v3/level'
         self.tvdb_by_imdb = 'http://thetvdb.com/api/GetSeriesByRemoteID.php?imdbid=%s'
         self.tvdb_by_query = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s'
-        self.imdb_by_query = 'http://www.omdbapi.com/?t=%s&y=%s'
         self.tvdb_image = 'http://thetvdb.com/banners/'
 
         self.persons_link = 'http://www.imdb.com/search/name?count=100&name='
@@ -388,7 +387,7 @@ class tvshows:
             dupes = []
 
             q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
-            q.update({'extended': 'full,images'})
+            q.update({'extended': 'full'})
             q = (urllib.urlencode(q)).replace('%2C', ',')
             u = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
 
@@ -803,14 +802,15 @@ class tvshows:
             tvdb = self.list[i]['tvdb'] if 'tvdb' in self.list[i] else '0'
 
             if imdb == '0':
-                url = self.imdb_by_query % (urllib.quote_plus(self.list[i]['title']), self.list[i]['year'])
+                try:
+                    imdb = trakt.SearchTVShow(urllib.quote_plus(self.list[i]['title']), self.list[i]['year'], full=False)[0]
+                    imdb = imdb.get('show', '0')
+                    imdb = imdb.get('ids', {}).get('imdb', '0')
+                    imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
-                imdb = client.request(url, timeout='10')
-                try: imdb = json.loads(imdb)['imdbID']
-                except: imdb = '0'
-
-                if imdb == None or imdb == '' or imdb == 'N/A': imdb = '0'
-
+                    if not imdb: imdb = '0'
+                except:
+                    imdb = '0'
 
             if tvdb == '0' and not imdb == '0':
                 url = self.tvdb_by_imdb % imdb
@@ -1045,6 +1045,7 @@ class tvshows:
 
         playRandom = control.lang(32535).encode('utf-8')
 
+        addToLibrary = control.lang(32551).encode('utf-8')
 
         for i in items:
             try:
@@ -1057,7 +1058,7 @@ class tvshows:
                 meta.update({'code': imdb, 'imdbnumber': imdb, 'imdb_id': imdb})
                 meta.update({'tvdb_id': tvdb})
                 meta.update({'mediatype': 'tvshow'})
-                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, urllib.quote_plus(label))})
                 if not 'duration' in i: meta.update({'duration': '60'})
                 elif i['duration'] == '0': meta.update({'duration': '60'})
                 try: meta.update({'duration': str(int(meta['duration']) * 60)})
@@ -1095,6 +1096,7 @@ class tvshows:
                 if isOld == True:
                     cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
+                cm.append((addToLibrary, 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s)' % (sysaddon, systitle, year, imdb, tvdb)))
 
                 item = control.item(label=label)
 
@@ -1174,6 +1176,8 @@ class tvshows:
 
         playRandom = control.lang(32535).encode('utf-8')
 
+        addToLibrary = control.lang(32551).encode('utf-8')
+
         for i in items:
             try:
                 name = i['name']
@@ -1192,6 +1196,9 @@ class tvshows:
 
                 if queue == True:
                     cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
+
+                try: cm.append((addToLibrary, 'RunPlugin(%s?action=tvshowsToLibrary&url=%s)' % (sysaddon, urllib.quote_plus(i['context']))))
+                except: pass
 
                 item = control.item(label=name)
 

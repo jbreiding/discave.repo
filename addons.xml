@@ -62,7 +62,7 @@
 
 <addon id="plugin.video.alive.hd"
        name="Alive.HD"
-       version="4.8a"
+       version="5.1"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -83,15 +83,69 @@
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Alive.HD</summary>
+    <summary lang="en">Dual Edition Addon</summary>
     <description>Concerts and Djs live performances in HD quality.
-Plailsts organized by categories and any source comes from Youtube users.
+Playlists organized by categories and any source comes from Youtube users.
 [B][COLOR lime]Advised the latest version of youtube 5.*.*[/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.11" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.copiadb"
+       name="CopiaDB"
+       version="3.0.4"
+       provider-name="fightnight/Leinad4Mind">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.requests" version="2.6.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="pt_PT">ConteÃºdos dos sites CopiaPop.com, DiskoKosmiko.mx e KBagi.com no Kodi</summary>
+        <summary lang="pt_BR">ConteÃºdos dos sites CopiaPop.com, DiskoKosmiko.mx e KBagi.com no Kodi</summary>
+        <summary lang="en">Contents from CopiaPop.com, DiskoKosmiko.mx and KBagi.com on Kodi</summary>
+        <description lang="pt_PT">VÃª os teus conteÃºdos e os das comunidades copiapop (Espanha), diskokosmiko (MÃ©xico) e kumpulbagi (IndonÃ©sia) no Kodi.</description>
+        <description lang="pt_BR">Veja os seus conteÃºdos e os das comunidades copiapop (Espanha), diskokosmiko (MÃ©xico) e kumpulbagi (IndonÃ©sia) no Kodi.</description>
+        <description lang="en">Check out yours and others people contents from copiapop (Spain), diskokosmiko (Mexico) and kumpulbagi (Indonesia) communities on Kodi.</description>
+        <platform>all</platform>
+        <source>https://github.com/Leinad4Mind/Leinad4Mind-kodi-addons/tree/master/plugin.video.copiadb</source>
+    </extension>
+</addon>
+
+<addon id="plugin.video.documented.hd"
+       name="Documented.HD"
+       version="1.1"
+       provider-name="frenchdj">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Dual Edition Addon</summary>
+    <description>Alternative documentaries in HD quality.
+Playlists organized by categories and any source comes from Youtube users.
+[B][COLOR lime]Advised the latest version of youtube 5.*.*[/B][/COLOR]</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.exodus" version="3.1.15" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -103,6 +157,7 @@ Plailsts organized by categories and any source comes from Youtube users.
 	<extension point="xbmc.python.pluginsource" library="exodus.py">
 		<provides>video</provides>
 	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Exodus</summary>
 		<description lang="en">Please visit [COLOR blue]www.tvaddons.ag[/COLOR] for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
@@ -122,10 +177,12 @@ Plailsts organized by categories and any source comes from Youtube users.
 			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>- Tweaked German providers
-- Updated Polish providers (homik)
-- Fix Trakt sorting
-- Added logging for Trakt and Web-Requests</news>
+		<news>- Updated existing providers
+- Added and Updated German providers
+- Removed dead providers
+- Fixed Russian providers
+- Added library integration
+- Fixed trakt watch/unwatched on seasons</news>
 	</extension>
 </addon>
 
@@ -175,38 +232,6 @@ Plailsts organized by categories and any source comes from Youtube users.
 [B]Traquinas[/B] - Desenhos animados e filmes infantis em [PT] e [BR].
 
 [B][COLOR lime] Aconselhado a ultima versao do YOUTUBE 5.2.* e o URL RESOLVER tem de estar ativo e atualizado no Kodi.[/COLOR][/B]</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.jami"
-       name="Jami"
-       version="6.1"
-       provider-name="frenchdj">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-     <import addon="script.module.livestreamer" optional="true"/>
-     <import addon="script.module.pyamf" optional="true"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Desenhos animados para toda a familia</summary>
-    <description>Videos Infantis em [COLOR lime][PT][/COLOR] e [COLOR yellow][BR][/COLOR].
-Playlists organizadas por categorias, totalmente dedicadas aos mais pequenos, com muitos desenhos animados recentes, classicos e musicais.
-Toda a fonte  vem de utilizadores do Youtube.
-[B][COLOR lime][ Aconselhado a ultima versao do youtube 5.*.* ][/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -447,7 +472,7 @@ Toda a fonte  vem de utilizadores do Youtube.
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2017.03.28"
+  version="2017.06.03"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -457,6 +482,8 @@ Toda a fonte  vem de utilizadores do Youtube.
    <import addon="script.module.six" />
    <import addon="script.module.requests" />
    <import addon="script.module.livestreamer" />
+   <import addon="script.video.F4mProxy" />
+   <import addon="plugin.video.f4mTester" />
   </requires>
   <extension
     point="xbmc.python.pluginsource"
@@ -624,6 +651,19 @@ Apenas disponibiliza conteÃºdos de terceiros
 	</extension>
 </addon>
 
+<addon id="repository.leinad4mind" name="Leinad4Mind RepositÃ³rio" version="1.0.0" provider-name="Leinad4Mind">
+	<extension point="xbmc.addon.repository" name="Leinad4Mind Add-on Repository">
+		<info compressed="false">https://raw.githubusercontent.com/Leinad4Mind/leinad4mind-addons/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/Leinad4Mind/leinad4mind-addons/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/Leinad4Mind/leinad4mind-addons/master</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repositorio Leinad4Mind</summary>
+		<description>Addons de Leinad4Mind, contacto: leinad4talk@gmail.com</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.pancas" name="Pancas repository" version="1.0.6" provider-name="Pancas">
 	<extension point="xbmc.addon.repository" name="Pancas Add-on Repository">
 		<info compressed="false">http://raw.github.com/Sup3Roque/Pancas/master/addons.xml</info>
@@ -669,9 +709,10 @@ Apenas disponibiliza conteÃºdos de terceiros
 	</extension>
 </addon>
 
-<addon id="script.module.urlresolver" name="URLResolver" version="3.0.21" provider-name="Eldorado">
+<addon id="script.module.urlresolver" name="URLResolver" version="3.0.31" provider-name="tvaddons.ag, Eldorado">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" optional="true" />
 	</requires>
 	<extension point="xbmc.python.module" library="lib" />
 	<extension point="xbmc.python.pluginsource" library="lib/default.py" />
