@@ -982,6 +982,22 @@ Apenas disponibiliza conteÃºdos de terceiros
   </extension>
 </addon>
 
+<addon id="script.module.schism.common" name="Elysium Common Libraries" version="2017.06.08" provider-name="Elysium">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.six" />
+		<import addon="script.module.metahandler" />
+		<import addon="script.module.beautifulsoup" />
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">Collection of modules used by Elysium</summary>
+		<description lang="en">Collection of modules used by Elysium</description>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+	</extension>
+</addon>
+
 <addon id="script.module.urlresolver" name="URLResolver" version="3.0.36" provider-name="tvaddons.ag, Eldorado">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -1048,28 +1064,6 @@ Apenas disponibiliza conteÃºdos de terceiros
   </extension>
 </addon>
 
-<addon id="service.subtitles.opensubtitles"
-       name="OpenSubtitles.org"
-       version="5.1.14"
-       provider-name="amet">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.subtitle.module"
-             library="service.py" />
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">OpenSubtitles</summary>
-    <description lang="en">Search and download subtitles from opensubtitles.org</description>
-    <disclaimer lang="en"></disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://forum.xbmc.org/showthread.php?tid=183114</forum>
-    <website></website>
-    <email></email>
-    <source>https://github.com/amet/service.subtitles.opensubtitles</source>    
-  </extension>
-</addon>
-
 <addon
    id="service.subtitles.legendastv"
    name="Legendas.TV"
@@ -1092,6 +1086,29 @@ Apenas disponibiliza conteÃºdos de terceiros
     <website></website>
     <email></email>
     <source>https://github.com/gfjardim/service.subtitles.legendastv</source>
+  </extension>
+</addon>
+
+<addon id="service.subtitles.opensubtitles"
+       name="OpenSubtitles.org"
+       version="5.1.14"
+       provider-name="amet">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.subtitle.module"
+             library="service.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">OpenSubtitles</summary>
+    <description lang="en">Search and download subtitles from opensubtitles.org</description>
+    <description lang="zh"> opensubtitles.org</description>
+    <disclaimer lang="en"></disclaimer>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://forum.xbmc.org/showthread.php?tid=183114</forum>
+    <website></website>
+    <email></email>
+    <source>https://github.com/amet/service.subtitles.opensubtitles</source>
   </extension>
 </addon>
 
