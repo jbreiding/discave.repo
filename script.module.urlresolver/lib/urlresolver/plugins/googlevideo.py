@@ -27,8 +27,8 @@ import urllib2
 class GoogleResolver(UrlResolver):
     name = "googlevideo"
     domains = ["googlevideo.com", "googleusercontent.com", "get.google.com",
-               "plus.google.com", "googledrive.com", "drive.google.com", "docs.google.com"]
-    pattern = 'https?://(.*?(?:\.googlevideo|(?:plus|drive|get|docs)\.google|google(?:usercontent|drive))\.com)/(.*?(?:videoplayback\?|[\?&]authkey|host/)*.+)'
+               "plus.google.com", "googledrive.com", "drive.google.com", "docs.google.com", "youtube.googleapis.com"]
+    pattern = 'https?://(.*?(?:\.googlevideo|(?:plus|drive|get|docs)\.google|google(?:usercontent|drive|apis))\.com)/(.*?(?:videoplayback\?|[\?&]authkey|host/)*.+)'
 
     def __init__(self):
         self.net = common.Net()
@@ -94,6 +94,13 @@ class GoogleResolver(UrlResolver):
             response = self.net.http_GET(link)
             sources = self.__parse_gplus(response.content)
         elif 'drive.google' in link or 'docs.google' in link:
+            link = link.replace("/preview", "/edit")
+            response = self.net.http_GET(link)
+            sources = self._parse_gdocs(response.content)
+        elif 'youtube.googleapis.com' in link:
+            cid = re.search('cid=([\w]+)', link)
+            try: link = 'https://drive.google.com/file/d/%s/edit' % cid.groups(1)
+            except: raise ResolverError('ID not found')
             response = self.net.http_GET(link)
             sources = self._parse_gdocs(response.content)
         return response, sources
