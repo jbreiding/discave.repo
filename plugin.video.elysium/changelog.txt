@@ -1,3 +1,9 @@
+[B]2017.07.20a[/B]
+- New api-key now also for tvshows.
+
+[B]2017.07.20[/B]
+- New api-key, please make this one last by using your own api-key wherever possible.
+
 [B]2017.06.27t[/B]
 - Fixed error on opening addon
 

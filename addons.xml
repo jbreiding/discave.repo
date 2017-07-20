@@ -145,7 +145,7 @@ Playlists organized by categories and any source comes from Youtube users.
   </extension>
 </addon>
 
-<addon id="plugin.video.elysium" version="2017.06.27t" name="Elysium" provider-name="Elysium">
+<addon id="plugin.video.elysium" version="2017.07.20a" name="Elysium" provider-name="Elysium">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.elysium.artwork" version="2017.06.27"/>
