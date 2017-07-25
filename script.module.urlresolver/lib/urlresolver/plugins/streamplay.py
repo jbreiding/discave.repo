@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import urlparse
+import re, urlparse
 from lib import helpers
 from urlresolver import common
 from urlresolver.resolver import UrlResolver, ResolverError
@@ -32,10 +32,15 @@ class StreamplayResolver(UrlResolver):
         web_url = self.get_url(host, media_id)
         headers = {'User-Agent': common.RAND_UA}
         html = self.net.http_GET(web_url, headers=headers).content
-        html = html.encode("utf-8")
         
         sources = helpers.scrape_sources(html, patterns=['''file:\s*["'](?P<url>(?!rtmp://)[^"']+)'''])
-        if sources:
+        data = re.findall("""_[^=]+=\[([^\]]+)\];""", html, re.DOTALL)
+        if sources and data:
+            data = data[2].replace('\\x', '').split(",")
+            data = [x.replace('"', '').replace(' ', '').decode("hex") for x in data]
+            key = "".join(data[7:9])
+            if key.startswith("embed"):
+                key = key[6:]+key[:6]
             i = 0
             headers.update({'Referer': web_url})
             for source in sources:
@@ -43,7 +48,7 @@ class StreamplayResolver(UrlResolver):
                     src = urlparse.urlparse(source[1])
                     l = list(src)
                     b = l[2].split("/")[1:]
-                    b[0] = self.decrypt(b[0], 'streamplayembedf')
+                    b[0] = self.decrypt(b[0], key)
                     l[2] = "/".join(b)
                     sources[i] = (source[0], urlparse.urlunparse(l))
                     i += 1

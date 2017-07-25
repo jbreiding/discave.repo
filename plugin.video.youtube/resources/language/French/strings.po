@@ -16,8 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-# Updated by bubuleur.
-
 msgctxt "Addon Summary"
 msgid "Plugin for YouTube"
 msgstr "Plugin pour YouTube"
@@ -25,6 +23,8 @@ msgstr "Plugin pour YouTube"
 msgctxt "Addon Description"
 msgid "YouTube is a one of the biggest video-sharing websites of the world."
 msgstr "YouTube est l'un des plus grands sites de partage de vidéos du monde."
+
+#Kodion Settings
 
 msgctxt "#30000"
 msgid "General"
@@ -38,13 +38,7 @@ msgctxt "#30002"
 msgid "Password"
 msgstr "Mot de passe"
 
-msgctxt "#30007"
-msgid "Use MPEG-DASH"
-msgstr "Utiliser MPEG-DASH"
-
-msgctxt "#30008"
-msgid "Configure inputstream.adaptive"
-msgstr "Configurer inputstream.adaptive"
+#empty strings from id 30003 to 30008
 
 msgctxt "#30009"
 msgid "Always ask for the video quality"
@@ -84,7 +78,9 @@ msgstr "360p"
 
 msgctxt "#30018"
 msgid "1080p Live / 720p (HD)"
-msgstr "1080p Live / 720p (HD)"
+msgstr ""
+
+#empty strings 30019
 
 msgctxt "#30020"
 msgid "Allow 3D"
@@ -156,11 +152,14 @@ msgstr "Support de lecteur alternatif"
 
 msgctxt "#30037"
 msgid "Custom Watch Later Playlist ID"
-msgstr "Personnaliser l'ID de la Playlist 'Regarder plus tard'"
+msgstr ""
 
 msgctxt "#30038"
 msgid "Custom History Playlist ID"
-msgstr "Personnaliser l'ID historique de la liste de lecture"
+msgstr ""
+
+#Kodion Common
+#empty strings from id 30037 to 30099
 
 msgctxt "#30100"
 msgid "Favorites"
@@ -227,12 +226,12 @@ msgid "Confirm remove"
 msgstr "Confirmer la suppression"
 
 msgctxt "#30116"
-msgid "Delete "%s"?"
-msgstr "Supprimer "%s"?"
+msgid "Delete \"%s\"?"
+msgstr "Supprimer \"%s\"?"
 
 msgctxt "#30117"
-msgid "Remove "%s"?"
-msgstr "Supprimer "%s" ?"
+msgid "Remove \"%s\"?"
+msgstr "Supprimer \"%s\" ?"
 
 msgctxt "#30118"
 msgid "Delete"
@@ -245,6 +244,9 @@ msgstr "Veuillez patienter…"
 msgctxt "#30120"
 msgid "Clear"
 msgstr "Nettoyer"
+
+# YouTube
+# empty strings from id 30121 to 30199
 
 msgctxt "#30200"
 msgid "API Key"
@@ -268,7 +270,10 @@ msgstr "Activer les clés API personnelles"
 
 msgctxt "#30205"
 msgid "Use preset API key set"
-msgstr "Utiliser un ensemble de clés API prédéfinies"
+msgstr ""
+
+# YouTube
+# empty strings from id 30204 to 30499
 
 msgctxt "#30500"
 msgid "Channels"
@@ -480,122 +485,112 @@ msgstr "Recommandations"
 
 msgctxt "#30552"
 msgid "Maintenance"
-msgstr "Maintenance"
+msgstr ""
 
 msgctxt "#30553"
 msgid "Delete function cache database"
-msgstr "Supprimer la base de données du cache"
+msgstr ""
 
 msgctxt "#30554"
 msgid "Delete search history database"
-msgstr "Supprimer la base de données de l'historique des recherches"
+msgstr ""
 
 msgctxt "#30555"
 msgid "Clear function cache"
-msgstr "Effacer les fonctions du cache"
+msgstr ""
 
 msgctxt "#30556"
 msgid "Clear search history"
-msgstr "Effacer l'historique"
+msgstr ""
 
 msgctxt "#30557"
 msgid "function cache"
-msgstr "fonctions cache"
+msgstr ""
 
 msgctxt "#30558"
 msgid "search history"
-msgstr "historique des recherches"
+msgstr ""
 
 msgctxt "#30559"
 msgid "Delete settings.xml"
-msgstr "Supprimer settings.xml"
+msgstr ""
 
 msgctxt "#30560"
 msgid "Subtitle language(s) to download"
-msgstr "Sous-titre langue(s) à télécharger"
+msgstr ""
 
 msgctxt "#30561"
 msgid "None"
-msgstr "Aucun"
+msgstr ""
 
 msgctxt "#30562"
 msgid "All"
-msgstr "Tous"
+msgstr ""
 
 msgctxt "#30563"
 msgid "Setting"
-msgstr "Paramètres Kodi"
+msgstr ""
 
 msgctxt "#30564"
 msgid "Setting, English"
-msgstr "Paramètres, Anglais"
+msgstr ""
 
 msgctxt "#30565"
 msgid "English"
-msgstr "Anglais"
+msgstr ""
 
 msgctxt "#30566"
 msgid "Prompt"
-msgstr "Sélection langue"
+msgstr ""
 
 msgctxt "#30567"
 msgid "Set as Watch Later"
-msgstr "Définir comme 'Regarder plus tard'"
+msgstr ""
 
 msgctxt "#30568"
 msgid "Remove as Watch Later"
-msgstr "Supprimer 'Regarder plus tard'"
+msgstr ""
 
 msgctxt "#30569"
 msgid "Are you sure you want to remove '%s' as your Watch Later list?"
-msgstr "Êtes-vous sûr de vouloir supprimer '%s' comme liste 'Regarder plus tard' ?"
+msgstr ""
 
 msgctxt "#30570"
 msgid "Are you sure you want to replace your current Watch Later list with '%s'?"
-msgstr "Êtes-vous sûr de vouloir remplacer votre liste 'Regarder plus tard' avec "%s" ?"
+msgstr ""
 
 msgctxt "#30571"
 msgid "Set as History"
-msgstr "Définir comme historique"
+msgstr ""
 
 msgctxt "#30572"
 msgid "Remove as History"
-msgstr "Supprimer l'historique"
+msgstr ""
 
 msgctxt "#30573"
 msgid "Are you sure you want to remove '%s' as your History list?"
-msgstr "Êtes-vous sûr de vouloir supprimer l'historique '%s' de votre liste ?"
+msgstr ""
 
 msgctxt "#30574"
 msgid "Are you sure you want to replace your current History list with '%s'?"
-msgstr "Êtes-vous sûr que vous voulez remplacer votre liste historique avec '%s' ?"
+msgstr ""
 
 msgctxt "#30575"
 msgid "Succeeded"
-msgstr "Réussi"
+msgstr ""
 
 msgctxt "#30576"
 msgid "Failed"
-msgstr "Échoué"
+msgstr ""
 
 msgctxt "#30577"
 msgid "Settings"
-msgstr "Paramètres"
+msgstr ""
 
 msgctxt "#30578"
 msgid "Force SSL Certificate verification"
-msgstr "Forcer la vérification du certificat SSL"
+msgstr ""
 
 msgctxt "#30579"
 msgid "MPEG-DASH is enabled in the YouTube settings, however inputstream.adaptive appears to be disabled. Would you like to enable inputstream.adaptive now?"
-msgstr "MPEG-DASH est activée dans YouTube, cependant inputstream.adaptative semble être désactivé. Voulez-vous activer inputstream.adaptive maintenant ?"
-
-msgctxt "#30580"
-msgid "Reset access manager"
-msgstr "Réinitialiser le gestionnaire d'accès"
-
-msgctxt "#30581"
-msgid "Are you sure you want to reset access manager?"
-msgstr "Êtes-vous sûr de vouloir réinitialiser le gestionnaire d'accès?"
-
-
+msgstr ""

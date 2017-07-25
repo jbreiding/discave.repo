@@ -42,24 +42,6 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.abelhas"
-       name="CopiaPop (ex Abelhas.pt)"
-       version="2.0.3"
-       provider-name="fightnight">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.requests" version="2.6.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Conteudos do site CopiaPop.com no Kodi</summary>
-        <description>Ve os teus conteudos e os da comunidade copiapop no Kodi.</description>
-        <platform>all</platform>
-    </extension>
-</addon>
-
 <addon id="plugin.video.alive.hd"
        name="Alive.HD"
        version="5.1"
@@ -89,29 +71,6 @@ Playlists organized by categories and any source comes from Youtube users.
 [B][COLOR lime]Advised the latest version of youtube 5.*.*[/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.copiadb"
-       name="CopiaDB"
-       version="3.0.4"
-       provider-name="fightnight/Leinad4Mind">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.requests" version="2.6.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary lang="pt_PT">ConteÃºdos dos sites CopiaPop.com, DiskoKosmiko.mx e KBagi.com no Kodi</summary>
-        <summary lang="pt_BR">ConteÃºdos dos sites CopiaPop.com, DiskoKosmiko.mx e KBagi.com no Kodi</summary>
-        <summary lang="en">Contents from CopiaPop.com, DiskoKosmiko.mx and KBagi.com on Kodi</summary>
-        <description lang="pt_PT">VÃª os teus conteÃºdos e os das comunidades copiapop (Espanha), diskokosmiko (MÃ©xico) e kumpulbagi (IndonÃ©sia) no Kodi.</description>
-        <description lang="pt_BR">Veja os seus conteÃºdos e os das comunidades copiapop (Espanha), diskokosmiko (MÃ©xico) e kumpulbagi (IndonÃ©sia) no Kodi.</description>
-        <description lang="en">Check out yours and others people contents from copiapop (Spain), diskokosmiko (Mexico) and kumpulbagi (Indonesia) communities on Kodi.</description>
-        <platform>all</platform>
-        <source>https://github.com/Leinad4Mind/Leinad4Mind-kodi-addons/tree/master/plugin.video.copiadb</source>
-    </extension>
 </addon>
 
 <addon id="plugin.video.documented.hd"
@@ -172,7 +131,7 @@ Playlists organized by categories and any source comes from Youtube users.
 	</extension>
 </addon>
 
-ï»¿<addon id="plugin.video.exodus" version="3.1.22" name="Exodus" provider-name="Exodus">
+ï»¿<addon id="plugin.video.exodus" version="3.1.25" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.exodus.artwork" version="1.0.5" />
@@ -190,7 +149,7 @@ Playlists organized by categories and any source comes from Youtube users.
 		<forum></forum>
 		<website></website>
 		<source></source>
-		<news>Last Version Made From The TVA Guys, If anything changes will be listed here, this version should fix install errors</news>
+		<news>This is the Last Version Made From [COLOR red][B]C0LD[/B][/COLOR][COLOR turquoise][B]FIRE[/B][/COLOR]. He'll not continue maintaining EXODUS anymore! Fixed missing sources, updated scrapers!</news>
 	</extension>
 </addon>
 
@@ -425,8 +384,7 @@ Toda a fonte  vem de utilizadores do Youtube.
   </extension>
 </addon>
 
-<!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.195" name="Stream All The Sources" provider-name="k3l3vra">
+<addon id="plugin.video.salts" version="2.0.203" name="Stream All The Sources" provider-name="k3l3vra, Movie/TVShow Images Fixed By Smash">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.urlresolver" version="3.0.0"/>
@@ -434,30 +392,16 @@ Toda a fonte  vem de utilizadores do Youtube.
         <import addon="script.module.tknorris.shared" version="0.0.19"/>
         <import addon="script.module.six"/>
         <import addon="script.module.dateutil"/>
-        <import addon="script.module.image_cache" version="0.0.1" optional="true"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
     </extension>
      <extension point="xbmc.service" library="service.py" start="startup"/>
     <extension point="xbmc.addon.metadata">
-        <summary>Stream video from many difference sources</summary>
-        <description>This addon uses trakt.tv for most show and movie meta data and uses a variety of websites for hoster sources
-
-***This addon is developed and supported at [COLOR blue]www.tvaddons.ag[/COLOR]***
+        <summary>Last Version Made From The TVA Guys, movie/tvshow images fixed by smash</summary>
+        <description>Last Version Made From The TVA Guys, trying to fix the install fail probs some are getting
         </description>
         <platform>all</platform>
-        <website>http://tvaddons.ag/</website>
-		<forum>http://forums.tvaddons.ag/forums/180-TKNORRIS-RELEASE-REPOSITORY</forum>
-		<assets>
-		  <icon>icon.png</icon>
-		  <fanart>fanart.jpg</fanart>
-		  <screenshot>resources/screenshots/screenshot1.png</screenshot>
-          <screenshot>resources/screenshots/screenshot2.png</screenshot>
-          <screenshot>resources/screenshots/screenshot3.png</screenshot>
-          <screenshot>resources/screenshots/screenshot4.png</screenshot>
-          <screenshot>resources/screenshots/screenshot5.png</screenshot>
-		</assets>
 	</extension>
 </addon>
 
@@ -516,7 +460,7 @@ Toda a fonte  vem de utilizadores do Youtube.
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2017.06.03"
+  version="2017.07.22"
   name="SportsDevil"
   provider-name="SportsDevil">
   <requires>
@@ -526,8 +470,8 @@ Toda a fonte  vem de utilizadores do Youtube.
    <import addon="script.module.six" />
    <import addon="script.module.requests" />
    <import addon="script.module.livestreamer" />
-   <import addon="script.video.F4mProxy" />
-   <import addon="plugin.video.f4mTester" />
+   <!--<import addon="script.video.F4mProxy" />
+   <import addon="plugin.video.f4mTester" />-->
   </requires>
   <extension
     point="xbmc.python.pluginsource"
@@ -536,32 +480,37 @@ Toda a fonte  vem de utilizadores do Youtube.
   </extension>
   <extension point="xbmc.service" library="service/proxy_service.py" start="startup" />
   <extension point="xbmc.addon.metadata">
-    <summary>Play videos of different sports streaming sites</summary>
-    <description>Play videos of different sports streaming sites</description>
+    <summary>Play videos of different ad-financed sports streaming sites</summary>
+    <description>Play videos of different ad-financed sports streaming sites.
+
+SportsDevil does not provide any streams of its own; stream quality, content and copyright are responsibility of the ad-financed source web site.
+
+For updates check the readme.
+    </description>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <platform>all</platform>
   </extension>
 </addon>
 
-<addon id="plugin.video.streamhub" name="[COLOR red][B]StreamHub[/B][/COLOR]" version="2.9" provider-name="sClarke">
+<addon id="plugin.video.streamhub" name="[COLOR ffff0000][B]StreamHub[/B][/COLOR]" version="3.0.8" provider-name="sClarke">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
 		<import addon="script.module.urlresolver" version="3.0.0"/>
 		<import addon="script.module.metahandler" version="1.0.0" />
 		<import addon="script.video.F4mProxy"/>
-		<import addon="script.module.requests"/>
 		<import addon="script.module.streamhub"/>
+		<import addon="script.module.streamhublive"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">StreamHub</summary>
-		<description lang="en">[COLOR red][B]StreamHub[/B][/COLOR] - Bringing Media Content To Your Devices.</description>
-		<disclaimer lang="en">The author does not own or host any content found within this Addon. The Author is not connected to or in any other way affiliated with Kodi, Team Kodi, or the XBMC Foundation.</disclaimer>
+		<description lang="en">[COLOR ffff0000][B]StreamHub[/B][/COLOR] - Bringing Media Content To Your Devices. Including Movies, TV Shows and More!</description>
+		<disclaimer lang="en">[COLOR ffff0000][B]The author does not own or host any content found within this Addon. The Author is not connected to or in any other way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[/B][/COLOR]</disclaimer>
 		<platform>all</platform>
-		<forum>Facebook:   facebook.com/groups/streamhub</forum>
+		<forum>Facebook:   [COLOR ffff0000][B]facebook.com/groups/streamhub[/COLOR]</forum>
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -664,6 +613,48 @@ Apenas disponibiliza conteÃºdos de terceiros
 	<disclaimer lang="en">Todos os conteúdos não são hospedados pelos intervinientes, são link's encontrados na net em qualquer motor de busca</disclaimer>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.youtube" name="YouTube" version="5.4.14Bump" provider-name="jdf76, bromix">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+    <extension point="xbmc.service" library="startup.py" start="startup" />
+	<extension point="xbmc.addon.metadata">
+        <news>
+[add] MPEG-DASH support for Kodi 17 w/ inputstream.adaptive add-on or SPMC 16 w/ builtin-in
+[add] optional History and Watch Later custom playlist to Settings -> Folders, or (My)Playlists context menu to set/remove
+[add] Maintenance section to Settings
+[add] 'Subtitle language(s) to download' selection to Settings -> General
+[add] 'Force SSL Certificate verification' to Settings -> Advanced
+[upd] API key set switching from Settings -> API (this will log you out)
+[upd] Dual login only required if My Subscriptions folder is enabled at sign-in
+[upd] setting content type from episodes, now videos
+[del] override view options
+[upd] Norwegian strings [torstehu]
+[upd] Greek strings [twilight0]
+[upd] Portuguese strings [Wanilton]
+[upd] Dutch strings [flemlion]
+[fix/upd] API tweaking and various other updates
+        </news>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+        <summary lang="en">Plugin for YouTube</summary>
+        <description lang="en">YouTube is one of the biggest video-sharing websites of the world.</description>
+        <disclaimer lang="en"></disclaimer>
+		<language></language>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+		<forum>http://forum.kodi.tv/showthread.php?tid=267160</forum>
+		<website>http://www.youtube.com</website>
+		<email>ytplugin at datanet dot ws</email>
+		<source>https://github.com/Kolifanes/plugin.video.youtube</source>
+	</extension>
 </addon>
 
 <addon id="program.plexus"
@@ -889,7 +880,7 @@ Apenas disponibiliza conteÃºdos de terceiros
 	</extension>
 </addon>
 
-<addon id="script.exodus.artwork" version="1.0.5" name="Exodus Artwork" provider-name="Exodus">
+<addon id="script.exodus.artwork" version="1.0.6" name="Exodus Artwork" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -901,7 +892,7 @@ Apenas disponibiliza conteÃºdos de terceiros
 	</extension>
 </addon>
 
-<addon id="script.exodus.metadata" version="1.0.0" name="Exodus Metadata" provider-name="Exodus">
+<addon id="script.exodus.metadata" version="1.0.1" name="Exodus Metadata" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -1059,6 +1050,25 @@ Apenas disponibiliza conteÃºdos de terceiros
   </extension>
 </addon>
 
+<addon id="script.module.streamhub" name="[COLOR ffff0000][B]StreamHub Scrapers[/B][/COLOR]" version="7.0" Eprovider-name="sClarke">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.requests" />
+	<import addon="script.module.urlresolver" />
+    <import addon="script.module.beautifulsoup4" />
+	<import addon="script.video.F4mProxy" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Dependency Addon for StreamHub</summary>
+    <description lang="en">Dependency Addon for StreamHub</description>
+	<disclaimer lang="en">Dependency Addon for StreamHub</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="script.module.tknorris.shared" name="TKNorris Common Libraries" version="0.0.23" provider-name="tknorris">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -1070,7 +1080,7 @@ Apenas disponibiliza conteÃºdos de terceiros
 	</extension>
 </addon>
 
-<addon id="script.module.urlresolver" name="URLResolver" version="3.0.36" provider-name="tvaddons.ag, Eldorado">
+<addon id="script.module.urlresolver" name="URLResolver" version="3.0.38" provider-name="tvaddons.ag, Eldorado, jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" optional="true" />
@@ -1139,7 +1149,7 @@ Apenas disponibiliza conteÃºdos de terceiros
 <addon
    id="service.subtitles.legendastv"
    name="Legendas.TV"
-   version="2.3.0"
+   version="2.3.2"
    provider-name="gfjardim">
   <requires>
     <import addon="xbmc.python" version="2.14.0"/>

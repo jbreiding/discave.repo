@@ -98,8 +98,6 @@ class Provider(kodion.AbstractProvider):
     def get_client(self, context):
         # set the items per page (later)
         settings = context.get_settings()
-        verify_ssl = settings.get_bool('simple.requests.ssl.verify', False)
-
         items_per_page = settings.get_items_per_page()
 
         access_manager = context.get_access_manager()
@@ -143,7 +141,7 @@ class Provider(kodion.AbstractProvider):
                 if refresh_tokens:
                     refresh_tokens = refresh_tokens.split('|')
                     pass
-                context.log_debug('Access token count: |%d| Refresh token count: |%d|' % (len(access_tokens), len(refresh_tokens)))
+
                 # create a new access_token
                 if len(access_tokens) != 2 and len(refresh_tokens) == 2:
                     try:
@@ -163,9 +161,6 @@ class Provider(kodion.AbstractProvider):
 
                         access_manager.update_access_token(access_token, expires_in)
                     except LoginException, ex:
-                        title = '%s: %s' % (context.get_name(), 'LoginException')
-                        context.get_ui().show_notification(ex.message, title)
-                        context.log_error('%s: %s' %(title, ex.message))
                         access_tokens = ['', '']
                         # reset access_token
                         access_manager.update_access_token('')
@@ -187,10 +182,10 @@ class Provider(kodion.AbstractProvider):
                     pass
 
                 self._client = YouTube(language=language, region=region, items_per_page=items_per_page, access_token=access_tokens[1],
-                                       access_token_tv=access_tokens[0], config=youtube_config, verify_ssl=verify_ssl)
+                                       access_token_tv=access_tokens[0], config=youtube_config)
                 self._client.set_log_error(context.log_error)
             else:
-                self._client = YouTube(items_per_page=items_per_page, language=language, region=region, config=youtube_config, verify_ssl=verify_ssl)
+                self._client = YouTube(items_per_page=items_per_page, language=language, region=region, config=youtube_config)
                 self._client.set_log_error(context.log_error)
 
                 # in debug log the login status
@@ -512,24 +507,6 @@ class Provider(kodion.AbstractProvider):
                 if context.get_ui().on_remove_content(context.localize(30558)):
                     context.get_search_history().clear()
                     context.get_ui().show_notification(context.localize(30575))
-        elif action == 'reset':
-            if maint_type == 'access_manager':
-                if context.get_ui().on_yes_no_input(context.get_name(), context.localize(30581)):
-                    try:
-                        context.get_function_cache().clear()
-                        access_manager = context.get_access_manager()
-                        client = self.get_client(context)
-                        if access_manager.has_refresh_token():
-                            refresh_tokens = access_manager.get_refresh_token().split('|')
-                            refresh_tokens = list(set(refresh_tokens))
-                            for refresh_token in refresh_tokens:
-                                client.revoke(refresh_token)
-                        self.reset_client()
-                        access_manager.update_access_token(access_token='', refresh_token='')
-                        context.get_ui().refresh_container()
-                        context.get_ui().show_notification(context.localize(30575))
-                    except:
-                        context.get_ui().show_notification(context.localize(30576))
         elif action == 'delete':
                 _maint_files = {'function_cache': 'cache.sqlite',
                                 'search_cache': 'search.sqlite',
@@ -740,9 +717,7 @@ class Provider(kodion.AbstractProvider):
     def handle_exception(self, context, exception_to_handle):
         if isinstance(exception_to_handle, LoginException):
             context.get_access_manager().update_access_token('')
-            title = '%s: %s' % (context.get_name(), 'LoginException')
-            context.get_ui().show_notification(exception_to_handle.message, title)
-            context.log_error('%s: %s' % (title, exception_to_handle.message))
+            context.get_ui().show_notification('Login Failed')
             context.get_ui().open_settings()
             return False
 

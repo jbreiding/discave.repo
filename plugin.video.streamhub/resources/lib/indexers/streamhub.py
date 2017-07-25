@@ -7,16 +7,18 @@ import xbmc
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
 
-from resources.lib.zmodules import cache
-from resources.lib.zmodules import metacache
-from resources.lib.zmodules import client
-from resources.lib.zmodules import control
-from resources.lib.zmodules import regex
-from resources.lib.zmodules import trailer
-from resources.lib.zmodules import workers
-from resources.lib.zmodules import youtube
-from resources.lib.zmodules import views
+from resources.lib.modules import cache
+from resources.lib.modules import metacache
+from resources.lib.modules import client
+from resources.lib.modules import control
+from resources.lib.modules import regex
+from resources.lib.modules import trailer
+from resources.lib.modules import workers
+from resources.lib.modules import youtube
+from resources.lib.modules import views
 
+
+addon_id = 'plugin.video.streamhub'
 
 
 class indexer:
@@ -27,7 +29,7 @@ class indexer:
     def root(self):
         try:
             regex.clear()
-            url = 'https://raw.githubusercontent.com/sClarkeIsBack/StreamHub/master/Links/NewHome.xml'
+            url = 'https://raw.githubusercontent.com/sClarkeIsBack/StreamHub/master/Links/Home.XML'
             self.list = self.streamhub_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
@@ -1201,3 +1203,41 @@ def setxxxpass():
 				xbmcaddon.Addon('script.module.streamhub').setSetting('xxxpass',pw)
 				xbmcaddon.Addon('script.module.streamhub').setSetting('enablexxxpass','true')
 				xbmcgui.Dialog().ok('[COLOR red]StreamHub[/COLOR]','Password has been set')
+				
+				
+def sysinfo():
+	import socket,requests
+	KODIV        = float(xbmc.getInfoLabel("System.BuildVersion")[:4])
+	RAM          = xbmc.getInfoLabel("System.Memory(total)")
+	
+	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	s.connect(('8.8.8.8', 0))
+	IP = s.getsockname()[0]
+			
+	open  = requests.get('http://canyouseeme.org/').text
+	ip    = re.search('(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)',open)
+	EXTIP = str(ip.group())
+	
+	icon       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+	fanart     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
+
+	addDir('Kodi Version: %s'%KODIV,'url',200,icon,fanart,'')
+	addDir('System Ram: %s'%RAM,'url',200,icon,fanart,'')
+	addDir('Local IP Address: %s'%IP,'url',200,icon,fanart,'')
+	addDir('External IP Address: %s'%EXTIP,'url',200,icon,fanart,'')
+	
+	
+def addDir(name,url,mode,iconimage,fanart,description):
+	import xbmcgui,xbmcplugin,urllib,sys
+	u=sys.argv[0]+"?url="+url+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
+	ok=True
+	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+	liz.setInfo( type="Video", infoLabels={"Title": name,"Plot":description})
+	liz.setProperty('fanart_image', fanart)
+	if mode==10:
+		liz.setProperty("IsPlayable","true")
+		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+	else:
+		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+	return ok
+	xbmcplugin.endOfDirectory

@@ -65,8 +65,17 @@ def load_external_plugins():
                 sys.modules[mod_name] = imp
                 common.logger.log_debug('Loaded %s as %s from %s' % (imp, mod_name, filename))
 
-def relevant_resolvers(domain=None, include_universal=None, include_external=False, include_disabled=False, order_matters=False):
-    if include_external:
+def relevant_resolvers(domain=None, include_universal=None, include_external=False, include_disabled=False, include_xxx=False, order_matters=False):
+    if include_xxx:
+        import xbmc
+        smu_xxx_id = "script.module.urlresolver.xxx"
+        if xbmc.getCondVisibility('System.HasAddon(%s)' % smu_xxx_id):
+            import xbmcaddon
+            smu_xxx_path = xbmcaddon.Addon(smu_xxx_id).getAddonInfo("path")
+            smu_xxx_plugins = os.path.join(smu_xxx_path,'resources/plugins/')
+            add_plugin_dirs(smu_xxx_plugins)
+        
+    if include_external or include_xxx:
         load_external_plugins()
     
     if isinstance(domain, basestring):
@@ -89,7 +98,7 @@ def relevant_resolvers(domain=None, include_universal=None, include_external=Fal
     common.logger.log_debug('Relevant Resolvers: %s' % (relevant))
     return relevant
 
-def resolve(web_url):
+def resolve(web_url, include_xxx=False):
     '''
     Resolve a web page to a media stream.
 
@@ -119,7 +128,7 @@ def resolve(web_url):
         If the ``web_url`` could be resolved, a string containing the direct
         URL to the media file, if not, returns ``False``.
     '''
-    source = HostedMediaFile(url=web_url)
+    source = HostedMediaFile(url=web_url, include_xxx=include_xxx)
     return source.resolve()
 
 def filter_source_list(source_list):
@@ -254,7 +263,10 @@ def _update_settings_xml():
         '\t\t<setting default="true" id="auto_pick" label="%s" type="bool"/>' % (common.i18n('auto_pick')),
         '\t\t<setting default="true" id="use_cache" label="%s" type="bool"/>' % (common.i18n('use_function_cache')),
         '\t\t<setting id="reset_cache" type="action" label="%s" action="RunPlugin(plugin://script.module.urlresolver/?mode=reset_cache)"/>' % (common.i18n('reset_function_cache')),
-        '\t\t<setting id="personal_nid" label="Your NID" type="text" visible="false"/>',
+        '\t\t<setting id="personal_nid" label="Your NID" type="text" visible="false" default=""/>',
+        '\t\t<setting id="last_ua_create" label="last_ua_create" type="number" visible="false" default="0"/>',
+        '\t\t<setting id="current_ua" label="current_ua" type="text" visible="false" default=""/>',
+        '\t\t<setting id="addon_debug" label="addon_debug" type="bool" visible="false" default="false"/>',
         '\t</category>',
         '\t<category label="%s">' % (common.i18n('universal_resolvers'))]
 

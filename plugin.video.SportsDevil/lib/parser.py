@@ -162,12 +162,13 @@ class Parser(object):
             
             form_data = None
             postData = ''
-            parts = lItem['url'].split('|') #jairox: added for post in menu cfgs
-            url = parts[0]
-            lItem['url'] = url
-            if len(parts) > 1:
-                postData = parts[1]
-                form_data = urlparse.parse_qsl(postData)
+            if re.compile(r'\|[\w&=]+').findall(lItem['url']): #jairox: added for post in menu cfgs
+                parts = lItem['url'].split('|') 
+                url = parts[0]
+                lItem['url'] = url
+                if len(parts) > 1:
+                    postData = parts[1]
+                    form_data = urlparse.parse_qsl(postData)
             inputList.curr_url = lItem['url']
             count = 0
             i = 1
@@ -732,6 +733,12 @@ class Parser(object):
                 minimum = int(paramArr[0])
                 maximum = int(paramArr[1])
                 src = str(random.randrange(minimum,maximum))
+
+            elif command == 'randomfloat':
+                paramArr = params.split(',')
+                minimum = float(paramArr[0])
+                maximum = float(paramArr[1])
+                src = str(random.uniform(minimum,maximum))
 
             elif command == 'debug':
                 common.log('Debug from cfg file: ' + src)

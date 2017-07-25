@@ -47,14 +47,14 @@ class TransientTraktError(Exception):
     pass
 
 BASE_URL = 'api.trakt.tv'
-V2_API_KEY = 'eb41e95243d8c95152ed72a1fc0394c93cb785cb33aed609fdde1a07454584b4'
-CLIENT_SECRET = '96611f3e712a37bd8d3cac9316c4643e0e5fd0a0c02b4eaf4bba8fd57024c72e'
+V2_API_KEY = '2978386ad4013e0271dda0228e6f911def22df89e570ad655e4a8e95a771e586'
+CLIENT_SECRET = '568350da63bd888c2a027ed642b0ebb7acdbf1653ee7bb0075242f8b2cb34f79'
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
-RESULTS_LIMIT = 10
+RESULTS_LIMIT = 100
 HIDDEN_SIZE = 100
 
 class Trakt_API():
-    def __init__(self, token=None, use_https=False, list_size=RESULTS_LIMIT, timeout=5, offline=False):
+    def __init__(self, token=None, use_https=False, list_size=RESULTS_LIMIT, timeout=10, offline=False):
         self.token = token
         self.protocol = 'https://' if use_https else 'http://'
         self.timeout = None if timeout == 0 else timeout

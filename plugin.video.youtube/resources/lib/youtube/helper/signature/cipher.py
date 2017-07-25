@@ -4,7 +4,7 @@ import json
 import os
 import re
 
-import requests
+from resources.lib.kodion import simple_requests as requests
 from resources.lib.kodion.utils import FunctionCache
 from .json_script_engine import JsonScriptEngine
 
@@ -12,7 +12,6 @@ from .json_script_engine import JsonScriptEngine
 class Cipher(object):
     def __init__(self, context, java_script_url):
         self._context = context
-        self._verify = context.get_settings().get_bool('simple.requests.ssl.verify', False)
         self._java_script_url = java_script_url
 
         self._object_cache = {}
@@ -57,7 +56,7 @@ class Cipher(object):
             url = 'http://' + url
             pass
 
-        result = requests.get(url, headers=headers, verify=self._verify, allow_redirects=True)
+        result = requests.get(url, headers=headers, verify=False, allow_redirects=True)
         java_script = result.text
 
         return self._load_java_script(java_script)
