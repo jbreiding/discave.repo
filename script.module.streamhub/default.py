@@ -20,6 +20,88 @@ proxy      = 'http://www.justproxy.co.uk/index.php?q='
 music      = 'http://woodmp3.net/mp3.php?q='
 movies_url = 'https://torba.se'
 logfile    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'log.txt'))
+def log(text):
+	file = open(logfile,"w+")
+	file.write(str(text))
+	
+def fullmatchtv(url):
+	open = OPEN_URL(url)
+	part = regex_from_to(open,'<span>Latest.+?</span>','</div></div></div>')
+	all  = re.compile('<div class="td-module-thumb">.+?href="(.+?)".+?title="(.+?)".+?src="(.+?)"',re.DOTALL).findall(part)
+	for url,name,icon in all:
+		addDir(name.replace('&#8211;','-'),url,117,icon,fanart,'')
+		
+def rugbyget(url):
+	open = OPEN_URL(url)
+	url  = regex_from_to(open,'iframe src="','"')
+	
+	play=urlresolver.HostedMediaFile(url).resolve()
+	liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=icon)
+	liz.setInfo(type='Video', infoLabels={'Title': name, 'Plot': ''})
+	liz.setProperty('IsPlayable','true')
+	liz.setPath(str(play))
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+	
+def footballhighlight():
+	open = OPEN_URL('http://livefootballvideo.com/highlights')
+	all  = regex_get_all(open,'class="date_time','class="play_btn')
+	for a in all:
+		home = regex_from_to(a,' class="team home.+?>','&nbsp')
+		away = regex_from_to(a,'class="team column".+?alt="','"')
+		date = regex_from_to(a,'shortdate".+?>','<')
+		score= regex_from_to(a,'class="score">','<')
+		url  = regex_from_to(a,'href="','"')
+		if 'span class' in score:
+			score = 'Postponed'
+		
+		name = '[COLOR ffff0000][B]%s[/COLOR][/B]: %s v %s | %s'%(date,home,away,score)
+		addDir(name,'HIGHLIGHT:'+url,113,icon,fanart,'')
+		#log(t)
+
+def footballreplays(url):
+	if not url.startswith('http'):
+		open = OPEN_URL('http://livefootballvideo.com/fullmatch')
+	else:
+		open = OPEN_URL(url)
+		
+	all  = regex_get_all(open,'<div class="cover">','</li>')
+	for a in all:
+		name = regex_from_to(a,'title="','"')
+		url  = regex_from_to(a,'href="','"')
+		icon = regex_from_to(a,'img src="','"')
+		date = regex_from_to(a,'class="postmetadata longdate.+?">','<')
+		log(date)
+		addDir('[COLOR ffff0000][B]%s[/COLOR][/B]: %s'%(date,name),url,113,icon,fanart,'')
+		
+	try:
+		np = regex_from_to(open,'class="nextpostslink.+?href="','"')
+		addDir('[COLOR ffff0000][B]Next Page >[/COLOR][/B]',np,112,icon,fanart,'')
+	except:
+		pass
+		
+def footballreplaysget(url):
+	if url.startswith('HIGHLIGHT:'):
+		url = url.replace('HIGHLIGHT:','')
+		open = OPEN_URL(url)
+		url  = re.compile('><iframe src="(.+?)"').findall(open)[0]
+	else:
+		open = OPEN_URL(url)
+		all  = re.findall('><iframe src="(.+?)"',open)
+		d    = xbmcgui.Dialog().select('Select a Half', ['First Half: 0 - 45min', 'Second Half: 45 - 90min'])
+		if d==0:
+			url = all[0]
+		elif d==1:
+			url = all[1]
+		else:
+			return
+	
+	play=urlresolver.HostedMediaFile(url).resolve()
+	liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=icon)
+	liz.setInfo(type='Video', infoLabels={'Title': name, 'Plot': ''})
+	liz.setProperty('IsPlayable','true')
+	liz.setPath(str(play))
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+	
 
 def CAT():
 	addDir('EXABYTE','url',85,icon,fanart,'')
@@ -33,6 +115,13 @@ def CAT():
 	addDir('IPTV2','url',88,icon,fanart,'')
 	addDir('Liveonlinetv','url',95,icon,fanart,'')
 	addDir('jango','url',106,icon,fanart,'')
+	addDir('MLB','http://fullmatchtv.com/mlb',116,icon,fanart,'')
+	addDir('NBA','http://fullmatchtv.com/basketball',116,icon,fanart,'')
+	addDir('NFL','http://fullmatchtv.com/nfl',116,icon,fanart,'')
+	addDir('NHL','http://fullmatchtv.com/nhl',116,icon,fanart,'')
+	addDir('Rugby','http://fullmatchtv.com/rugby',116,icon,fanart,'')
+	addDir('jango','url',99999,icon,fanart,'')
+	
 	
 
 def MOV2CAT():
@@ -790,10 +879,10 @@ def addDir(name,url,mode,iconimage,fanart,description):
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
 	liz.setInfo( type="Video", infoLabels={"Title": name,"Plot":description})
 	liz.setProperty('fanart_image', fanart)
-	if mode==3 or mode==7 or mode==17 or mode==15 or mode==23 or mode==30 or mode==27 or mode ==36 or mode==39 or mode==97 or mode==46 or mode==50 or mode==53 or mode==55 or mode==57 or mode==60 or mode==104 or mode==62 or mode ==75 or mode==80 or mode==90 or mode==94 or mode==105 or mode==999:
+	if mode==3 or mode==7 or mode==117 or mode==17 or mode==15 or mode==113 or mode==23 or mode==30 or mode==27 or mode ==36 or mode==39 or mode==97 or mode==46 or mode==50 or mode==53 or mode==55 or mode==57 or mode==60 or mode==104 or mode==62 or mode ==75 or mode==80 or mode==90 or mode==94 or mode==105 or mode==999:
 		liz.setProperty("IsPlayable","true")
 		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
-	elif mode==73 or mode==1000:
+	elif mode==73 or mode==1000 or mode==118:
 		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
 	else:
 		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
@@ -863,8 +952,11 @@ def playf4m(url, name):
 
                 from F4mProxy import f4mProxyHelper
                 f4mProxyHelper().playF4mLink(url, name, proxy, proxy_use_chunks, maxbitrate, simpleDownloader, auth_string, streamtype, False, swf)
-	
-	
+				
+def showpremiumimage():
+	premium_jpg = xbmc.translatePath(os.path.join('special://home/addons/script.module.streamhub/resources/premium', 'premium_image.jpg'))
+	xbmc.executebuiltin('ShowPicture('+premium_jpg+')')
+	return False
 def get_params():
 	param=[]
 	paramstring=sys.argv[2]
@@ -1193,6 +1285,29 @@ elif mode==109:
 elif mode==111:
 	discogindex(url)
 	
+elif mode==112:
+	footballreplays(url)
+	
+elif mode==113:
+	footballreplaysget(url)
+	
+elif mode==114:
+	footballhighlight()
+	
+elif mode==115:
+	footballhighlight()
+	
+elif mode==116:
+	fullmatchtv(url)
+	
+elif mode==117:
+	rugbyget(url)
+	
+elif mode==118:
+	xbmc.executebuiltin('Addon.OpenSettings(plugin.video.streamhub)')
+	sys.exit()
+	xbmc.executebuiltin('Container.Refresh')
+	
 elif mode==200:
 	xbmc.log('hello')
 	
@@ -1210,4 +1325,87 @@ elif mode==1000:
 		playf4m(url,name)
 	except:
 		pass
+		
+elif mode==99999:
+	if xbmcaddon.Addon('plugin.video.streamhub').getSetting('Username') == "":
+		d = xbmcgui.Dialog().yesno('[COLOR ffff0000][B]StreamHub Premium[/B][/COLOR]','Have You Donated And Would Like To Log-In?')
+		if not d:
+			showpremiumimage()
+			sys.exit()
+		else:
+			from resources.premium import premium
+			d = xbmcgui.Dialog().yesno('[COLOR ffff0000][B]StreamHub Premium[/B][/COLOR]','Great! You will need to enter your Login details in the Addons Settings','Would you like us to open the settings for you now?')
+			if d:
+				xbmcaddon.Addon('plugin.video.streamhub').openSettings()
+				premium.start('NEW')
+			else:
+				sys.exit()
+	else:
+		from resources.premium import premium
+		try:premium.startupd()
+		except:pass
+		premium.start('NONE')
+	
+elif mode==999991:
+	from resources.premium import premium
+	premium.livecategory(url)
+	
+elif mode==999992:
+	from resources.premium import premium
+	premium.Livelist(url)
+	
+elif mode==999993:
+	from resources.premium import premium
+	premium.vod(url)
+	
+elif mode==999994:
+	from resources.premium import premium
+	premium.stream_video(url)
+	
+elif mode==999995:
+	from resources.premium import premium
+	premium.search()
+	
+elif mode==999996:
+	from resources.premium import premium
+	premium.accountinfo()
+	
+elif mode==999997:
+	xbmc.executebuiltin('ActivateWindow(TVGuide)')
+	
+elif mode==9999910:
+	from resources.premium import premium
+	premium.addonsettings(url,description)
+	
+elif mode==9999912:
+	from resources.premium import premium
+	premium.catchup()
+	
+elif mode==9999913:
+	from resources.premium import premium
+	premium.tvarchive(name,description)
+	
+elif mode==9999914:
+	from resources.premium import premium
+	premium.footballguide()
+	
+elif mode==9999915:
+	from resources.premium import premium
+	premium.footballguidesearch(description)
+	
+elif mode==9999916:
+	from resources.premium import premium
+	premium.extras()
+
+elif mode==9999917:
+	from resources.premium import premium
+	premium.tvguidesetup()
+	
+elif mode==9999918:
+	from resources.premium import premium
+	premium.editas()
+	
+elif mode==9999919:
+	from resources.premium import premium
+	premium.apkdownloads()
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

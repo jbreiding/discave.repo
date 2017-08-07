@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
+	<category label="Premium">
+		<setting id="Username" type="text" label="Username:" default=""/>
+		<setting id="Password" type="text" label="Password:" default=""/>
+		<setting type="lsep" label="" />
+		<setting id="startupd" type="enum" label="Startup Notification" lvalues="None|Dialog|Notification" default="2" />
+	</category>
 	<category label="General">
 		<setting id="xxxx" type="action" label="Setup XXX Password" action="RunPlugin(plugin://script.module.streamhub/?mode=61&url=none)" />
 	</category>
@@ -17,6 +23,8 @@
 	<category label="32345">
 		<setting id="scrapers.timeout.1" type="slider" label="32312" default="10" range="04,60" option="int" />
 		<setting id="trakt.user" type="text" default="" visible="false" />
+		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
+		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
 		<setting id="provider.1movies" type="bool" label="1MOVIES" default="true" />
 		<setting id="provider.afdah" type="bool" label="AFDAH" default="true" />
 		<setting id="provider.animeultima" type="bool" label="ANIMEULTIMA" default="true" />
