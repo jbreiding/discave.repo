@@ -96,7 +96,24 @@ class tvshows:
 		self.mycustomlist8_link   = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist8_link, self.tmdb_key)
 		self.mycustomlist9_link   = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist9_link, self.tmdb_key)
 		self.mycustomlist10_link  = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist10_link, self.tmdb_key)
-
+		self.tmdbblast_link = 'http://api.themoviedb.org/3/list/13386?api_key=%s' % (self.tmdb_key)
+		self.tmdbdatenighttv_link = 'http://api.themoviedb.org/3/list/13393?api_key=%s' % (self.tmdb_key)
+		self.tmdbfasttv_link = 'http://api.themoviedb.org/3/list/13390?api_key=%s' % (self.tmdb_key)
+		self.tmdbchitv_link = 'http://api.themoviedb.org/3/list/13428?api_key=%s' % (self.tmdb_key)
+		self.tmdbsportstv_link = 'http://api.themoviedb.org/3/list/13429?api_key=%s' % (self.tmdb_key)
+		self.tmdbspotlighttv_link = 'http://api.themoviedb.org/3/list/13427?api_key=%s' % (self.tmdb_key)
+		self.tmdbufotv_link = 'http://api.themoviedb.org/3/list/13388?api_key=%s' % (self.tmdb_key)
+		self.tmdb420tv_link = 'http://api.themoviedb.org/3/list/13506?api_key=%s' % (self.tmdb_key)
+		self.tmdbtats_link = 'http://api.themoviedb.org/3/list/13572?api_key=%s' % (self.tmdb_key)
+		self.tmdblmao_link = 'http://api.themoviedb.org/3/list/13387?api_key=%s' % (self.tmdb_key)
+		self.tmdbelimination_link = 'http://api.themoviedb.org/3/list/13391?api_key=%s' % (self.tmdb_key)
+		self.tmdbcooking_link = 'http://api.themoviedb.org/3/list/13389?api_key=%s' % (self.tmdb_key)
+		self.tmdbgamers_link = 'http://api.themoviedb.org/3/list/13714?api_key=%s' % (self.tmdb_key)
+		self.tmdbcartoon_link = 'http://api.themoviedb.org/3/list/13467?api_key=%s' % (self.tmdb_key)
+		self.tmdblittle_link = 'http://api.themoviedb.org/3/list/13564?api_key=%s' % (self.tmdb_key)
+		self.tmdbkids_link = 'http://api.themoviedb.org/3/list/13555?api_key=%s' % (self.tmdb_key)
+		self.tmdbanimationtv_link = 'http://api.themoviedb.org/3/list/13573?api_key=%s' % (self.tmdb_key)
+		
 	def get(self, url, idx=True):
 		try:
 			try: url = getattr(self, url + '_link')
