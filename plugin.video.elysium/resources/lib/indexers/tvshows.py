@@ -38,7 +38,7 @@ class tvshows:
 		self.imdb_user            = control.setting('imdb.user').replace('ur', '')
 		self.lang                 = control.apiLanguage()['tvdb']
 		self.tmdb_key             = control.setting('tmdb_apikey')
-		if self.tmdb_key == '' or self.tmdb_key == None: self.tmdb_key = base64.b64decode('YjkxOTBhZWFmZGEyOWQ3OWM4MWIyZmI1MWNlOWM0NzA=')
+		if self.tmdb_key == '' or self.tmdb_key == None: self.tmdb_key = base64.b64decode('NmJjNDc0MjU3MGFhZTQ5MzQxOGM5OTg3MDNlZGY5Y2Y=')
 		self.tmdb_lang            = 'en'
 		self.datetime             = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
 		self.today_date           = (self.datetime).strftime('%Y-%m-%d')
