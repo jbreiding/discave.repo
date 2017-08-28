@@ -73,6 +73,42 @@ Playlists organized by categories and any source comes from Youtube users.
   </extension>
 </addon>
 
+<addon id="plugin.video.AmerikanoTuga"
+       name="[COLOR red][B]AMERIKANO[/B][/COLOR][COLOR green][B]TUGA[/B][/COLOR][COLOR blue][B][/B][/COLOR]"
+       version="0.0.4"
+       provider-name="Amerikano Tuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+	<import addon="plugin.video.SportsDevil" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+
+
+  <extension point="xbmc.addon.metadata">
+    <summary>Amerikano Tuga</summary>
+    <description>
+        Todos os links disponibilizados no Addon estao disponiveis
+em procura livre na internet.
+
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.cantinhoav"
        name="[COLOR white][B]Cantinho[/B][/COLOR][COLOR red][B]AV[/B][/COLOR][COLOR white][B]TV[/B][/COLOR]"
        version="2.1"
@@ -108,7 +144,7 @@ Playlists organized by categories and any source comes from Youtube users.
   </extension>
 </addon>
 
-<addon id="plugin.video.covenant" version="1.1.10" name="Covenant" provider-name="Covenant">
+<addon id="plugin.video.covenant" version="1.1.11" name="Covenant" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.covenant.artwork" version="1.0.0" />
@@ -334,7 +370,7 @@ Playlists organized by categories and any source comes from Youtube users.
 
 <addon id="plugin.video.p2p-streams"
        name="p2p-streams"
-       version="1.2.0"
+       version="1.2.0b"
        provider-name="enen92,fightnight">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -528,9 +564,9 @@ Toda a fonte  vem de utilizadores do Youtube.
 
 <addon
   id="plugin.video.SportsDevil"
-  version="2017.08.20"
+  version="ZNL2017.2017.2017.07.15.NL1"
   name="SportsDevil"
-  provider-name="SportsDevil">
+  provider-name="MaxMustermann, Al101, Hubbab3, Jairox, Sattekop">
   <requires>
    <import addon="xbmc.python" version="2.14.0"/>
    <import addon="script.module.dateutil" />
@@ -538,8 +574,8 @@ Toda a fonte  vem de utilizadores do Youtube.
    <import addon="script.module.six" />
    <import addon="script.module.requests" />
    <import addon="script.module.livestreamer" />
-   <!-- <import addon="script.video.F4mProxy" /> -->
-   <!-- <import addon="plugin.video.f4mTester" /> -->
+   <!--<import addon="script.video.F4mProxy" />
+   <import addon="plugin.video.f4mTester" />-->
   </requires>
   <extension
     point="xbmc.python.pluginsource"
@@ -608,7 +644,7 @@ For updates check the readme.
 
 <addon id="plugin.video.teamblue"
        name="[COLOR blue]T[/COLOR]eam[COLOR blue]B[/COLOR]lue Live Events"
-       version="2.3"
+       version="2.4"
        provider-name="Eduardo Pinto">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -679,6 +715,42 @@ Apenas disponibiliza conteÃºdos de terceiros
 	Necessita do URLResolver, HTTPLib2, Simplejson
 	Qualquer contacto https://www.facebook.com/groups/discavehbrepo/</description>
 	<disclaimer lang="en">Todos os conteúdos não são hospedados pelos intervinientes, são link's encontrados na net em qualquer motor de busca</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.vipsecret"
+       name="[COLOR gold][B]SECRET[/B][/COLOR][COLOR white][B]TV[/B][/COLOR][COLOR blue][B]VIP[/B][/COLOR]"
+       version="0.0.4"
+       provider-name="Team VipSecret">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+	<import addon="plugin.video.SportsDevil" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+
+
+  <extension point="xbmc.addon.metadata">
+    <summary>SECRET TV VIP</summary>
+    <description>
+        Todos os links disponibilizados no Addon estao disponiveis
+em procura livre na internet.
+
+    </description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -933,6 +1005,52 @@ Apenas disponibiliza conteÃºdos de terceiros
 		<description>Repositorio do Team Inspiration</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="repository.vipsecrettv" name="[COLOR gold][B].Vip[/B][/COLOR][COLOR white][B]Secret[/B][/COLOR][COLOR blue][B]REPO[/B][/COLOR]" version="1.0.3" provider-name="Vip Secrettv">
+	<extension point="xbmc.addon.repository" name="Vip Secrettv">
+		<info compressed="false">http://secretv.j2mf4.com/repo/addons.xml</info>
+		<checksum>http://secretv.j2mf4.com/repo/addons.xml.md5</checksum>
+		<datadir zip="true">http://secretv.j2mf4.com/repo/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Vip Secrettv</summary>
+		<description>
+Vip Secrettv Repository
+		 </description>
+
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon
+  id="resource.language.pt_pt"
+  version="3.0.10"
+  name="Portuguese"
+  provider-name="Team Kodi">
+  <requires>
+    <import addon="kodi.resource" version="1.0.0"/>
+  </requires>
+  <extension
+    point="kodi.resource.language"
+    locale="pt_PT">
+    <charsets>
+      <gui unicodefont="true">CP1252</gui>
+      <subtitle>CP1252</subtitle>
+    </charsets>
+    <sorttokens>
+      <token>The</token>
+      <token>O</token>
+      <token>A</token>
+      <token>Os</token>
+      <token>As</token>
+    </sorttokens>
+  </extension>
+  <extension point="kodi.addon.metadata">
+    <summary lang="en">Portuguese language pack</summary>
+    <description lang="en">Portuguese version of all texts used in Kodi.</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="script.common.plugin.cache" name="Common plugin cache" provider-name="TheCollective" version="2.5.8">
@@ -1204,7 +1322,7 @@ Apenas disponibiliza conteÃºdos de terceiros
 	</extension>
 </addon>
 
-<addon id="script.module.urlresolver" name="URLResolver" version="4.0.01" provider-name="Eldorado, tknorris, jsergio">
+<addon id="script.module.urlresolver" name="URLResolver" version="4.0.02" provider-name="Eldorado, tknorris, jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" optional="true" />
