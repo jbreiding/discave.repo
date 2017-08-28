@@ -276,11 +276,11 @@ class TSengine():
 
 
     def startLin(self):
-        self.log.out('try to start AceStream Engine')
+        self.log.out('try to start Lin engine')
         import subprocess
         if xbmc.getCondVisibility('System.Platform.Android'):
             try:
-                if settings.getSetting('engine_app') == '0': xbmc.executebuiltin('XBMC.StartAndroidActivity("org.acestream.media")')
+                if settings.getSetting('engine_app') == "1": xbmc.executebuiltin('XBMC.StartAndroidActivity("org.acestream.engine")')
                 else:
                     command = ["sh","/data/data/"+settings.getSetting('app_id')+"/files/program.plexus/org.acestream.engine/files/droidace.sh",settings.getSetting('app_id')]
                     if settings.getSetting('total_max_download_rate') != "0":
@@ -293,9 +293,9 @@ class TSengine():
             except:
                 self.sm("Not installed")
                 self.log.out("Not installed")
-                self.progress.update(0,"AceStream.apk not installed","")
+                self.progress.update(0,"Acestreamengine.apk not installed","")
         else:
-            print("Linux not Android..")
+            print("Linux not android..")
             if "arm" in os.uname()[4]:
                 try:
                     command = ["sh",os.path.join(pastaperfil,"acestream","start_acestream.sh"),"--client-console"]

@@ -178,7 +178,7 @@ msgid "timeout!"
 msgstr ""
 
 msgctxt "#30041"
-msgid "AceStream module not installed."
+msgid "Acestream module not installed."
 msgstr ""
 
 msgctxt "#30042"
@@ -262,7 +262,7 @@ msgid "Buffering"
 msgstr ""
 
 msgctxt "#30062"
-msgid "AceStream Engine"
+msgid "Acestream Engine"
 msgstr ""
 
 msgctxt "#30063"
@@ -454,23 +454,23 @@ msgid "Downloading AceStream modules."
 msgstr ""
 
 msgctxt "#30111"
-msgid "Downloading AceStream Engine bundle for Android"
+msgid "Downloading AcestreamEngine bundle for Android"
 msgstr ""
 
 msgctxt "#30112"
-msgid "It is necessary to have AceStream.apk or TSC.apk installed"
+msgid "By default Plexus will use its included Acestream Engine"
 msgstr ""
 
 msgctxt "#30113"
-msgid "Select YES to download AceStream Engine and use it with Kodi"
+msgid "Do you want to download and use the app instead?"
 msgstr ""
 
 msgctxt "#30114"
-msgid "Select NO to continue to next option..."
+msgid "It is necessary to have acestreamengine.apk"
 msgstr ""
 
 msgctxt "#30115"
-msgid "to play AceStream's links."
+msgid "installed to run Acestreams."
 msgstr ""
 
 msgctxt "#30116"
@@ -478,39 +478,39 @@ msgid "It will be downloaded now!"
 msgstr ""
 
 msgctxt "#30117"
-msgid "Downloading AceStream.apk"
+msgid "Downloading AcestreamEngine.apk"
 msgstr ""
 
 msgctxt "#30118"
-msgid "AceStream.apk downloaded to folder:"
+msgid "Acestream.apk downloaded to folder:"
 msgstr ""
 
 msgctxt "#30119"
-msgid "Don't forget AceStream Engine app should be running"
+msgid "Don't forget AcestreamEngine app"
 msgstr ""
 
 msgctxt "#30120"
-msgid "before starting any AceStream!"
+msgid "should be running before starting"
 msgstr ""
 
 msgctxt "#30121"
-msgid "If default option Engine+Kodi Player does not work for you, then manually switch to Engine+External Player within AceStream Configurations"
+msgid "any Acestream!"
 msgstr ""
 
 msgctxt "#30122"
-msgid "Do you want to download Torrent Stream Controller?"
+msgid "Do you want to download Ace Player?"
 msgstr ""
 
 msgctxt "#30123"
-msgid "This will enable you the option to use an external player instead of Kodi."
+msgid "This will enable you the ability to use the external player option."
 msgstr ""
 
 msgctxt "#30124"
-msgid "Downloading TSC.apk"
+msgid "Downloading Ace Player"
 msgstr ""
 
 msgctxt "#30125"
-msgid "TSC.apk downladed to folder:"
+msgid "Aceplayer.apk downladed to folder:"
 msgstr ""
 
 msgctxt "#30126"
@@ -518,7 +518,7 @@ msgid "Do you want to use the external player as default?"
 msgstr ""
 
 msgctxt "#30127"
-msgid "AceStream: All done sucessfully!"
+msgid "AceStream: All done!"
 msgstr ""
 
 msgctxt "#30128"
@@ -562,7 +562,7 @@ msgid "Clear addon history"
 msgstr ""
 
 msgctxt "#30138"
-msgid "SopCast Configuration"
+msgid "SopCast configuration"
 msgstr ""
 
 msgctxt "#30139"
@@ -614,7 +614,7 @@ msgid "Custom app id"
 msgstr ""
 
 msgctxt "#30151"
-msgid "AceStream Configurations"
+msgid "AceStream configurations"
 msgstr ""
 
 msgctxt "#30152"
