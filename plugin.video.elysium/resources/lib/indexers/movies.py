@@ -32,7 +32,7 @@ class movies:
 		self.imdb_link            = 'http://www.imdb.com'
 		self.tmdb_key             = control.setting('tmdb_apikey')
 		if self.tmdb_key == '' or self.tmdb_key == None:
-			self.tmdb_key         = base64.b64decode('NmJjNDc0MjU3MGFhZTQ5MzQxOGM5OTg3MDNlZGY5Y2Y=')
+			self.tmdb_key         = base64.b64decode('OWI0NDFmZDJiMWQzYTNkMWE0ZWMyMTYxYjNlYjZkNWE=')
 		self.datetime             = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
 		self.systime              = (self.datetime).strftime('%Y%m%d%H%M%S%f')
 		self.trakt_user           = control.setting('trakt.user').strip()

@@ -44,7 +44,7 @@
 
 <addon id="plugin.video.alive.hd"
        name="Alive.HD"
-       version="5.4"
+       version="6.0"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -63,7 +63,7 @@
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Colossus Edition</summary>
+    <summary lang="en">[ Box Edition ]</summary>
     <description>Concerts and Djs live performances in HD quality.
 Playlists organized by categories and any source comes from Youtube users.
 [B][COLOR lime]Advised the latest version of youtube 5.*.*[/B][/COLOR]</description>
@@ -165,7 +165,7 @@ em procura livre na internet.
     </extension>
 </addon>
 
-<addon id="plugin.video.covenant" version="1.1.11" name="Covenant" provider-name="Covenant">
+<addon id="plugin.video.covenant" version="1.1.13" name="Covenant" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.covenant.artwork" version="1.0.0" />
@@ -194,13 +194,13 @@ em procura livre na internet.
     			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
     			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>[B]1.1.3[/B][CR]Code cosmetics</news>
+		<news>[B]1.1.13[/B][CR]Code cosmetics</news>
 	</extension>
 </addon>
 
 <addon id="plugin.video.documented.hd"
        name="Documented.HD"
-       version="2.2"
+       version="3.0a"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -219,7 +219,7 @@ em procura livre na internet.
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Colossus Edition</summary>
+    <summary lang="en">[ Box Edition ]</summary>
     <description>Alternative documentaries in HD quality.
 Playlists organized by categories and any source comes from Youtube users.
 [B][COLOR lime]Advised the latest version of youtube 5.*.*[/B][/COLOR]</description>
@@ -227,7 +227,7 @@ Playlists organized by categories and any source comes from Youtube users.
   </extension>
 </addon>
 
-<addon id="plugin.video.elysium" version="2017.08.20" name="Elysium" provider-name="Elysium">
+<addon id="plugin.video.elysium" version="2017.08.28" name="Elysium" provider-name="Elysium">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.elysium.artwork" version="2017.06.27"/>
@@ -246,7 +246,7 @@ Playlists organized by categories and any source comes from Youtube users.
 		<description lang="en">Watch movies and TV shows in high quality! Please note that this addon is not an official part of the Kodi media player and is therefore not to be mentioned within Kodi's official support channels. This addon has nothing to do with the media player itself, nor its intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host any content, nor is he affiliated with any of the content providers.</disclaimer>
 		<platform>all</platform>
-		<news>New api-key, again..</news>
+		<news>New api-key. Please get your own, might become mandatory in the near future / Added kids-categories (thanks Soulless)</news>
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -1033,11 +1033,11 @@ Visitem o meu grupo no facebook em: https://www.facebook.com/groups/TeamBlue.add
 	</extension>
 </addon>
 
-<addon id="repository.vipsecrettv" name="[COLOR gold][B].Vip[/B][/COLOR][COLOR white][B]Secret[/B][/COLOR][COLOR blue][B]REPO[/B][/COLOR]" version="1.0.3" provider-name="Vip Secrettv">
+<addon id="repository.vipsecrettv" name="[COLOR gold][B].Vip[/B][/COLOR][COLOR white][B]Secret[/B][/COLOR][COLOR blue][B]REPO[/B][/COLOR]" version="1.0.4" provider-name="Vip Secrettv">
 	<extension point="xbmc.addon.repository" name="Vip Secrettv">
-		<info compressed="false">http://secretv.j2mf4.com/repo/addons.xml</info>
-		<checksum>http://secretv.j2mf4.com/repo/addons.xml.md5</checksum>
-		<datadir zip="true">http://secretv.j2mf4.com/repo/zips/</datadir>
+		<info compressed="false">http://vipsecret.amerikanotuga.tech/repo/addons.xml</info>
+		<checksum>http://vipsecret.amerikanotuga.tech/repo/addons.xml.md5</checksum>
+		<datadir zip="true">http://vipsecret.amerikanotuga.tech/repo/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Vip Secrettv</summary>
