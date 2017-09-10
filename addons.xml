@@ -72,8 +72,8 @@ Playlists organized by categories and any source comes from Youtube users.
 </addon>
 
 <addon id="plugin.video.AmerikanoTuga"
-       name="[COLOR red][B]AMERIKANO[/B][/COLOR][COLOR green][B]TUGA[/B][/COLOR][COLOR blue][B][/B][/COLOR]"
-       version="0.0.4"
+       name="[COLOR red][B]AMERIKANO[/B][/COLOR][COLOR green][B]TUGA[/B][/COLOR]"
+       version="0.0.5"
        provider-name="Amerikano Tuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -740,7 +740,7 @@ Apenas disponibiliza conteÃºdos de terceiros
 
 <addon id="plugin.video.vipsecret"
        name="[COLOR gold][B]SECRET[/B][/COLOR][COLOR white][B]TV[/B][/COLOR][COLOR blue][B]VIP[/B][/COLOR]"
-       version="0.0.4"
+       version="0.0.5"
        provider-name="Team VipSecret">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1355,7 +1355,7 @@ Visitem o meu grupo no facebook em: https://www.facebook.com/groups/TeamBlue.add
 	</extension>
 </addon>
 
-<addon id="script.module.urlresolver" name="URLResolver" version="4.0.02" provider-name="Eldorado, tknorris, jsergio">
+<addon id="script.module.urlresolver" name="URLResolver" version="4.0.04" provider-name="Eldorado, tknorris, jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" optional="true" />
