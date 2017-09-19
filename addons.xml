@@ -165,7 +165,7 @@ em procura livre na internet.
     </extension>
 </addon>
 
-<addon id="plugin.video.covenant" version="1.1.15" name="Covenant" provider-name="Covenant">
+<addon id="plugin.video.covenant" version="1.1.16" name="Covenant" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.covenant.artwork" version="1.0.0" />
@@ -738,6 +738,50 @@ Apenas disponibiliza conteÃºdos de terceiros
 	<disclaimer lang="en">Todos os conteúdos não são hospedados pelos intervinientes, são link's encontrados na net em qualquer motor de busca</disclaimer>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.TVsupertuga" version="0.0.9" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" provider-name="TVsupertuga">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="tvsupertuga.repository" version="0.0.6"/>
+		<import addon="baseaddons.repository" version="0.1"/>
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="script.module.pyxbmct" version="1.2.0" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="script.video.F4mProxy" version="2.8.6"/>
+		<import addon="repository.TVsupertugamovies" version="0.1"/>
+		<import addon="script.module.TVsupertuga" version="0.0.3"/>
+		<import addon="script.module.adryan.addon" version="0.3"/>
+	    <import addon="script.module.livetv" version="0.1"/>
+		<import addon="script.module.media3d" version="0.1"/>
+		<import addon="script.module.live.sports.addon" version="0.4"/>
+		<import addon="script.module.livetv.addon" version="1.3"/>
+		<import addon="script.module.loganaddon.addon" version="0.1"/>
+		<import addon="script.module.schism.addon" version="2.1"/>
+		<import addon="plugin.video.SportsDevil" version="2017.09.02"/>
+		<import addon="script.module.vod.tvsupertuga.addon" version="0.3"/>
+		<import addon="script.module.stream.tvsupertuga.addon" version="0.1"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="pt">TVsupertuga </summary>
+		<description lang="pt">[COLOR blue][B]NEW LIST OF CHANNELS FOR IPTV AND PLAYLIST KODI.
+
+	                        Welcome to TVsupertuga
+
+All these streams can be easily found over the internet...
+We do not have any server or broadcast any kind of signal...
+All these streams are the result of many hours
+of research over the Internet.
+CHANNELS REQUESTS OR MORE INFORMATION PLEASE
+SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
+		<platform>all</platform>
+		<forum>http://tvsupertuga.forum-gratuito.com/</forum>
+		<website>https://www.facebook.com/TVsupertuga.PT/</website>
+	</extension>
 </addon>
 
 <addon id="plugin.video.vipsecret"
@@ -1487,17 +1531,23 @@ Vip Secrettv Repository
   </extension>
 </addon>
 
-<addon id="teamtuga4ever.repository" name="teamtuga4ever repository" version="1.4" provider-name="teamtuga4ever">
-	<extension point="xbmc.addon.repository" name="teamtuga4ever repository">
-		<info compressed="false">http://teamtuga4ever.net16.net/Repository/addons.xml</info>
-		<checksum>http://teamtuga4ever.net16.net/Repository/addons.xml.md5</checksum>
-		<datadir zip="true">http://teamtuga4ever.net16.net/Repository/instal/</datadir>
+<addon id="teamtuga4ever.repository" name="Teamtuga4ever Repository" version="1.8" provider-name="Teamtuga4ever">
+	<extension point="xbmc.addon.repository" name="Teamtuga4ever Repository">
+	<dir>
+		<info compressed="false">http://repoteamtuga4ever.16mb.com/addons.xml</info>
+		<checksum>http://repoteamtuga4ever.16mb.com/addons.xml.md5</checksum>
+		<datadir zip="true">http://repoteamtuga4ever.16mb.com/instal/</datadir>
+	</dir>
+		<info compressed="false">https://raw.githubusercontent.com/tugateam/Repository/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/tugateam/Repository/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/tugateam/Repository/master/instal/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Equipe TeamTuga4ever</summary>
-		<description>teamtuga4ever Repository</description>
-		<disclaimer></disclaimer>
+		<summary>teamtuga4ever</summary>
+		<description>Teamtuga4ever Repository</description>
+         <disclaimer>Teamtuga4ever</disclaimer>
 		<platform>all</platform>
+                <website>https://www.facebook.com/groups/teamtuga4ever/</website>
 	</extension>
 </addon>
 </addons>

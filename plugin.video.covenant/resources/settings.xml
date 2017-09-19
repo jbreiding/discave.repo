@@ -99,6 +99,7 @@
         <setting id="provider.tvbmoviez" type="bool" label="TVBMOVIEZ" default="true" />
         <setting id="provider.twoddl" type="bool" label="TWODDL" default="true" />
         <setting id="provider.watch32" type="bool" label="WATCH32" default="true" />
+        <setting id="provider.watch5s" type="bool" label="WATCH5S" default="true" />
         <setting id="provider.watchfree" type="bool" label="WATCHFREE" default="true" />
         <setting id="provider.watchonline" type="bool" label="WATCHONLINE" default="true" />
         <setting id="provider.watchseries" type="bool" label="WATCHSERIES" default="true" />
@@ -107,7 +108,6 @@
         <setting id="provider.xmovies" type="bool" label="XMOVIES" default="true" />
         <setting id="provider.ymovies" type="bool" label="YMOVIES" default="true" />
         <setting label="German" type="lsep" />
-        <setting id="provider.1kino" type="bool" label="1KINO" default="true" />
         <setting id="provider.allucde" type="bool" label="ALLUC" default="true" />
         <setting id="provider.animebase" type="bool" label="ANIMEBASE" default="true" />
         <setting id="provider.animeloads" type="bool" label="ANIMELOADS" default="true" />
@@ -125,6 +125,7 @@
         <setting id="provider.kinoking" type="bool" label="KINOKING" default="true" />
         <setting id="provider.kinow" type="bool" label="KINOW" default="true" />
         <setting id="provider.kinox" type="bool" label="KINOX" default="true" />
+        <setting id="provider.lichtspielhaus" type="bool" label="LICHTSPIELHAUS" default="true" />
         <setting id="provider.movie2k-ac" type="bool" label="MOVIE2K-AC" default="true" />
         <setting id="provider.movie2k-ag" type="bool" label="MOVIE2K-AG" default="true" />
         <setting id="provider.movie2z" type="bool" label="MOVIE2Z" default="true" />
