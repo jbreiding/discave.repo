@@ -65,7 +65,7 @@ def zadd(data):
     return data
 
 def zadd2(data):
-    if re.search(".*\w+\s*=\s*eval\(\"\(\"\+\w+\+", data):
+    if re.search(".*\w+\s*=\s*eval\(\"\(\"\s*\+\s*\w+",data):
         #jsvar = re.findall(".*\w+\s*=\s*eval\(\"\(\"\+(\w+)\+", data)[0]
         matches = re.findall('\w+\s*=\s*\w+\s*\+\s*(\w+)',data)
         jsall = ''
@@ -75,8 +75,8 @@ def zadd2(data):
                 tmp = re.findall(match+'\s*=\s*[\'\"](.*?)[\"\'];',data)
                 if len(tmp)>0:
                     jsall += tmp[0]
-            if re.compile(r"jwplayer\(\'\w+.*eval\(\"\(\"\+\w+\+\"\)\"\);", flags=re.DOTALL).findall(data):
-                 tmp_ = re.sub(r"jwplayer\(\'\w+.*eval\(\"\(\"\+\w+\+\"\)\"\);", jsall, data, count=1, flags=re.DOTALL)
+            if re.compile(r"jwplayer\(\'\w+.*eval\(\"\(\"\s*\+\s*\w+\s*\+\s*\"\)\"\);", flags=re.DOTALL).findall(data):
+                 tmp_ = re.sub(r"jwplayer\(\'\w+.*eval\(\"\(\"\s*\+\s*\w+\s*\+\s*\"\)\"\);", jsall, data, count=1, flags=re.DOTALL)
             if re.compile(r"\w+\.\w+\({.*}\s+</script>(.*)</script>", flags=re.DOTALL).findall(data):
                 tmp_ = re.sub(r"\w+.\w+\({.*}\s+</script>(.*)</script>", jsall, data, count=1, flags=re.DOTALL)
             data = tmp_
@@ -224,7 +224,7 @@ def decryptSaurus(data):
 def doDemystify(data):
     from base64 import b64decode
     escape_again=False
-    
+    #lib.common.log("JairoDemyst:" + data)
     #init jsFunctions and jsUnpacker
     jsF = JsFunctions()
     jsU = JsUnpacker()
@@ -298,9 +298,7 @@ def doDemystify(data):
                 
     #jairox: ustreamix -- Obfuscator HTML : https://github.com/BlueEyesHF/Obfuscator-HTML
     r = re.compile(r"var\s*(\w+)\s*=\s*\[([A-Za-z0-9+=\/\",\s]+)\];\s*\1\.forEach.*-\s*(\d+)")
-    #lib.common.log("JairoX_Decrypt:" + data)
     if r.findall(data):
-        #lib.common.log("JairoX_Decrypt1:" + data)
         try:
             matches = re.compile(r"var\s*(\w+)\s*=\s*\[([A-Za-z0-9+=\/\",\s]+)\];\s*\1\.forEach.*-\s*(\d+)").findall(data)
             chunks = matches[0][1].split(',')
@@ -335,16 +333,17 @@ def doDemystify(data):
                 data = data.replace(g, urllib.unquote(base64_data.decode('base-64')))
                 escape_again=True
     
-    r = re.compile('\?i=([^&]+)&r=([^&\'"]+)')
-    for g in r.findall(data):
-        print g
-        try:
-            _a, _b =  g[0].split('%2F')
-            _res = (_a+'=').decode('base-64')+'?'+_b.decode('base-64')
-            data = data.replace(g[0], _res)
-            data = data.replace(g[1], urllib.unquote(g[1]).decode('base-64'))
-        except:
-            pass
+    if not 'sawlive' in data:
+        r = re.compile('\?i=([^&]+)&r=([^&\'"]+)')
+        for g in r.findall(data):
+            print g
+            try:
+                _a, _b =  g[0].split('%2F')
+                _res = (_a+'=').decode('base-64')+'?'+_b.decode('base-64')
+                data = data.replace(g[0], _res)
+                data = data.replace(g[1], urllib.unquote(g[1]).decode('base-64'))
+            except:
+                pass
 
     if 'var enkripsi' in data:
         r = re.compile(r"""enkripsi="([^"]+)""")
