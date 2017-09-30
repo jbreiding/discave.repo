@@ -48,8 +48,8 @@ class indexer:
     def root(self):
         try:
             regex.clear()
-            url = 'https://pastebin.com/raw/2H7EaaSK'
-            self.list = self.bennu_list(url)
+            url = 'https://pastebin.com/raw/RLDktHpx'
+            self.list = self.bennu_list(url, enc=True)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -84,6 +84,7 @@ class indexer:
             r += urllib.unquote_plus(x)
             url = regex.resolve(r)
             self.list = self.bennu_list('', result=url)
+            if worker == True: self.worker()
             self.addDirectory(self.list)
             return self.list
         except:
@@ -356,7 +357,7 @@ class indexer:
             for i in self.list: i.update({'content': 'videos'})
             self.addDirectory(self.list)
 
-    def bennu_list(self, url, result=None):
+    def bennu_list(self, url, result=None, enc=False):
         checks = ['UcEMiYZU','r2kRsk9a']
         if any(x in url for x in checks): 
             dialog = xbmcgui.Dialog()
@@ -382,7 +383,12 @@ class indexer:
                             quit()
 
         try:
-            if result == None: result = cache.get(client.request, 0, url)
+            if result == None: result = cache.get(client.request, 1, url)
+            
+            if enc == True:
+                from resources.lib.modules import pyaes
+                aes = pyaes.AESModeOfOperationOFB(control.key, iv=control.iv)
+                result = aes.decrypt(result.decode('string-escape'))
 
             if result.strip().startswith('#EXTM3U') and '#EXTINF' in result:
                 result = re.compile('#EXTINF:.+?\,(.+?)\n(.+?)\n', re.MULTILINE|re.DOTALL).findall(result)
@@ -442,6 +448,9 @@ class indexer:
 
                 try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
                 except: meta = '0'
+                
+                try: use_worker = re.findall('<worker>(.+?)</worker>', item)[0]
+                except: use_worker = '0'
 
                 try: url = re.findall('<link>(.+?)</link>', item)[0]
                 except: url = '0'
@@ -507,7 +516,7 @@ class indexer:
                 try: episode = re.findall('<episode>(.+?)</episode>', meta)[0]
                 except: episode = '0'
 
-                self.list.append({'name': name, 'vip': vip, 'url': url, 'action': action, 'folder': folder, 'poster': image2, 'banner': '0', 'fanart': fanart2, 'content': content, 'imdb': imdb, 'tvdb': tvdb, 'tmdb': '0', 'title': title, 'originaltitle': title, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'season': season, 'episode': episode})
+                self.list.append({'name': name, 'vip': vip, 'url': url, 'action': action, 'folder': folder, 'poster': image2, 'banner': '0', 'fanart': fanart2, 'content': content, 'imdb': imdb, 'tvdb': tvdb, 'tmdb': '0', 'title': title, 'originaltitle': title, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'season': season, 'episode': episode, 'worker': use_worker})
             except:
                 pass
 
@@ -521,22 +530,20 @@ class indexer:
         self.imdb_info_link = 'http://www.omdbapi.com/?i=%s&plot=full&r=json'
         self.tvmaze_info_link = 'http://api.tvmaze.com/lookup/shows?thetvdb=%s'
         self.lang = 'en'
+        self.user = ''
 
         self.meta = []
         total = len(self.list)
-        if total == 0: return
-
-        for i in range(0, total): self.list[i].update({'metacache': False})
-        self.list = metacache.fetch(self.list, self.lang, '')
+        if total == 0 or total > 50: return
 
         multi = [i['imdb'] for i in self.list]
         multi = [x for y,x in enumerate(multi) if x not in multi[:y]]
         if len(multi) == 1:
-                self.movie_info(0) ; self.tv_info(0)
-                if self.meta: metacache.insert(self.meta)
+            self.movie_info(0) ; self.tv_info(0)
+            if self.meta: metacache.insert(self.meta)
 
         for i in range(0, total): self.list[i].update({'metacache': False})
-        self.list = metacache.fetch(self.list, self.lang, '')
+        self.list = metacache.fetch(self.list, self.lang, self.user)
 
         for r in range(0, total, 50):
             threads = []
@@ -546,8 +553,9 @@ class indexer:
             [i.start() for i in threads]
             [i.join() for i in threads]
 
-        if self.meta: metacache.insert(self.meta)
-
+        if self.meta: 
+            metacache.insert(self.meta)
+            self.list = metacache.fetch(self.list, self.lang, self.user)
 
     def movie_info(self, i):
         try:
@@ -561,7 +569,7 @@ class indexer:
             item = trakt.getMovieSummary(imdb)
 
             if 'Error' in item and 'incorrect imdb' in item['Error'].lower():
-                return self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'code': '0'}})
+                return self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'user': self.user, 'item': {'code': '0'}})
 
             title = item.get('title')
             title = client.replaceHTMLCodes(title)
@@ -585,7 +593,8 @@ class indexer:
             genre = ' / '.join(genre).strip()
             if not genre: genre = '0'
 
-            duration = str(item.get('Runtime', 0))
+            duration = str(item.get('runtime', 0))
+            duration = str(int(duration) * 60)
 
             rating = item.get('rating', '0')
             if not rating or rating == '0.0': rating = '0'
@@ -614,7 +623,7 @@ class indexer:
                 cast.append({'name': person['person']['name'], 'role': person['character']})
             cast = [(person['name'], person['role']) for person in cast]
 
-            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
+            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'user': self.user, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
         except:
             pass
 
@@ -633,7 +642,7 @@ class indexer:
             item = client.request(url, output='extended', error=True, timeout='10')
 
             if item[1] == '404':
-                return self.meta.append({'imdb': '0', 'tmdb': '0', 'tvdb': tvdb, 'lang': self.lang, 'item': {'code': '0'}})
+                return self.meta.append({'imdb': '0', 'tmdb': '0', 'tvdb': tvdb, 'lang': self.lang, 'user': self.user, 'item': {'code': '0'}})
 
             item = json.loads(item[0])
 
@@ -683,10 +692,9 @@ class indexer:
             plot = plot.encode('utf-8')
             if not plot == '0': self.list[i].update({'plot': plot})
 
-            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': tvdb, 'lang': self.lang, 'item': {'tvshowtitle': tvshowtitle, 'year': year, 'code': imdb, 'imdb': imdb, 'tvdb': tvdb, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'plot': plot}})
+            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': tvdb, 'lang': self.lang, 'user': self.user, 'item': {'tvshowtitle': tvshowtitle, 'year': year, 'code': imdb, 'imdb': imdb, 'tvdb': tvdb, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'plot': plot}})
         except:
             pass
-
 
     def addDirectory(self, items, queue=False):
         if items == None or len(items) == 0: return
@@ -734,6 +742,8 @@ class indexer:
                 
                 if build:
                     url = '%s?action=%s' % (sysaddon, i['action'])
+                    try: url += '&worker=%s' % i['worker']
+                    except: pass
                     try: url += '&url=%s' % urllib.quote_plus(i['url'])
                     except: pass
                     try: url += '&content=%s' % urllib.quote_plus(i['content'])

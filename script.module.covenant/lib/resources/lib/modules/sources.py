@@ -28,6 +28,7 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 from resources.lib.modules import workers
+from resources.lib.modules import source_utils
 
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
@@ -571,7 +572,7 @@ class sources:
         for i in self.sources:
             if 'checkquality' in i and i['checkquality'] == True:
                 if not i['source'].lower() in self.hosthqDict and i['quality'] not in ['SD', 'SCR', 'CAM']: i.update({'quality': 'SD'})
-
+        
         local = [i for i in self.sources if 'local' in i and i['local'] == True]
         for i in local: i.update({'language': self._getPrimaryLang() or 'en'})
         self.sources = [i for i in self.sources if not i in local]
@@ -637,6 +638,9 @@ class sources:
             q = self.sources[i]['quality']
 
             s = self.sources[i]['source']
+
+            if q == 'SD': q = source_utils.check_sd_url(u)
+
             s = s.rsplit('.', 1)[0]
 
             l = self.sources[i]['language']
@@ -870,7 +874,7 @@ class sources:
 
 
     def getLanguage(self):
-        langDict = {'Italian': ['it'], 'English': ['en'], 'German': ['de'], 'German+English': ['de'], 'French': ['fr'], 'French+English': ['fr'], 'Portuguese': ['pt'], 'Portuguese+English': ['pt'], 'Polish': ['pl'], 'Polish+English': ['pl'], 'Korean': ['ko'], 'Korean+English': ['ko'], 'Russian': ['ru'], 'Russian+English': ['ru'], 'Spanish': ['es'], 'Spanish+English': ['en', 'es']}
+        langDict = {'Italian': ['it'], 'English': ['en'], 'German': ['de'], 'German+English': ['de','en'], 'French': ['fr'], 'French+English': ['fr', 'en'], 'Portuguese': ['pt'], 'Portuguese+English': ['pt', 'en'], 'Polish': ['pl'], 'Polish+English': ['pl', 'en'], 'Korean': ['ko'], 'Korean+English': ['ko', 'en'], 'Russian': ['ru'], 'Russian+English': ['ru', 'en'], 'Spanish': ['es'], 'Spanish+English': ['es', 'en']}
         name = control.setting('providers.lang')
         return langDict.get(name, ['en'])
 
@@ -899,7 +903,7 @@ class sources:
             return []
 
     def _getPrimaryLang(self):
-        langDict = {'Italian': 'it', 'English': 'en', 'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko', 'Russian': 'ru', 'Russian+English': 'ru', 'Spanish': ['es'], 'Spanish+English': ['en', 'es']}
+        langDict = {'Italian': 'it', 'English': 'en', 'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko', 'Russian': 'ru', 'Russian+English': 'ru', 'Spanish': 'es', 'Spanish+English': 'es'}
         name = control.setting('providers.lang')
         lang = langDict.get(name)
         return lang

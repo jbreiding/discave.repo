@@ -60,9 +60,12 @@ class sources:
             sourceDict = [(i[0], i[1], getattr(i[1], 'movie', None)) for i in sourceDict]
         else:
             sourceDict = [(i[0], i[1], getattr(i[1], 'tvshow', None)) for i in sourceDict]
+            
         sourceDict = [(i[0], i[1]) for i in sourceDict if not i[2] == None]
 
-        sourceDict = [(i[0], i[1], i[1].priority) for i in sourceDict]
+        language = self.getLanguage()
+        sourceDict = [(i[0], i[1], i[1].priority, i[1].language) for i in sourceDict]
+        sourceDict = [(i[0], i[1], i[2]) for i in sourceDict if any(x in i[3] for x in language)]
 
         if quality == 'SD':
             sourceDict = [i for i in sourceDict if i[2] == 0]
@@ -91,6 +94,9 @@ class sources:
         string2 = control.lang(32405).encode('utf-8')
         string3 = control.lang(32406).encode('utf-8')
 
+        try: timeout = int(control.setting('scrapers.timeout.1'))
+        except: timeout = 20
+        
         for i in range(0, (timeout * 2) + 60):
             try:
                 if xbmc.abortRequested == True: return sys.exit()
@@ -123,8 +129,11 @@ class sources:
             except:
                 pass
 
-        progressDialog.update(100, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
-
+        if progressDialog: progressDialog.update(100, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
+        else:
+            progressDialog.create(control.addonInfo('name'), '')
+            progressDialog.update(100, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
+        
         items = self.sourcesFilter()
 
         filter = [i for i in items if i['source'].lower() in self.hostcapDict and i['debrid'] == '']
@@ -137,19 +146,14 @@ class sources:
 
         for i in range(len(items)):
             try:
-                if progressDialog.iscanceled(): break
-                if xbmc.abortRequested == True: return sys.exit()
                 url = self.sourcesResolve(items[i])
                 if u == None: u = url
                 if not url == None: break
             except:
                 pass
-
         try: progressDialog.close()
         except: pass
-
         return u
-
 
     def getURISource(self, url):
         u = None
@@ -535,5 +539,7 @@ class sources:
 
         self.hostblockDict = []
 
-
-
+    def getLanguage(self):
+        langDict = {'Italian': ['it'], 'English': ['en'], 'German': ['de'], 'German+English': ['de','en'], 'French': ['fr'], 'French+English': ['fr', 'en'], 'Portuguese': ['pt'], 'Portuguese+English': ['pt', 'en'], 'Polish': ['pl'], 'Polish+English': ['pl', 'en'], 'Korean': ['ko'], 'Korean+English': ['ko', 'en'], 'Russian': ['ru'], 'Russian+English': ['ru', 'en'], 'Spanish': ['es'], 'Spanish+English': ['es', 'en']}
+        name = control.setting('providers.lang')
+        return langDict.get(name, ['en'])

@@ -73,7 +73,7 @@ Playlists organized by categories and any source comes from Youtube users.
 
 <addon id="plugin.video.AmerikanoTuga"
        name="[COLOR red][B]AMERIKANO[/B][/COLOR][COLOR green][B]TUGA[/B][/COLOR]"
-       version="0.0.5"
+       version="0.0.6"
        provider-name="Amerikano Tuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -94,6 +94,13 @@ Playlists organized by categories and any source comes from Youtube users.
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
+
+  <extension point="xbmc.addon.repository" name="repository.AmerikanoTuga">
+		<info compressed="false">http://amerikanotuga.tech/repo/addons.xml</info>
+		<checksum>http://amerikanotuga.tech/repo/addons.xml.md5</checksum>
+		<datadir zip="true">http://amerikanotuga.tech/repo/zip/</datadir>
+	</extension>
+
 
 
   <extension point="xbmc.addon.metadata">
@@ -1314,7 +1321,7 @@ Vip Secrettv Repository
   </extension>
 </addon>
 
-<addon id="script.module.covenant" name="Covenant Module" version="1.00.000" provider-name="Covenant">
+<addon id="script.module.covenant" name="Covenant Module" version="1.00.006" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

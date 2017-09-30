@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.AmerikanoTuga"
        name="[COLOR red][B]AMERIKANO[/B][/COLOR][COLOR green][B]TUGA[/B][/COLOR]"
-       version="0.0.5"
+       version="0.0.6"
        provider-name="Amerikano Tuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -23,6 +23,13 @@
     <provides>video</provides>
   </extension>
   
+  <extension point="xbmc.addon.repository" name="repository.AmerikanoTuga">
+		<info compressed="false">http://amerikanotuga.tech/repo/addons.xml</info>
+		<checksum>http://amerikanotuga.tech/repo/addons.xml.md5</checksum>
+		<datadir zip="true">http://amerikanotuga.tech/repo/zip/</datadir>
+	</extension>
+  	
+
   	
   <extension point="xbmc.addon.metadata">
     <summary>Amerikano Tuga</summary>
