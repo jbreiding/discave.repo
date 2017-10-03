@@ -29,6 +29,7 @@ from resources.lib.modules import client
 from resources.lib.modules import debrid
 from resources.lib.modules import workers
 from resources.lib.modules import source_utils
+from resources.lib.modules import log_utils
 
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
@@ -292,8 +293,7 @@ class sources:
         except:
             pass
 
-
-    def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, timeout=30):
+    def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, quality='HD', timeout=30):
 
         progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
         progressDialog.create(control.addonInfo('name'), '')
@@ -383,13 +383,40 @@ class sources:
             except:
                 pass
 
-        try: progressDialog.close()
-        except: pass
+                
+        if control.addonInfo('id') == 'plugin.video.bennu':
+            try:
+                if progressDialog: progressDialog.update(100, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
 
-        self.sourcesFilter()
+                items = self.sourcesFilter()
+                
+                if quality == 'RD': items = [i for i in items if i['debrid'] != '']
+                elif quality == 'SD': items = [i for i in items if i['quality'] == 'SD' and i['debrid'] == '']
+                elif quality == 'HD': items = [i for i in items if i['quality'] != 'SD']
 
-        return self.sources
+                if control.setting('bennu.dev.log') == 'true':
+                    log_utils.log('Sources Returned: %s' % str(items), log_utils.LOGNOTICE)
 
+                try: progressDialog.close()
+                except: pass
+
+                if quality == 'AUTO': 
+                    u = self.sourcesDirect(items)
+                else: 
+                    u = self.sourcesDialog(items, addon_name='Bennu')
+
+                return u   
+            except:
+                try: progressDialog.close()
+                except: pass
+                return
+        else: 
+            try: progressDialog.close()
+            except: pass
+
+            self.sourcesFilter()
+
+            return self.sources
 
     def prepareSources(self):
         try:
@@ -556,11 +583,13 @@ class sources:
 
     def sourcesFilter(self):
         provider = control.setting('hosts.sort.provider')
-
+        if provider == '': provider = 'false'
+        
         quality = control.setting('hosts.quality')
         if quality == '': quality = '0'
 
         captcha = control.setting('hosts.captcha')
+        if captcha == '': captcha = 'true'
 
         HEVC = control.setting('HEVC')
 
@@ -608,9 +637,6 @@ class sources:
         if quality in ['0', '1', '2']: filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i and not 'memberonly' in i]
         if quality in ['0', '1', '2', '3']: filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i and not 'memberonly' in i]
 
-        #filter += [i for i in self.sources if i['quality'] == 'SD']
-        #if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'SCR']
-        #if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'CAM']
         filter += [i for i in self.sources if i['quality'] in ['SD', 'SCR', 'CAM']]
         self.sources = filter
 
@@ -629,7 +655,7 @@ class sources:
             self.sources = [i for i in self.sources if not i['language'] == 'en'] + [i for i in self.sources if i['language'] == 'en']
 
         self.sources = self.sources[:2000]
-
+        
         for i in range(len(self.sources)):
             u = self.sources[i]['url']
 
@@ -638,9 +664,10 @@ class sources:
             q = self.sources[i]['quality']
 
             s = self.sources[i]['source']
-
+            
             if q == 'SD': q = source_utils.check_sd_url(u)
-
+            self.sources[i].update({'quality': q})
+            
             s = s.rsplit('.', 1)[0]
 
             l = self.sources[i]['language']
@@ -669,8 +696,9 @@ class sources:
 
             self.sources[i]['label'] = label.upper()
 
-        if not HEVC == 'true':
-            self.sources = [i for i in self.sources if not 'HEVC' in str(i['label'])]
+        try: 
+            if not HEVC == 'true': self.sources = [i for i in self.sources if not 'HEVC' in i['label']]
+        except: pass
 
         return self.sources
 
@@ -733,9 +761,13 @@ class sources:
             return
 
 
-    def sourcesDialog(self, items):
+    def sourcesDialog(self, items, addon_name=''):
         try:
-            labels = [i['label'] for i in items]
+        
+            if addon_name == 'Bennu':
+                labels = [re.sub('\d+\s*\|\s*', '', i['label']) for i in items]
+            else:
+                labels = [i['label'] for i in items]
 
             select = control.selectDialog(labels)
             if select == -1: return 'close://'
@@ -868,13 +900,12 @@ class sources:
 
         return u
 
-
     def errorForSources(self):
         control.infoDialog(control.lang(32401).encode('utf-8'), sound=False, icon='INFO')
 
 
     def getLanguage(self):
-        langDict = {'Italian': ['it'], 'English': ['en'], 'German': ['de'], 'German+English': ['de','en'], 'French': ['fr'], 'French+English': ['fr', 'en'], 'Portuguese': ['pt'], 'Portuguese+English': ['pt', 'en'], 'Polish': ['pl'], 'Polish+English': ['pl', 'en'], 'Korean': ['ko'], 'Korean+English': ['ko', 'en'], 'Russian': ['ru'], 'Russian+English': ['ru', 'en'], 'Spanish': ['es'], 'Spanish+English': ['es', 'en']}
+        langDict = {'English': ['en'], 'Italian': ['it'], 'Italian+English': ['it','en'], 'German': ['de'], 'German+English': ['de','en'], 'French': ['fr'], 'French+English': ['fr', 'en'], 'Portuguese': ['pt'], 'Portuguese+English': ['pt', 'en'], 'Polish': ['pl'], 'Polish+English': ['pl', 'en'], 'Korean': ['ko'], 'Korean+English': ['ko', 'en'], 'Russian': ['ru'], 'Russian+English': ['ru', 'en'], 'Spanish': ['es'], 'Spanish+English': ['es', 'en'], 'Greek': ['gr'], 'Greek+English': ['gr', 'en']} 
         name = control.setting('providers.lang')
         return langDict.get(name, ['en'])
 
@@ -903,7 +934,7 @@ class sources:
             return []
 
     def _getPrimaryLang(self):
-        langDict = {'Italian': 'it', 'English': 'en', 'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko', 'Russian': 'ru', 'Russian+English': 'ru', 'Spanish': 'es', 'Spanish+English': 'es'}
+        langDict = { 'English': 'en', 'Italian': 'it', 'Italian+English': 'it', 'German': 'de', 'German+English': 'de', 'French': 'fr', 'French+English': 'fr', 'Portuguese': 'pt', 'Portuguese+English': 'pt', 'Polish': 'pl', 'Polish+English': 'pl', 'Korean': 'ko', 'Korean+English': 'ko', 'Russian': 'ru', 'Russian+English': 'ru', 'Spanish': 'es', 'Spanish+English': 'es', 'Greek': 'gr', 'Greek+English': 'gr'} 
         name = control.setting('providers.lang')
         lang = langDict.get(name)
         return lang
@@ -911,7 +942,6 @@ class sources:
     def getTitle(self, title):
         title = cleantitle.normalize(title)
         return title
-
 
     def getConstants(self):
         self.itemProperty = 'plugin.video.covenant.container.items'
