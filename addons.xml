@@ -172,7 +172,7 @@ em procura livre na internet.
     </extension>
 </addon>
 
-<addon id="plugin.video.covenant" version="1.1.18" name="Covenant" provider-name="Covenant">
+<addon id="plugin.video.covenant" version="1.1.19" name="Covenant" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.covenant" />
@@ -1321,7 +1321,7 @@ Vip Secrettv Repository
   </extension>
 </addon>
 
-<addon id="script.module.covenant" name="Covenant Module" version="1.00.008" provider-name="Covenant">
+<addon id="script.module.covenant" name="Covenant Module" version="1.00.009" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -1398,7 +1398,7 @@ Vip Secrettv Repository
     </extension>
 </addon>
 
-<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.32" provider-name="Team NaN">
+<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.33" provider-name="Team NaN">
         <requires>
                 <import addon="xbmc.python" version="2.1.0"/>
                 <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -1551,7 +1551,7 @@ Vip Secrettv Repository
 	</extension>
 </addon>
 
-<addon id="script.module.urlresolver" name="URLResolver" version="4.0.06" provider-name="Eldorado, tknorris, jsergio">
+<addon id="script.module.urlresolver" name="URLResolver" version="4.0.07" provider-name="Eldorado, tknorris, jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" optional="true" />

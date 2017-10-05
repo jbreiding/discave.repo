@@ -49,15 +49,15 @@ class indexer:
 
     def root(self):
         try:
+            cache.cache_version_check()
             regex.clear()
-            url = 'https://pastebin.com/raw/RLDktHpx'
+            url = base64.b64decode('aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L1JMRGt0SHB4')
             self.list = self.bennu_list(url, enc=True)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
         except:
             pass
-
 
     def get(self, url):
         try:
@@ -67,7 +67,6 @@ class indexer:
             return self.list
         except:
             pass
-
 
     def getq(self, url):
         try:
@@ -105,16 +104,65 @@ class indexer:
             pass
             
     def private(self):
-        try:
-            url = 'https://pastebin.com/raw/%s' % control.setting('pb_private')
-            result = client.request(url)
+            skip_m = False
+            pb_list = []
+            pb_list.append(control.setting('pb_private'))
+            pb_list.append(control.setting('pb_private2'))
+            pb_list.append(control.setting('pb_private3'))
+            pb_list.append(control.setting('pb_private4'))
+            pb_list.append(control.setting('pb_private5'))
+
+            pb_list = [base64.b64decode('aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3LyVz') % i for i in pb_list if not i == '' and len(i) == 8]
+            
+            if len(pb_list) == 0: quit()
+            elif len(pb_list) == 1: skip_m = True
+                    
+            pattern = '''%s''' % base64.b64decode('W2F0PGlzbWw+ZW5dezEwfShbXjxdKylbYVwvdDxpc21sPmVuezExfV0=')
+
+            if skip_m:
+                result = client.request(pb_list[0])
+                try:
+                    n = re.findall(pattern, result)[0]
+                except:
+                    result = self.aes_dec(result)
+            else:
+                namelst = []
+                for i in pb_list:
+                    try:
+                        n = None
+                        result = client.request(i)
+                        pattern = '''%s''' % base64.b64decode('W2F0PGlzbWw+ZW5dezEwfShbXjxdKylbYVwvdDxpc21sPmVuezExfV0=')
+                        
+                        try:
+                            n = re.findall(pattern, result)[0]
+                        except:
+                            result = self.aes_dec(result)
+                            n = re.findall(pattern, result)[0]
+                        if n: namelst += [(n, i)]
+                    except: pass
+                
+                dialog_list = []
+                for i, n in namelst: dialog_list += [(n, i)]
+
+                select = control.selectDialog([i[1] for i in dialog_list], control.addonInfo('name'))
+
+                if select == -1: return False
+                else: result = client.request(dialog_list[select][0])
+                    
             self.list = self.bennu_list('', result=result)
             for i in self.list: i.update({'content': 'videos'})
             self.addDirectory(self.list)
             return self.list
-        except:
-            pass
 
+    def aes_dec(self, result):
+        try:
+            from resources.lib.modules import pyaes
+            aes = pyaes.AESModeOfOperationOFB(control.key, iv=control.iv)
+            result = aes.decrypt(result.decode('string-escape'))
+            return result
+        except:
+            return result
+        
     def parental_controls(self):
         
         dialog = xbmcgui.Dialog()
@@ -388,10 +436,7 @@ class indexer:
             
             if result == None: result = cache.get(client.request, 1, url)
             
-            if enc == True:
-                from resources.lib.modules import pyaes
-                aes = pyaes.AESModeOfOperationOFB(control.key, iv=control.iv)
-                result = aes.decrypt(result.decode('string-escape'))
+            if enc == True: result = self.aes_dec(result)
 
             if result.strip().startswith('#EXTM3U') and '#EXTINF' in result:
                 result = re.compile('#EXTINF:.+?\,(.+?)\n(.+?)\n', re.MULTILINE|re.DOTALL).findall(result)
