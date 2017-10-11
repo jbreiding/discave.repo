@@ -114,6 +114,33 @@ em procura livre na internet.
   </extension>
 </addon>
 
+<addon id="plugin.video.Anima.PT"
+       name="Anima.PT"
+       version="1.0.1"
+       provider-name="AnimaÃ§Ã£o PT">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.beautifulsoup" version="3.2.1"/>
+	<import addon="script.module.simple.downloader" version="0.9.4"/>
+	<import addon="script.module.beautifulsoup4"/>
+	<import addon="script.module.requests"/>
+	<import addon="script.module.httplib2"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="plugin.video.youtube" optional="true" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Desenhos animados em PortuguÃªs</summary>
+    <description lang="en">Criado para vocÃªs! Obrigado por estarem nas nossas vidas.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.cantinhoav"
        name="[COLOR white][B]Cantinho[/B][/COLOR][COLOR red][B]AV[/B][/COLOR][COLOR white][B]TV[/B][/COLOR]"
        version="2.1"
@@ -172,7 +199,7 @@ em procura livre na internet.
     </extension>
 </addon>
 
-<addon id="plugin.video.covenant" version="1.1.19" name="Covenant" provider-name="Covenant">
+<addon id="plugin.video.covenant" version="1.1.21" name="Covenant" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.covenant" />
@@ -204,13 +231,13 @@ em procura livre na internet.
     			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
     			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>[B]1.1.13[/B][CR]Code cosmetics</news>
+		<news></news>
 	</extension>
 </addon>
 
 <addon id="plugin.video.documented.hd"
        name="Documented.HD"
-       version="3.0a"
+       version="3.1"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -229,8 +256,8 @@ em procura livre na internet.
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">[ Box Edition ]</summary>
-    <description>Alternative documentaries in HD quality.
+    <summary lang="en">[ Icon Edition ]</summary>
+    <description>Real Stories Documentaries in HD Quality.
 Playlists organized by categories and any source comes from Youtube users.
 [B][COLOR lime]Advised the latest version of youtube 5.*.*[/B][/COLOR]</description>
     <platform>all</platform>
@@ -1088,7 +1115,7 @@ em procura livre na internet.
 	</extension>
 </addon>
 
-<addon id="repository.pancas" name="Pancas repository" version="1.0.6" provider-name="Pancas">
+<addon id="repository.pancas" name="Pancas repository" version="1.0.7" provider-name="Pancas">
 	<extension point="xbmc.addon.repository" name="Pancas Add-on Repository">
 		<info compressed="false">http://raw.github.com/Sup3Roque/Pancas/master/addons.xml</info>
 		<checksum>http://raw.github.com/Sup3Roque/Pancas/master/addons.xml.md5</checksum>
@@ -1239,7 +1266,7 @@ Vip Secrettv Repository
   <extension library="lib" point="xbmc.python.module" />
 </addon>
 
-<addon id="script.covenant.artwork" version="1.0.2" name="Covenant Artwork" provider-name="Covenant">
+<addon id="script.covenant.artwork" version="1.0.3" name="Covenant Artwork" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -1251,7 +1278,7 @@ Vip Secrettv Repository
 	</extension>
 </addon>
 
-<addon id="script.covenant.metadata" version="1.0.0" name="Covenant Metadata" provider-name="Covenant">
+<addon id="script.covenant.metadata" version="1.0.1" name="Covenant Metadata" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -1321,7 +1348,7 @@ Vip Secrettv Repository
   </extension>
 </addon>
 
-<addon id="script.module.covenant" name="Covenant Module" version="1.00.009" provider-name="Covenant">
+<addon id="script.module.covenant" name="Covenant Module" version="1.00.011" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -1398,7 +1425,7 @@ Vip Secrettv Repository
     </extension>
 </addon>
 
-<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.33" provider-name="Team NaN">
+<addon id="script.module.nanscrapers" name="NaN Scrapers" version="0.5.35" provider-name="Team NaN">
         <requires>
                 <import addon="xbmc.python" version="2.1.0"/>
                 <import addon="script.module.beautifulsoup" version="3.2.1"/>

@@ -36,6 +36,7 @@ from resources.lib.modules import youtube
 from resources.lib.modules import views
 from resources.lib.modules import trakt
 from resources.lib.modules import log_utils
+from resources.lib.modules import dom_parser2
 
 addon_id            = 'plugin.video.bennu'
 AddonTitle          = 'bennu'
@@ -91,7 +92,30 @@ class indexer:
         except:
             pass
 
+    def getimdb(self, url):
+        try:
+            self.list = self.imdb_list(url)
+            self.addDirectory(self.list)
+            return self.list
+        except:
+            pass
 
+    def gettrakt(self, url):
+        try:
+            self.list = self.trakt_list(url)
+            self.addDirectory(self.list)
+            return self.list
+        except:
+            pass
+           
+    def getrotten(self, url):
+        try:
+            self.list = self.rotten_list(url)
+            self.addDirectory(self.list)
+            return self.list
+        except:
+            pass
+            
     def developer(self):
         try:
             url = os.path.join(control.dataPath, 'testings.xml')
@@ -407,6 +431,106 @@ class indexer:
             for i in self.list: i.update({'content': 'videos'})
             self.addDirectory(self.list)
 
+    def rotten_list(self, url):
+        
+        c = cache.get(client.request, 72, url)
+        
+        try:
+            pattern = '''\<a\s*href=['"]([^'"]+)['"]\>\s*Next\s*\<\/a\>'''
+            np = re.findall(pattern, c)[0]
+            self.list.append({'nextaction': 'rotten_list', 'next': np})
+        except: pass
+        
+        u = dom_parser2.parse_dom(c, 'div', {'class': 'gray-movie-block'})
+        if u:
+            r = [(dom_parser2.parse_dom(i, 'a', req='href'), \
+                  dom_parser2.parse_dom(i, 'span', {'class': 'subtle'}), \
+                  dom_parser2.parse_dom(i, 'span', {'class': 'tMeterScore'}), \
+                  dom_parser2.parse_dom(i, 'img', req='src'), \
+                  dom_parser2.parse_dom(i, 'p')) for i in u]
+            r = [(i[0][0].content, i[1][0].content.replace('(','').replace(')',''), i[2][0].content, i[3][0].attrs['src'], i[4][0].content) for i in r if i[0] and i[1] and i[2] and i[3] and i[4]]
+        else:
+            u = dom_parser2.parse_dom(c, 'div', {'id': re.compile('row-index-.+?')})
+            r = [(dom_parser2.parse_dom(i, 'a', req='href'), \
+                  dom_parser2.parse_dom(i, 'span', {'class': 'subtle'}), \
+                  dom_parser2.parse_dom(i, 'span', {'class': 'tMeterScore'}), \
+                  dom_parser2.parse_dom(i, 'img', req='src'), \
+                  dom_parser2.parse_dom(i, 'div', {'class': ['info','synopsis']})) for i in u]
+            r = [(i[0][1].content, i[1][0].content.replace('(','').replace(')',''), i[2][0].content, i[3][0].attrs['src'], re.sub('<.+?>','',i[4][0].content)) for i in r if i[0] and i[1] and i[2] and i[3] and i[4]]
+
+        if r:
+            for i in r:
+                try:
+                    name = '%s (%s)' % (client.replaceHTMLCodes(client.removeNonAscii(i[0].encode('utf-8'))), i[1])
+                    original_name = client.replaceHTMLCodes(client.removeNonAscii(i[0].encode('utf-8')))
+
+                    url = '<sublink><preset>search</preset>        <content>movie</content>        <imdb>%s</imdb>        <title>%s</title>        <year>%s</year>        </sublink>        <sublink><preset>searchsd</preset>        <content>movie</content>        <imdb>%s</imdb>        <title>%s</title>        <year>%s</year>        </sublink>        <thumbnail>%s</thumbnail>' % ('0', original_name, i[1], '0', original_name, i[1], i[3])
+                    self.list.append({'name': name, 'vip': '0', 'url': url, 'action': 'play', 'folder': False, 'poster': i[3], 'banner': '0', 'fanart': control.addonInfo('fanart'), 'content': 'movies', 'imdb': '0', 'tvdb': '0', 'tmdb': '0', 'title': original_name, 'originaltitle': original_name, 'tvshowtitle': '0', 'year': i[1], 'premiered': '0', 'season': '0', 'episode': '0', 'worker': '0', 'rating': i[2], 'plot': client.replaceHTMLCodes(i[4])})
+                except: log_utils.log('Scraping Error: Could not add %s to directory.' % str(original_name), log_utils.LOGERROR)
+            return self.list
+
+    def trakt_list(self, url):
+        
+        c = cache.get(client.request, 72, url)
+        
+        u = dom_parser2.parse_dom(c, 'div', {'class': 'grid-item'})
+        r = [(i.attrs['data-runtime'], \
+              dom_parser2.parse_dom(i, 'img', {'class': 'real'})) for i in u]
+        r = [(i[1][0].attrs['title'], re.findall('\(([^\)]+)', 
+              i[1][0].attrs['title'])[0] if '(' in i[1][0].attrs['title'] else '0',
+              i[0], i[1][0].attrs['data-original']) for i in r if i[0] and i[1]]
+              
+        if r:
+            for i in r:
+                try:
+                    name = client.replaceHTMLCodes(i[0])
+                    original_name = re.sub('\s+\(\d+\)', '', name)
+                    try: duration = str(int(i[2]) * 60)
+                    except: duration = 0
+                    url = '<sublink><preset>search</preset>        <content>movie</content>        <imdb>%s</imdb>        <title>%s</title>        <year>%s</year>        </sublink>        <sublink><preset>searchsd</preset>        <content>movie</content>        <imdb>%s</imdb>        <title>%s</title>        <year>%s</year>        </sublink>        <thumbnail>%s</thumbnail>' % ('0', original_name, i[1], '0', original_name, i[1], i[3])
+                    self.list.append({'name': name, 'vip': '0', 'url': url, 'action': 'play', 'folder': False, 'poster': i[3], 'banner': '0', 'fanart': control.addonInfo('fanart'), 'content': 'movies', 'imdb': '0', 'tvdb': '0', 'tmdb': '0', 'title': original_name, 'originaltitle': original_name, 'tvshowtitle': '0', 'year': i[1], 'premiered': '0', 'season': '0', 'episode': '0', 'worker': '0', 'duration': duration})
+                except: log_utils.log('Scraping Error: Could not add %s to directory.' % str(original_name), log_utils.LOGERROR)
+            return self.list
+            
+    def imdb_list(self, url):
+        
+        if url.startswith('http'): i_url = url
+        else: i_url = 'http://www.imdb.com/list/%s/' % url
+        c = cache.get(client.request, 72, i_url)
+
+        try:
+            pattern = '''<meta\s*property=['"]og\:url['"]\s*content=['"]([^'"]+)'''
+            base_url = re.findall(pattern, c)[0]
+            pattern = '''<a\s*href=['"]([^'"]+)['"]>Next\&'''
+            np = re.findall(pattern, c)[0]
+            if not np.startswith('http'): np = urlparse.urljoin(base_url, np)
+            self.list.append({'nextaction': 'imdb_list', 'next': np})
+        except: pass
+        
+        u = dom_parser2.parse_dom(c, 'div', {'class': 'list_item'})
+        r = [(dom_parser2.parse_dom(i, 'div', {'class': 'hover-over-image'}), \
+              dom_parser2.parse_dom(i, 'a', req='href'), \
+              dom_parser2.parse_dom(i, 'span', {'class': 'year_type'}), \
+              dom_parser2.parse_dom(i, 'div', {'class': 'item_description'}), \
+              dom_parser2.parse_dom(i, 'img', req='src'), \
+              dom_parser2.parse_dom(i, 'span', {'class': 'value'})) \
+              for i in u]
+        r = [(i[0][0].attrs['data-const'], i[1][1].content,
+              re.findall('(\d+)', i[2][0].content)[0], re.sub('<.+?>', '', i[3][0].content),
+              i[4][0].attrs['loadlate'] if 'loadlate=' in i[4][0].content else i[4][-1].attrs['src'], \
+              i[5][0].content if i[5][0].content else '0.0', str(int(re.findall('\((\d+)\s*mins', i[3][0].content)[0]) * 60)) \
+              for i in r if i[0] and i[1] and i[2] and i[3] and i[4] and i[5]]
+        
+        if r:
+            for i in r:
+                try:
+                    name = '%s (%s)' % (client.replaceHTMLCodes(i[1]), i[2])
+                    original_name = client.replaceHTMLCodes(i[1])
+                    url = '<sublink><preset>search</preset>        <content>movie</content>        <imdb>%s</imdb>        <title>%s</title>        <year>%s</year>        </sublink>        <sublink><preset>searchsd</preset>        <content>movie</content>        <imdb>%s</imdb>        <title>%s</title>        <year>%s</year>        </sublink>        <thumbnail>%s</thumbnail>' % (i[0], original_name, i[2], i[0], original_name, i[2], i[4])
+                    self.list.append({'name': name, 'vip': '0', 'url': url, 'action': 'play', 'folder': False, 'poster': i[4], 'banner': '0', 'fanart': control.addonInfo('fanart'), 'content': 'movies', 'imdb': i[0], 'tvdb': '0', 'tmdb': '0', 'title': original_name, 'originaltitle': original_name, 'tvshowtitle': '0', 'year': i[2], 'premiered': '0', 'season': '0', 'episode': '0', 'worker': '0', 'plot': i[3], 'rating': i[5], 'duration': i[6]})
+                except: log_utils.log('Scraping Error: Could not add %s to directory.' % str(original_name), log_utils.LOGERROR)
+            return self.list
+
     def bennu_list(self, url, result=None, enc=False):
         checks = ['UcEMiYZU','r2kRsk9a']
         if any(x in url for x in checks): 
@@ -538,6 +662,26 @@ class indexer:
                     url = '<preset>tvtuner</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s' % (url, image2, fanart2, meta)
                     action = 'tvtuner'
 
+                try: imdb_list = re.findall('<imdb_list>(.+?)</imdb_list>', item)[0]
+                except: imdb_list = False
+                if imdb_list:
+                    action = 'imdb_list'; url = imdb_list; folder = True
+
+                try: trakt_list = re.findall('<trakt_list>(.+?)</trakt_list>', item)[0]
+                except: trakt_list = False
+                if trakt_list:
+                    action = 'trakt_list'; url = trakt_list; folder = True
+                    
+                try: rotten_list = re.findall('<rotten_list>(.+?)</rotten_list>', item)[0]
+                except: rotten_list = False
+                if rotten_list:
+                    action = 'rotten_list'; url = rotten_list; folder = True
+                    
+                try: yt_channel = re.findall('<yt_channel>(.+?)</yt_channel>', item)[0]
+                except: yt_channel = False
+                if yt_channel:
+                    action = 'youtubeChannel'; url = yt_channel; folder = True
+                    
                 try: imdb = re.findall('<imdb>(.+?)</imdb>', meta)[0]
                 except: imdb = '0'
 
@@ -806,7 +950,6 @@ class indexer:
                     except: pass
                     try: url += '&content=%s' % urllib.quote_plus(i['content'])
                     except: pass
-
                     if i['action'] == 'plugin' and 'url' in i: url = i['url']
 
                     try: devurl = dict(urlparse.parse_qsl(urlparse.urlparse(url).query))['action']

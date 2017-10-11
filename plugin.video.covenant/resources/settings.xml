@@ -17,6 +17,7 @@
         <setting id="movie.widget" type="enum" label="32320" lvalues="32302|32321|32322|32323|32324|32580" default="1" />
         <setting id="tv.widget.alt" type="enum" label="32325" lvalues="32302|32326|32327|32328" default="2" visible="!eq(-11,)" />  
         <setting id="tv.widget" type="enum" label="32325" lvalues="32302|32326" default="1" visible="eq(-12,)" />
+        <setting id="prgr.sortorder" type="enum" label="32584" lvalues="32585|32586" default="1" visible="!eq(-13,)" />
         <setting id="lists.widget" type="enum" label="32329" lvalues="32302|32301" default="1" />
     </category>
     <category label="32330">
@@ -25,6 +26,7 @@
         <setting type="lsep" label="32338" />
         <setting id="hosts.quality" type="enum" label="32339" values="4K|1440p|1080p|720p|480p" default="0" />
         <setting id="autoplay.sd" type="bool" label="32340" default="false" />
+        <setting id="sources.extrainfo" type="bool" label="32587" default="true" />
         <setting id="HEVC" type="bool" label="32363" default="true" />
         <setting id="hosts.captcha" type="bool" label="32341" default="true" />
         <setting id="hosts.sort.provider" type="bool" label="32342" default="false" />
@@ -169,6 +171,9 @@
         <setting id="provider.trt" type="bool" label="TRT" default="true" />
         <setting id="provider.paczymy" type="bool" label="PACZYMY" default="true" />
         <setting id="provider.openkatalog" type="bool" label="OPENKATALOG" default="true" />
+        <setting id="provider.boxfilm" type="bool" label="BOXFILM" default="true" />
+        <setting id="provider.ekinomaniak" type="bool" label="EKINOMANIAK" default="true" />
+        <setting id="provider.filiser" type="bool" label="FILISER" default="true" />
         <setting label="Korean" type="lsep" />
         <setting id="provider.drama4u" type="bool" label="DRAMA4U" default="true" />
         <setting id="provider.dramabus" type="bool" label="DRAMABUS" default="true" />
@@ -188,12 +193,13 @@
         <setting id="provider.pelisplustv" type="bool" label="PELISPLUSTV" default="true" />
         <setting id="provider.megapelistv" type="bool" label="MEGAPELIS" default="true" />
         <setting id="provider.pepecine" type="bool" label="PEPECINE" default="true" />
+        <setting id="provider.seriespapaya" type="bool" label="SERIESPAPAYA" default="true" />
         <setting label="Greek" type="lsep" />
         <setting id="provider.gamatotv" type="bool" label="GAMATO" default="true" />
         <setting id="provider.tainiomania" type="bool" label="TAINIOMANIA" default="true" />
         <setting id="provider.tainiesonline" type="bool" label="TAINIESONLINE" default="true" />
-
-
+        <setting id="provider.xrysoi" type="bool" label="XRYSOI" default="true" />
+        <setting id="provider.liomenoi" type="bool" label="LIOMENOI" default="true" />
     </category>
     <category label="32346">
         <setting type="lsep" label="FANART.TV" />
