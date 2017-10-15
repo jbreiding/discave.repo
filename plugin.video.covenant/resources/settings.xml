@@ -23,6 +23,7 @@
     <category label="32330">
         <setting id="hosts.mode" type="enum" label="32331" lvalues="32332|32333|32334" default="1" />
         <setting id="progress.dialog" type="enum" label="32335" lvalues="32336|32337" default="0" />
+        <setting id="prem.identify" type="enum" label="32588" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32598" default="0" />
         <setting type="lsep" label="32338" />
         <setting id="hosts.quality" type="enum" label="32339" values="4K|1440p|1080p|720p|480p" default="0" />
         <setting id="autoplay.sd" type="bool" label="32340" default="false" />
@@ -39,6 +40,7 @@
         <setting label="English" type="lsep" />
         <setting type="sep" />
         <setting id="provider.1movies" type="bool" label="1MOVIES" default="true" />
+        <setting id="provider.123hulu" type="bool" label="123HULU" default="true" />
         <setting id="provider.afdah" type="bool" label="AFDAH" default="true" />
         <setting id="provider.allrls" type="bool" label="ALLRLS" default="true" />
         <setting id="provider.allucen" type="bool" label="ALLUC" default="true" />
@@ -65,7 +67,9 @@
         <setting id="provider.library" type="bool" label="LIBRARY" default="true" />
         <setting id="provider.miradetodo" type="bool" label="MIRADETODO" default="true" />
         <setting id="provider.movie25" type="bool" label="MOVIE25" default="true" />
+        <setting id="provider.moviego" type="bool" label="MOVIEGO" default="true" />
         <setting id="provider.movies14" type="bool" label="MOVIES14" default="true" />
+        <setting id="provider.moviesgold" type="bool" label="MOVIESGOLD" default="true" />
         <setting id="provider.movieshd" type="bool" label="MOVIESHD" default="true" />
         <setting id="provider.moviesplanet" type="bool" label="MOVIESPLANET" default="true" />
         <setting id="provider.moviexk" type="bool" label="MOVIEXK" default="true" />
@@ -88,6 +92,7 @@
         <setting id="provider.pubfilmto" type="bool" label="PUBFILMTO" default="false" />
         <setting id="provider.putlocker" type="bool" label="PUTLOCKER" default="true" />
         <setting id="provider.releasebb" type="bool" label="RELEASEBB" default="true" />
+        <setting id="provider.rjsmovie" type="bool" label="RJSMOVIE" default="true" />
         <setting id="provider.rlsbb" type="bool" label="RLSBB" default="true" />
         <setting id="provider.rlsmovies" type="bool" label="RLSMOVIES" default="true" />
         <setting id="provider.scenedown" type="bool" label="SCENEDOWN" default="true" />

@@ -841,3 +841,7 @@ msgstr "Nedavno emitirano"
 msgctxt "#32586"
 msgid "Recently watched"
 msgstr "Nedavno gledano"
+
+msgctxt "#32587"
+msgid "Show Extra Source Info"
+msgstr "Prikaži dodatne informacije izvora"

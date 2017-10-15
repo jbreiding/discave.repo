@@ -846,3 +846,7 @@ msgstr "Trasmessi di recente"
 msgctxt "#32586"
 msgid "Recently watched"
 msgstr "Visti di recente"
+
+msgctxt "#32587"
+msgid "Show Extra Source Info"
+msgstr "Mostra informazioni da fonti aggiuntive"  
