@@ -1,6 +1,6 @@
-'''
-SpeedVideo.net urlresolver plugin
-Copyright (C) 2014 TheHighway and tknorris
+"""
+urlresolver XBMC Addon
+Copyright (C) 2017 Anis3
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,11 +14,10 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
-'''
-
+"""
 from __generic_resolver__ import GenericResolver
 
-class SpeedVideoResolver(GenericResolver):
-    name = "speedvideo"
-    domains = ["speedvideo.net"]
-    pattern = '(?://|\.)(speedvideo\.net)/(?:embed-)?([0-9a-zA-Z]+)'
+class BitvidResolver(GenericResolver):
+    name = "bitvid.sx"
+    domains = ["bitvid.sx"]
+    pattern = '(?://|\.)(bitvid\.sx)/(?:embed[/-])?([0-9A-Za-z]+)'

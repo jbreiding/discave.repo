@@ -18,6 +18,7 @@
 '''
 
 
+
 import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
@@ -25,15 +26,13 @@ from resources.lib.modules import client
 from resources.lib.modules import debrid
 from resources.lib.modules import source_utils
 
-
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['300mbmoviesdl.com', 'hevcbluray.info']
-        self.base_link = 'http://hevcbluray.info'
+        self.domains = ['sceper.unblocked.pro']
+        self.base_link = 'https://sceper.unblocked.pro'
         self.search_link = '/search/%s/feed/rss2/'
-
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
@@ -43,6 +42,25 @@ class source:
         except:
             return
 
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
+        try:
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
+
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        try:
+            if url == None: return
+
+            url = urlparse.parse_qs(url)
+            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
+            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
 
     def sources(self, url, hostDict, hostprDict):
         try:
@@ -69,7 +87,7 @@ class source:
 
             posts = client.parseDOM(r, 'item')
 
-            hostDict = hostprDict + hostDict
+            hostDict = hostprDict
 
             items = []
 
@@ -77,29 +95,35 @@ class source:
                 try:
                     t = client.parseDOM(post, 'title')[0]
 
-                    c = client.parseDOM(post, 'content.+?')
+                    c = client.parseDOM(post, 'content.+?')[0]
 
-                    u = c[0].split('<h1 ')
-                    u = [i for i in u if 'Download Links' in i]
-                    u = client.parseDOM(u, 'a', ret='href')
+                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
+                    s = s[0] if s else '0'
 
-                    try: s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c[0])[0]
-                    except: s = '0'
+                    u = zip(client.parseDOM(c, 'a', ret='href'), client.parseDOM(c, 'a'))
+                    u = [(i[0], i[1], re.findall('PT(\d+)$', i[1])) for i in u]
+                    u = [(i[0], i[1]) for i in u if not i[2]]
 
-                    items += [(t, i, s) for i in u]
+                    if 'tvshowtitle' in data:
+                         u = [([x for x in i[0].strip('//').split('/')][-1], i[0]) for i in u]
+                    else:
+                         u = [(t, i[0], s) for i in u]
+
+                    items += u
                 except:
                     pass
 
             for item in items:
                 try:
                     name = item[0]
+
                     name = client.replaceHTMLCodes(name)
 
-                    t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
+                    t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name, flags=re.I)
 
                     if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
 
-                    y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
+                    y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name, flags=re.I)[-1].upper()
 
                     if not y == hdlr: raise Exception()
 
@@ -108,7 +132,7 @@ class source:
                     try:
                         size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', item[2])[-1]
                         div = 1 if size.endswith(('GB', 'GiB')) else 1024
-                        size = float(re.sub('[^0-9|/.|/,]', '', size)) / div
+                        size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
                         info.append(size)
                     except:
@@ -126,7 +150,7 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': 'HEVC', 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
 

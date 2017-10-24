@@ -42,20 +42,20 @@ addon_id            = 'plugin.video.bennu'
 AddonTitle          = 'bennu'
 PARENTAL_FOLDER     = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'parental'))
 PARENTAL_FILE       = xbmc.translatePath(os.path.join(PARENTAL_FOLDER , 'control.txt'))
-
+tm_img_link = 'https://image.tmdb.org/t/p/w%s%s'
 
 class indexer:
     def __init__(self):
         self.list = [] ; self.hash = []
 
     def root(self):
+        cache.cache_version_check()
         try:
-            cache.cache_version_check()
             regex.clear()
-            url = base64.b64decode('aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L1JMRGt0SHB4')
+            url = base64.b64decode('aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L2h1QTVaSFhV')
             self.list = self.bennu_list(url, enc=True)
             for i in self.list: i.update({'content': 'addons'})
-            self.addDirectory(self.list)
+            self.addDirectory(self.list, cache=False)
             return self.list
         except:
             pass
@@ -560,7 +560,9 @@ class indexer:
             
             if result == None: result = cache.get(client.request, 1, url)
             
-            if enc == True: result = self.aes_dec(result)
+            checks = ['<item>','<dir>','<plugin>','<info>','<name>','<link>']
+            if not any(x in result for x in checks): result = self.aes_dec(result)
+            elif enc == True: result = self.aes_dec(result)
 
             if result.strip().startswith('#EXTM3U') and '#EXTINF' in result:
                 result = re.compile('#EXTINF:.+?\,(.+?)\n(.+?)\n', re.MULTILINE|re.DOTALL).findall(result)
@@ -728,14 +730,12 @@ class indexer:
         self.meta = []
         total = len(self.list)
         if total == 0: return
-        
-        multi = [i['imdb'] for i in self.list]
-        multi = [x for y,x in enumerate(multi) if x not in multi[:y]]
-        if len(multi) == 1:
-            self.movie_info(0) ; self.tv_info(0)
-            if self.meta: metacache.insert(self.meta)
+     
+        self.fanart_tv_art_link = 'http://webservice.fanart.tv/v3/movies/%s'     
+        self.fanart_tv_headers = {'api-key': 'NDZkZmMyN2M1MmE0YTc3MjY3NWQ4ZTMyYjdiY2E2OGU='.decode('base64')}
 
         for i in range(0, total): self.list[i].update({'metacache': False})
+        
         self.list = metacache.fetch(self.list, self.lang, self.user)
         
         pDialog = xbmcgui.DialogProgressBG()
@@ -752,13 +752,16 @@ class indexer:
                 if i <= total: threads.append(workers.Thread(self.tv_info, i))
             [i.start() for i in threads]
             [i.join() for i in threads]
+            
+            if self.meta: metacache.insert(self.meta)
+
         pDialog.close()
 
-        if self.meta: 
-            metacache.insert(self.meta)
-            self.list = metacache.fetch(self.list, self.lang, self.user)
-            
-
+        try:
+            self.list = metacache.local(self.list, tm_img_link, 'poster3', 'fanart2')
+            for i in self.list: i.update({'clearlogo': '0', 'clearart': '0'})
+        except: pass
+        
     def movie_info(self, i):
         try:
             if self.list[i]['metacache'] == True: raise Exception()
@@ -825,11 +828,105 @@ class indexer:
                 cast.append({'name': person['person']['name'], 'role': person['character']})
             cast = [(person['name'], person['role']) for person in cast]
 
-            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'user': self.user, 'item': {'meta_title': title, 'meta_year': year, 'code': imdb, 'imdb': imdb, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
+            try:
+                if self.lang == 'en' or self.lang not in item.get('available_translations', [self.lang]): raise Exception()
+
+                trans_item = trakt.getMovieTranslation(imdb, self.lang, full=True)
+
+                title = trans_item.get('title') or title
+                tagline = trans_item.get('tagline') or tagline
+                plot = trans_item.get('overview') or plot
+            except:
+                pass
+
+            try:
+                artmeta = True
+                #if self.fanart_tv_user == '': raise Exception()           
+                art = client.request(self.fanart_tv_art_link % imdb, headers=self.fanart_tv_headers, timeout='10', error=True)
+                try: art = json.loads(art)
+                except: artmeta = False
+            except:
+                pass
+                
+            try:
+                poster2 = art['movieposter']
+                poster2 = [x for x in poster2 if x.get('lang') == self.lang][::-1] + [x for x in poster2 if x.get('lang') == 'en'][::-1] + [x for x in poster2 if x.get('lang') in ['00', '']][::-1]
+                poster2 = poster2[0]['url'].encode('utf-8')
+            except:
+                poster2 = '0'
+
+            try:
+                if 'moviebackground' in art: fanart = art['moviebackground']
+                else: fanart = art['moviethumb']
+                fanart = [x for x in fanart if x.get('lang') == self.lang][::-1] + [x for x in fanart if x.get('lang') == 'en'][::-1] + [x for x in fanart if x.get('lang') in ['00', '']][::-1]
+                fanart = fanart[0]['url'].encode('utf-8')
+            except:
+                fanart = '0'
+
+            try:
+                banner = art['moviebanner']
+                banner = [x for x in banner if x.get('lang') == self.lang][::-1] + [x for x in banner if x.get('lang') == 'en'][::-1] + [x for x in banner if x.get('lang') in ['00', '']][::-1]
+                banner = banner[0]['url'].encode('utf-8')
+            except:
+                banner = '0'
+
+            try:
+                if 'hdmovielogo' in art: clearlogo = art['hdmovielogo']
+                else: clearlogo = art['clearlogo']
+                clearlogo = [x for x in clearlogo if x.get('lang') == self.lang][::-1] + [x for x in clearlogo if x.get('lang') == 'en'][::-1] + [x for x in clearlogo if x.get('lang') in ['00', '']][::-1]
+                clearlogo = clearlogo[0]['url'].encode('utf-8')
+            except:
+                clearlogo = '0'
+
+            try:
+                if 'hdmovieclearart' in art: clearart = art['hdmovieclearart']
+                else: clearart = art['clearart']
+                clearart = [x for x in clearart if x.get('lang') == self.lang][::-1] + [x for x in clearart if x.get('lang') == 'en'][::-1] + [x for x in clearart if x.get('lang') in ['00', '']][::-1]
+                clearart = clearart[0]['url'].encode('utf-8')
+            except:
+                clearart = '0'
+
+            try:
+                self.tm_user = control.setting('tm.user')
+                self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key=%s&language=en-US&include_image_language=en,%s,null' % ('%s', self.tm_user, self.lang)
+                if self.tm_user == '': raise Exception()
+                art2 = client.request(self.tm_art_link % imdb, timeout='10', error=True)
+                art2 = json.loads(art2)
+            except:
+                pass
+
+            try:
+                poster3 = art2['posters']
+                poster3 = [x for x in poster3 if x.get('iso_639_1') == self.lang] + [x for x in poster3 if x.get('iso_639_1') == 'en'] + [x for x in poster3 if x.get('iso_639_1') not in [self.lang, 'en']]
+                poster3 = [(x['width'], x['file_path']) for x in poster3]
+                poster3 = [(x[0], x[1]) if x[0] < 300 else ('300', x[1]) for x in poster3]
+                poster3 = tm_img_link % poster3[0]
+                poster3 = poster3.encode('utf-8')
+            except:
+                poster3 = '0'
+
+            try:
+                fanart2 = art2['backdrops']
+                fanart2 = [x for x in fanart2 if x.get('iso_639_1') == self.lang] + [x for x in fanart2 if x.get('iso_639_1') == 'en'] + [x for x in fanart2 if x.get('iso_639_1') not in [self.lang, 'en']]
+                fanart2 = [x for x in fanart2 if x.get('width') == 1920] + [x for x in fanart2 if x.get('width') < 1920]
+                fanart2 = [(x['width'], x['file_path']) for x in fanart2]
+                fanart2 = [(x[0], x[1]) if x[0] < 1280 else ('1280', x[1]) for x in fanart2]
+                fanart2 = tm_img_link % fanart2[0]
+                fanart2 = fanart2.encode('utf-8')
+            except:
+                fanart2 = '0'
+
+            item = {'title': title, 'originaltitle': originaltitle, 'year': year, 'imdb': imdb, 'tmdb': tmdb, 'poster': '0', 'poster2': poster2, 'poster3': poster3, 'banner': banner, 'fanart': fanart, 'fanart2': fanart2, 'clearlogo': clearlogo, 'clearart': clearart, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'tagline': tagline}
+            item = dict((k,v) for k, v in item.iteritems() if not v == '0')
+            self.list[i].update(item)
+
+            if artmeta == False: raise Exception()
+
+            meta = {'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'lang': self.lang, 'user': self.user, 'item': item}
+            self.meta.append(meta)
         except:
-            pass
-
-
+            pass    
+           
     def tv_info(self, i):
         try:
             if self.list[i]['metacache'] == True: raise Exception()
@@ -898,7 +995,7 @@ class indexer:
         except:
             pass
 
-    def addDirectory(self, items, queue=False):
+    def addDirectory(self, items, queue=False, cache=True):
         if items == None or len(items) == 0: return
 
         sysaddon = sys.argv[0]
@@ -959,15 +1056,33 @@ class indexer:
                     try: privurl = dict(urlparse.parse_qsl(urlparse.urlparse(url).query))['action']
                     except: privurl = None
                     if privurl == 'private' and not privmode == True: raise Exception()
+                    
+                    try: poster = i['poster3']
+                    except: poster = '0'
+                    
+                    #if poster == '0':
+                    #    try: poster = i['poster2']
+                    #    except: poster = '0'
+                    
+                    if poster == '0':
+                        try: poster = i['poster']
+                        except: poster = '0'
+                    
 
-                    poster = i['poster'] if 'poster' in i else '0'
+                    try: fanart = i['fanart2']
+                    except: fanart = '0'
+                    
+                    if fanart == '0':
+                        try: fanart = i['fanart'] if not 'fanart.tv' in i['fanart'] else '0'
+                        except: fanart = '0'
+                    
                     banner = i['banner'] if 'banner' in i else '0'
-                    fanart = i['fanart'] if 'fanart' in i else '0'
+
                     if poster == '0': poster = addonPoster
                     else: poster = re.sub('([a-zA-Z]+)\d+_([a-zA-Z]+)\d+,\d+,\d+,\d+', '\g<1>512_\g<2>0,0,0,512', poster)
                     if banner == '0' and poster == '0': banner = addonBanner
                     elif banner == '0': banner = poster
-
+                    
                     content = i['content'] if 'content' in i else '0'
 
                     folder = i['folder'] if 'folder' in i else True
@@ -975,7 +1090,7 @@ class indexer:
                     meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
                     
                     if control.setting('metadata') == 'true':
-                        try: name = meta['meta_title'] + ' (%s)' % meta['meta_year'] if not meta['meta_year'] == '0' else meta['meta_title']
+                        try: name = meta['title'] + ' (%s)' % meta['year'] if not meta['year'] == '0' else meta['title']
                         except: pass    
 
                     cm = []
@@ -1056,7 +1171,8 @@ class indexer:
             pass
 
         if not mode == None: control.content(int(sys.argv[1]), mode)
-        control.directory(int(sys.argv[1]), cacheToDisc=True)
+        if cache: control.directory(int(sys.argv[1]), cacheToDisc=True)
+        else: control.directory(int(sys.argv[1]), cacheToDisc=False)
         if mode in ['movies', 'tvshows', 'seasons', 'episodes']:
             views.setView(mode, {'skin.estuary': 55})
 
@@ -1101,7 +1217,7 @@ class resolver:
                 elif '<preset>search</preset>' in i[1]:
                     dialog_list += [('AUTOPLAY (Best available stream - can be false at times)', i[1].replace('<preset>search</preset>','<preset>searchauto</preset>'))]
                     if not debrid.status() == False: 
-                        dialog_list += [('RD (Real Debrid, Premiumize, etc)', i[1].replace('<preset>search</preset>','<preset>searchrd</preset>'))]
+                        dialog_list += [('Premium (Real Debrid, Premiumize, etc)', i[1].replace('<preset>search</preset>','<preset>searchrd</preset>'))]
                     dialog_list += [('HD (Lists provider, host & quality if available)', i[1])]
 
             select = control.selectDialog([i[0] for i in dialog_list], control.infoLabel('listitem.label'))
