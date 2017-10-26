@@ -898,3 +898,19 @@ msgstr ""
 msgctxt "#32598"
 msgid "No Color"
 msgstr ""
+
+msgctxt "#32599"
+msgid "Getting genre information from Trakt"
+msgstr ""
+
+msgctxt "#32600"
+msgid "Preparing sources"
+msgstr ""
+
+msgctxt "#32601"
+msgid "Total"
+msgstr ""
+
+msgctxt "#32602"
+msgid "Waiting for"
+msgstr ""

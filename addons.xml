@@ -199,42 +199,6 @@ em procura livre na internet.
     </extension>
 </addon>
 
-<addon id="plugin.video.covenant" version="1.1.22" name="Covenant" provider-name="Covenant">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="script.module.covenant" />
-		<import addon="script.covenant.artwork" version="1.0.0" />
-		<import addon="script.covenant.metadata" version="1.0.0" />
-		<import addon="script.module.urlresolver" version="3.0.0" />
-		<import addon="script.module.metahandler" version="1.0.0" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="covenant.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.service" library="service.py" start="startup" />
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Covenant</summary>
-		<description lang="en">[I]A New Generation[/I][CR][CR][B]Covenant Movies and TV[/B][CR][CR]This addon does not form part of the Kodi Media Centre. Please do not seek assistance with this addon from any of the Official Kodi Support Channels.[CR][CR]The author does not host any of the content in this addon and takes no responsibility for content found.</description>
-		<description lang="hr">[I]Nova generacija[/I][CR][CR][B]Covenant Filmova i TV serija[/B][CR][CR]Ovaj dodatak ne sadrÅ¾i dijelove Kodi Medijskog Centra. Ne taÅ¾ite pomoÄ‡ za ovaj dodatak na sluÅ¾benim kanalima podrÅ¡ke za Kodi.[CR][CR]Autor ne posjeduje bilo kakav sadrÅ¾aj u ovom dodatku i ne preuzima bilo kakvu odgovornost za pronaÄ‘eni sadrÅ¾aj.</description>
-		<platform>all</platform>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-		<forum></forum>
-		<website></website>
-		<source></source>
-		<disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
-		<disclaimer lang="hr">Autor ovog dodatka ne posjeduje bilo kakav sadrÅ¾aj koji je pronaÄ‘en i nije povezan sa bilo kojim izvorom sadrÅ¾aja. Ovaj dodatak samo pretraÅ¾uje sadrÅ¾aj na web stranicama. Koristite ga na vlastitu odgovornost!</disclaimer>
-
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-    			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-    			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-    			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-		</assets>
-		<news></news>
-	</extension>
-</addon>
-
 <addon id="plugin.video.documented.hd"
        name="Documented.HD"
        version="3.2"
@@ -1353,7 +1317,7 @@ Vip Secrettv Repository
   </extension>
 </addon>
 
-<addon id="script.module.covenant" name="Covenant Module" version="1.00.014" provider-name="Covenant">
+<addon id="script.module.covenant" name="Covenant Module" version="1.00.015" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -1602,6 +1566,32 @@ Vip Secrettv Repository
 		<platform>all</platform>
 		<summary lang="en">Reusable Modules used by several of tknorris's addons</summary>
 	</extension>
+</addon>
+
+<addon id="script.module.web-pdb"
+       name="Web-PDB"
+       version="1.3.2"
+       provider-name="Roman V.M.">
+  <requires>
+    <import addon="xbmc.python" version="2.25.0"/>
+    <import addon="script.module.bottle" version="0.12.0"/>
+  </requires>
+  <extension point="xbmc.python.script" library="main.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.python.module" library="libs" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Web-based remote Python debugger</summary>
+    <description lang="en_GB">Provides a web-UI for Python's built-in PDB debugger for remote debugging Kodi addons.</description>
+    <platform>all</platform>
+    <license>MIT</license>
+    <forum>http://forum.kodi.tv/showthread.php?tid=292141</forum>
+    <source>https://github.com/romanvm/kodi.web-pdb</source>
+    <assets>
+      <icon>icon.png</icon>
+      <screenshot>resources/screenshot.png</screenshot>
+    </assets>
+  </extension>
 </addon>
 
 <addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.06.11.1" provider-name="mrknow" >
