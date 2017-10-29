@@ -908,7 +908,7 @@ class indexer:
             try:
                 fanart2 = art2['backdrops']
                 fanart2 = [x for x in fanart2 if x.get('iso_639_1') == self.lang] + [x for x in fanart2 if x.get('iso_639_1') == 'en'] + [x for x in fanart2 if x.get('iso_639_1') not in [self.lang, 'en']]
-                fanart2 = [x for x in fanart2 if x.get('width') == 1920] + [x for x in fanart2 if x.get('width') < 1920]
+                fanart2 = [x for x in fanart2 if x.get('width') == 3840] + [x for x in fanart2 if x.get('width') < 3840]
                 fanart2 = [(x['width'], x['file_path']) for x in fanart2]
                 fanart2 = [(x[0], x[1]) if x[0] < 1280 else ('1280', x[1]) for x in fanart2]
                 fanart2 = tm_img_link % fanart2[0]

@@ -914,3 +914,15 @@ msgstr ""
 msgctxt "#32602"
 msgid "Waiting for"
 msgstr ""
+
+msgctxt "#32603"
+msgid "New search..."
+msgstr ""
+
+msgctxt "#32604"
+msgid "[B]COVENANT[/B] : Clear search history..."
+msgstr ""
+
+msgctxt "#32605"
+msgid "Click to clear search history"
+msgstr ""

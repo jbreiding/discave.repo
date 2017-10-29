@@ -65,6 +65,7 @@
         <setting id="provider.library" type="bool" label="LIBRARY" default="true" />
         <setting id="provider.miradetodo" type="bool" label="MIRADETODO" default="true" />
         <setting id="provider.movie25" type="bool" label="MOVIE25" default="true" />
+        <setting id="provider.movie4korg" type="bool" label="MOVIE4K" default="true" />
         <setting id="provider.moviego" type="bool" label="MOVIEGO" default="true" />
         <setting id="provider.movies14" type="bool" label="MOVIES14" default="true" />
         <setting id="provider.moviesgold" type="bool" label="MOVIESGOLD" default="true" />
@@ -96,6 +97,7 @@
         <setting id="provider.rjsmovie" type="bool" label="RJSMOVIE" default="true" />
         <setting id="provider.rlsbb" type="bool" label="RLSBB" default="true" />
         <setting id="provider.rlsmovies" type="bool" label="RLSMOVIES" default="true" />
+        <setting id="provider.savaze" type="bool" label="SAVAZE" default="true" />
         <setting id="provider.scenedown" type="bool" label="SCENEDOWN" default="true" />
         <setting id="provider.sceper" type="bool" label="SCEPER" default="true" />
         <setting id="provider.scnrls" type="bool" label="SCNRLS" default="true" />

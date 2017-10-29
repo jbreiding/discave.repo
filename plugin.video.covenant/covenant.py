@@ -122,6 +122,10 @@ elif action == 'clearCache':
     from resources.lib.indexers import navigator
     navigator.navigator().clearCache()
 
+elif action == 'clearCacheSearch':
+    from resources.lib.indexers import navigator
+    navigator.navigator().clearCacheSearch()
+    
 elif action == 'infoCheck':
     from resources.lib.indexers import navigator
     navigator.navigator().infoCheck('')
@@ -141,6 +145,14 @@ elif action == 'movieWidget':
 elif action == 'movieSearch':
     from resources.lib.indexers import movies
     movies.movies().search()
+
+elif action == 'movieSearchnew':
+    from resources.lib.indexers import movies
+    movies.movies().search_new()
+
+elif action == 'movieSearchterm':
+    from resources.lib.indexers import movies
+    movies.movies().search_term(name)
 
 elif action == 'moviePerson':
     from resources.lib.indexers import movies
@@ -186,6 +198,14 @@ elif action == 'tvSearch':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().search()
 
+elif action == 'tvSearchnew':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().search_new()
+
+elif action == 'tvSearchterm':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().search_term(name)
+    
 elif action == 'tvPerson':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().person()
