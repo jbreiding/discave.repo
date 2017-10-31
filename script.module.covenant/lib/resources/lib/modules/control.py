@@ -77,7 +77,12 @@ getCurrentDialogId = xbmcgui.getCurrentWindowDialogId()
 
 keyboard = xbmc.Keyboard
 
-sleep = xbmc.sleep
+# Modified `sleep` command that honors a user exit request
+def sleep (time):
+    while time > 0 and not xbmc.abortRequested:
+        xbmc.sleep(min(100, time))
+        time = time - 100
+
 
 execute = xbmc.executebuiltin
 

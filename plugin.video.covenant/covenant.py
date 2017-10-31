@@ -64,6 +64,8 @@ windowedtrailer = int(windowedtrailer) if windowedtrailer in ("0","1") else 0
 
 if action == None:
     from resources.lib.indexers import navigator
+    from resources.lib.modules import cache
+    cache.cache_version_check()
     navigator.navigator().root()
 
 elif action == 'movieNavigator':

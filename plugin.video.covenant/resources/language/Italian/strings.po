@@ -910,3 +910,15 @@ msgstr "Totale"
 msgctxt "#32602"
 msgid "Waiting for"
 msgstr "In attesa di"
+
+msgctxt "#32603"
+msgid "New search..."
+msgstr "Nuova ricerca..."
+
+msgctxt "#32604"
+msgid "[B]COVENANT[/B] : Clear search history..."
+msgstr "[B]COVENANT[/B] : Cancella cronologia ricerche..."
+
+msgctxt "#32605"
+msgid "Click to clear search history"
+msgstr "Clicca per cancellare la cronologia ricerche"

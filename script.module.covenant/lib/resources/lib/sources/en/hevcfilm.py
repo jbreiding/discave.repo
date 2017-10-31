@@ -22,7 +22,6 @@ import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import debrid
 from resources.lib.modules import source_utils
 
 
@@ -49,8 +48,6 @@ class source:
             sources = []
 
             if url == None: return sources
-
-            if debrid.status() == False: raise Exception()
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -126,7 +123,7 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': 'HEVC', 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': 'HEVC', 'direct': False, 'debridonly': False})
                 except:
                     pass
 

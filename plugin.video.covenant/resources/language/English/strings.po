@@ -926,3 +926,11 @@ msgstr ""
 msgctxt "#32605"
 msgid "Click to clear search history"
 msgstr ""
+
+msgctxt "#32606"
+msgid "Prem"
+msgstr ""
+
+msgctxt "#32607"
+msgid "Normal"
+msgstr ""

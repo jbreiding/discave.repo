@@ -97,7 +97,7 @@ Playlists organized by categories and any source comes from Youtube users.
 
 <addon id="plugin.video.AmerikanoTuga"
        name="[COLOR red][B]AMERIKANO[/B][/COLOR][COLOR green][B]TUGA[/B][/COLOR]"
-       version="0.0.6"
+       version="0.0.7"
        provider-name="Amerikano Tuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -135,6 +135,10 @@ em procura livre na internet.
 
     </description>
     <platform>all</platform>
+	<assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.gif</fanart>
+        </assets>
   </extension>
 </addon>
 
@@ -223,7 +227,7 @@ em procura livre na internet.
     </extension>
 </addon>
 
-<addon id="plugin.video.covenant" version="1.1.25" name="Covenant" provider-name="Covenant">
+<addon id="plugin.video.covenant" version="1.1.26" name="Covenant" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.covenant" />
@@ -897,7 +901,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="plugin.video.vipsecret"
        name="[COLOR gold][B]SECRET[/B][/COLOR][COLOR white][B]TV[/B][/COLOR][COLOR blue][B]VIP[/B][/COLOR]"
-       version="0.0.5"
+       version="0.0.6"
        provider-name="Team VipSecret">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -928,6 +932,10 @@ em procura livre na internet.
 
     </description>
     <platform>all</platform>
+  <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.gif</fanart>
+        </assets>
   </extension>
 </addon>
 
@@ -1373,7 +1381,7 @@ Vip Secrettv Repository
   </extension>
 </addon>
 
-<addon id="script.module.covenant" name="Covenant Module" version="1.00.016" provider-name="Covenant">
+<addon id="script.module.covenant" name="Covenant Module" version="1.00.018" provider-name="Covenant">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

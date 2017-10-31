@@ -30,11 +30,12 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
-        self.priority = 1
+        self.priority = 0
         self.language = ['en']
         self.domains = ['mehlizmovies.com']
-        self.base_link = 'http://mehlizmovies.com/'
+        self.base_link = 'https://www.mehlizmovies.com/'
         self.search_link = '?s=%s'
+        self.search_link2 = '/search/%s/feed/rss2/'
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
@@ -83,7 +84,7 @@ class source:
 
             t = cleantitle.get(titles[0])
 
-            data = client.request(query)
+            data = client.request(query, referer=self.base_link)
             data = client.parseDOM(data, 'div', attrs={'class': 'result-item'})
             r = dom_parser.parse_dom(data, 'div', attrs={'class': 'title'})
             r = zip(dom_parser.parse_dom(r, 'a'), dom_parser.parse_dom(data, 'span', attrs={'class': 'year'}))
@@ -111,7 +112,7 @@ class source:
         try:
             if not url:
                 return sources
-            if debrid.status() == False: raise Exception()
+
             links = self.links_found(url)
 
             hostdict = hostDict + hostprDict
@@ -163,8 +164,7 @@ class source:
     def mz_server(self,url):
         try:
             urls = []
-            url = url.replace('https', 'http')
-            data = client.request(url)
+            data = client.request(url, referer=self.base_link)
             data = re.findall('''file:\s*["']([^"']+)",label:\s*"(\d{3,}p)"''', data, re.DOTALL)
             for url, label in data:
                 label = source_utils.label_to_quality(label)

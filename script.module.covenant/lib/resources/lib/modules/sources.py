@@ -49,9 +49,6 @@ class sources:
 
     def play(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select):
         try:
-    
-            control.progressDialogBG.create(control.addonInfo('name'), '')
-            control.progressDialogBG.update(0, control.lang(32600).encode('utf-8'))
               
             url = None
             
@@ -301,10 +298,6 @@ class sources:
             pass
 
     def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, quality='HD', timeout=30):
-
-        try:
-            if control.progressDialogBG: control.progressDialogBG.close()
-        except: pass
         
         progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
         progressDialog.create(control.addonInfo('name'), '')
@@ -367,14 +360,26 @@ class sources:
         string3 = control.lang(32406).encode('utf-8')
         string4 = control.lang(32601).encode('utf-8')
         string5 = control.lang(32602).encode('utf-8')
+        string6 = control.lang(32606).encode('utf-8')
+        string7 = control.lang(32607).encode('utf-8')
 
         try: timeout = int(control.setting('scrapers.timeout.1'))
         except: pass
         
+        quality = control.setting('hosts.quality')
+        if quality == '': quality = '0'
+
         source_4k = 0
         source_1080 = 0
         source_720 = 0
         source_sd = 0
+        
+        rd_source_4k = 0
+        rd_source_1080 = 0
+        rd_source_720 = 0
+        rd_source_sd = 0
+        
+        debrid_list = debrid.debrid_resolvers
         
         for i in range(0, 4 * timeout):
             try:
@@ -386,40 +391,128 @@ class sources:
                     pass
 
                 if len(self.sources) > 0:
-                    source_4k = len([e for e in self.sources if e['quality'] == '4K'])
-                    source_1080 = len([e for e in self.sources if e['quality'] in ['1440p','1080p']])
-                    source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD']])
-                    source_sd = len([e for e in self.sources if e['quality'] == 'SD'])
-                    
+                    if quality in ['0']:
+                        source_4k = len([e for e in self.sources if e['quality'] == '4K' and e['debridonly'] == False])
+                        source_1080 = len([e for e in self.sources if e['quality'] in ['1440p','1080p'] and e['debridonly'] == False])
+                        source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD'] and e['debridonly'] == False])
+                        source_sd = len([e for e in self.sources if e['quality'] == 'SD' and e['debridonly'] == False])
+                    elif quality in ['1']:
+                        source_1080 = len([e for e in self.sources if e['quality'] in ['1440p','1080p'] and e['debridonly'] == False])
+                        source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD'] and e['debridonly'] == False])
+                        source_sd = len([e for e in self.sources if e['quality'] == 'SD' and e['debridonly'] == False])
+                    elif quality in ['2']:
+                        source_1080 = len([e for e in self.sources if e['quality'] in ['1080p'] and e['debridonly'] == False])
+                        source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD'] and e['debridonly'] == False])
+                        source_sd = len([e for e in self.sources if e['quality'] == 'SD' and e['debridonly'] == False])
+                    elif quality in ['3']:
+                        source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD'] and e['debridonly'] == False])
+                        source_sd = len([e for e in self.sources if e['quality'] == 'SD' and e['debridonly'] == False])
+                    else:
+                        source_sd = len([e for e in self.sources if e['quality'] == 'SD' and e['debridonly'] == False])
+
+                    if debrid.status():
+                        if quality in ['0']:
+                            for d in debrid_list:
+                                rd_source_4k = len([e for e in self.sources if e['quality'] == '4K' and d.valid_url('', e['source'])])
+                                rd_source_1080 = len([e for e in self.sources if e['quality'] in ['1440p','1080p'] and d.valid_url('', e['source'])])
+                                rd_source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD'] and d.valid_url('', e['source'])])
+                                rd_source_sd = len([e for e in self.sources if e['quality'] == 'SD' and d.valid_url('', e['source'])])
+                        elif quality in ['1']:
+                            for d in debrid_list:
+                                rd_source_1080 = len([e for e in self.sources if e['quality'] in ['1440p','1080p'] and d.valid_url('', e['source'])])
+                                rd_source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD'] and d.valid_url('', e['source'])])
+                                rd_source_sd = len([e for e in self.sources if e['quality'] == 'SD' and d.valid_url('', e['source'])])
+                        elif quality in ['2']:
+                            for d in debrid_list:
+                                rd_source_1080 = len([e for e in self.sources if e['quality'] in ['1080p'] and d.valid_url('', e['source'])])
+                                rd_source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD'] and d.valid_url('', e['source'])])
+                                rd_source_sd = len([e for e in self.sources if e['quality'] == 'SD' and d.valid_url('', e['source'])])
+                        elif quality in ['3']:
+                            for d in debrid_list:
+                                rd_source_720 = len([e for e in self.sources if e['quality'] in ['720p','HD'] and d.valid_url('', e['source'])])
+                                rd_source_sd = len([e for e in self.sources if e['quality'] == 'SD' and d.valid_url('', e['source'])])
+                        else:
+                            for d in debrid_list:
+                                rd_source_sd = len([e for e in self.sources if e['quality'] == 'SD' and d.valid_url('', e['source'])])
+                                 
+                total = source_4k + source_1080 + source_720 + source_sd
+                d_total = rd_source_4k + rd_source_1080 + rd_source_720 + rd_source_sd
+
                 source_4k_label = '[COLOR red][B]%s[/B][/COLOR]' % source_4k if source_4k == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % source_4k
                 source_1080_label = '[COLOR red][B]%s[/B][/COLOR]' % source_1080 if source_1080 == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % source_1080
                 source_720_label = '[COLOR red][B]%s[/B][/COLOR]' % source_720 if source_720 == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % source_720
                 source_sd_label = '[COLOR red][B]%s[/B][/COLOR]' % source_sd if source_sd == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % source_sd
-                source_total_label = '[COLOR red][B]%s[/B][/COLOR]' % len(self.sources) if len(self.sources) == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % len(self.sources)
+                source_total_label = '[COLOR red][B]%s[/B][/COLOR]' % total if total == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % total
+                rd_4k_label = '[COLOR red][B]%s[/B][/COLOR]' % rd_source_4k if rd_source_4k == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % rd_source_4k
+                rd_1080_label = '[COLOR red][B]%s[/B][/COLOR]' % rd_source_1080 if rd_source_1080 == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % rd_source_1080
+                rd_720_label = '[COLOR red][B]%s[/B][/COLOR]' % rd_source_720 if rd_source_720 == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % rd_source_720
+                rd_sd_label = '[COLOR red][B]%s[/B][/COLOR]' % rd_source_sd if rd_source_sd == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % rd_source_sd
+                d_total_label = '[COLOR red][B]%s[/B][/COLOR]' % total if total == 0 else '[COLOR lime][B]%s[/B][/COLOR]' % d_total
 
                 if (i / 2) < timeout:
                     try:
                         mainleft = [sourcelabelDict[x.getName()] for x in threads if x.is_alive() == True and x.getName() in mainsourceDict]
                         info = [sourcelabelDict[x.getName()] for x in threads if x.is_alive() == True]
                         if i >= timeout and len(mainleft) == 0 and len(self.sources) >= 100 * len(info): break # improve responsiveness
-                        line1 = '4K:  %s  |  1080p:  %s  |  720p:  %s  |  SD:  %s  |  %s:  %s' % (source_4k_label, source_1080_label, source_720_label, source_sd_label, str(string4), source_total_label)
-                        if len(info) > 6: line2 = string3 % (str(len(info)))
-                        elif len(info) > 0: line2 = string3 % (', '.join(info))
-                        else: break
-                        percent = int(100 * float(i) / (2 * timeout) + 0.5)
-                        progressDialog.update(max(1, percent), line1, line2)
+                        if debrid.status():
+                            if quality in ['0']:
+                                line1 = '%s: 4K: %s | 1080p: %s | 720p: %s | SD: %s | %s: %s' % (string6, rd_4k_label, rd_1080_label, rd_720_label, rd_sd_label, str(string4), d_total_label)
+                                line2 = '%s: 4K: %s | 1080p: %s | 720p: %s | SD: %s | %s: %s' % (string7, source_4k_label, source_1080_label, source_720_label, source_sd_label, str(string4), source_total_label)
+                            elif quality in ['1']:
+                                line1 = '%s: 1080p: %s | 720p: %s | SD: %s | %s: %s' % (string6, rd_1080_label, rd_720_label, rd_sd_label, str(string4), d_total_label)
+                                line2 = '%s: 1080p: %s | 720p: %s | SD: %s | %s: %s' % (string7, source_1080_label, source_720_label, source_sd_label, str(string4), source_total_label)
+                            elif quality in ['2']:
+                                line1 = '%s: 1080p: %s | 720p: %s | SD: %s | %s: %s' % (string6, rd_1080_label, rd_720_label, rd_sd_label, str(string4), d_total_label)
+                                line2 = '%s: 1080p: %s | 720p: %s | SD: %s | %s: %s' % (string7, source_1080_label, source_720_label, source_sd_label, str(string4), source_total_label)
+                            elif quality in ['3']:
+                                line1 = '%s: 720p: %s | SD: %s | %s: %s' % (string6, rd_720_label, rd_sd_label, str(string4), d_total_label)
+                                line2 = '%s: 720p: %s | SD: %s | %s: %s' % (string7, source_720_label, source_sd_label, str(string4), source_total_label)
+                            else:
+                                line1 = '%s: SD: %s | %s  %s' % (string6, rd_sd_label, str(string4), d_total_label)
+                                line2 = '%s: SD: %s | %s: %s' % (string7, source_sd_label, str(string4), source_total_label)
+                        else:
+                            if quality in ['0']:
+                                line1 = '4K:  %s  |  1080p:  %s  |  720p:  %s  |  SD:  %s  |  %s:  %s' % (source_4k_label, source_1080_label, source_720_label, source_sd_label, str(string4), source_total_label)
+                            elif quality in ['1']:
+                                line1 = '1080p:  %s  |  720p:  %s  |  SD:  %s  |  %s:  %s' % (source_1080_label, source_720_label, source_sd_label, str(string4), source_total_label)
+                            elif quality in ['2']:
+                                line1 = '1080p:  %s  |  720p:  %s  |  SD:  %s  |  %s:  %s' % (source_1080_label, source_720_label, source_sd_label, str(string4), source_total_label)
+                            elif quality in ['3']:
+                                line1 = '720p:  %s  |  SD:  %s  |  %s:  %s' % (source_720_label, source_sd_label, str(string4), source_total_label)
+                            else:
+                                line1 = 'SD:  %s  |  %s:  %s' % (source_sd_label, str(string4), source_total_label)
+
+                        if debrid.status():
+                            if len(info) > 6: line3 = string3 % (str(len(info)))
+                            elif len(info) > 0: line3 = string3 % (', '.join(info))
+                            else: break
+                            percent = int(100 * float(i) / (2 * timeout) + 0.5)
+                            if progressDialog == control.progressDialogBG: progressDialog.update(max(1, percent), str(string4) + ': ' + str(len(self.sources)) + '    ')
+                            else: progressDialog.update(max(1, percent), line1, line2, line3)
+                        else:
+                            if len(info) > 6: line2 = string3 % (str(len(info)))
+                            elif len(info) > 0: line2 = string3 % (', '.join(info))
+                            else: break
+                            percent = int(100 * float(i) / (2 * timeout) + 0.5)
+                            progressDialog.update(max(1, percent), line1, line2)
                     except:
                         pass
                 else:
                     try:
                         mainleft = [sourcelabelDict[x.getName()] for x in threads if x.is_alive() == True and x.getName() in mainsourceDict]
                         info = mainleft
-                        line1 = '4K:  %s  |  1080p:  %s  |  720p:  %s  |  SD:  %s  |  %s:  %s' % (source_4k_label, source_1080_label, source_720_label, source_sd_label, str(string4), source_total_label)
-                        if len(info) > 6: line2 = '%s: %s' % (str(string5), str(len(info)))
-                        elif len(info) > 0: line2 = '%s: %s' % (str(string5), ', '.join(info))
-                        else: break
-                        percent = int(100 * float(i) / (2 * timeout) + 0.5) % 100
-                        progressDialog.update(max(1, percent), line1, line2)
+                        if debrid.status():
+                            if len(info) > 6: line3 = 'Waiting for: %s' % (str(len(info)))
+                            elif len(info) > 0: line3 = 'Waiting for: %s' % (', '.join(info))
+                            else: break
+                            percent = int(100 * float(i) / (2 * timeout) + 0.5) % 100
+                            progressDialog.update(max(1, percent), line1, line2, line3)
+                        else:
+                            if len(info) > 6: line2 = 'Waiting for: %s' % (str(len(info)))
+                            elif len(info) > 0: line2 = 'Waiting for: %s' % (', '.join(info))
+                            else: break
+                            percent = int(100 * float(i) / (2 * timeout) + 0.5) % 100
+                            progressDialog.update(max(1, percent), line1, line2)
                     except:
                         break
                         
@@ -736,55 +829,61 @@ class sources:
         if prem_identify == '': prem_identify = 'blue'
         prem_identify = self.getPremColor(prem_identify)
         
-        for i in range(len(self.sources)):
+        urls = []
         
-            if extra_info == 'true': t = source_utils.getFileType(self.sources[i]['url'])
-            else: t = None
-            
-            u = self.sources[i]['url']
+        for i in range(len(self.sources)):
+           
+            if not self.sources[i]['url'] in urls:
+        
+                urls += [(self.sources[i]['url'])]
 
-            p = self.sources[i]['provider']
+                if extra_info == 'true': t = source_utils.getFileType(self.sources[i]['url'])
+                else: t = None
+                
+                u = self.sources[i]['url']
 
-            q = self.sources[i]['quality']
+                p = self.sources[i]['provider']
 
-            s = self.sources[i]['source']
-            
-            s = s.rsplit('.', 1)[0]
+                q = self.sources[i]['quality']
 
-            l = self.sources[i]['language']
+                s = self.sources[i]['source']
+                
+                s = s.rsplit('.', 1)[0]
 
-            try: f = (' | '.join(['[I]%s [/I]' % info.strip() for info in self.sources[i]['info'].split('|')]))
-            except: f = ''
+                l = self.sources[i]['language']
 
-            try: d = self.sources[i]['debrid']
-            except: d = self.sources[i]['debrid'] = ''
+                try: f = (' | '.join(['[I]%s [/I]' % info.strip() for info in self.sources[i]['info'].split('|')]))
+                except: f = ''
 
-            if not d == '': label = '%02d | [B]%s[/B] | ' % (int(i+1), d)
-            #if not d == '': label = '%02d | [B]%s[/B] | [B]%s[/B] | ' % (int(i+1), p, d)
-            else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
+                try: d = self.sources[i]['debrid']
+                except: d = self.sources[i]['debrid'] = ''
 
-            if multi == True and not l == 'en': label += '[B]%s[/B] | ' % l
+                if not d == '': label = '%02d | [B]%s[/B] | ' % (int(i+1), d)
+                #if not d == '': label = '%02d | [B]%s[/B] | [B]%s[/B] | ' % (int(i+1), p, d)
+                else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
 
-            ### if q in ['4K', '1440p', '1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s, f, q)
-            if t:
-                if q in ['4K', '1440p', '1080p', '720p']: label += '%s | [B][I]%s [/I][/B] | [I]%s[/I] | %s' % (s, q, t, f)
-                elif q == 'SD': label += '%s | %s | [I]%s[/I]' % (s, f, t)
-                else: label += '%s | %s | [I]%s [/I] | [I]%s[/I]' % (s, f, q, t)
-            else:
-                if q in ['4K', '1440p', '1080p', '720p']: label += '%s | [B][I]%s [/I][/B] | %s' % (s, q, f)
-                elif q == 'SD': label += '%s | %s' % (s, f)
-                else: label += '%s | %s | [I]%s [/I]' % (s, f, q)
-            label = label.replace('| 0 |', '|').replace(' | [I]0 [/I]', '')
-            #label = label.replace('[I]HEVC [/I]', 'HEVC')
-            label = re.sub('\[I\]\s+\[/I\]', ' ', label)
-            label = re.sub('\|\s+\|', '|', label)
-            label = re.sub('\|(?:\s+|)$', '', label)
+                if multi == True and not l == 'en': label += '[B]%s[/B] | ' % l
 
-            if d: 
-                if not prem_identify == 'nocolor':
-                    self.sources[i]['label'] = ('[COLOR %s]' % (prem_identify)) + label.upper() + '[/COLOR]'
+                ### if q in ['4K', '1440p', '1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s, f, q)
+                if t:
+                    if q in ['4K', '1440p', '1080p', '720p']: label += '%s | [B][I]%s [/I][/B] | [I]%s[/I] | %s' % (s, q, t, f)
+                    elif q == 'SD': label += '%s | %s | [I]%s[/I]' % (s, f, t)
+                    else: label += '%s | %s | [I]%s [/I] | [I]%s[/I]' % (s, f, q, t)
+                else:
+                    if q in ['4K', '1440p', '1080p', '720p']: label += '%s | [B][I]%s [/I][/B] | %s' % (s, q, f)
+                    elif q == 'SD': label += '%s | %s' % (s, f)
+                    else: label += '%s | %s | [I]%s [/I]' % (s, f, q)
+                label = label.replace('| 0 |', '|').replace(' | [I]0 [/I]', '')
+                #label = label.replace('[I]HEVC [/I]', 'HEVC')
+                label = re.sub('\[I\]\s+\[/I\]', ' ', label)
+                label = re.sub('\|\s+\|', '|', label)
+                label = re.sub('\|(?:\s+|)$', '', label)
+
+                if d: 
+                    if not prem_identify == 'nocolor':
+                        self.sources[i]['label'] = ('[COLOR %s]' % (prem_identify)) + label.upper() + '[/COLOR]'
+                    else: self.sources[i]['label'] = label.upper()
                 else: self.sources[i]['label'] = label.upper()
-            else: self.sources[i]['label'] = label.upper()
 
         try: 
             if not HEVC == 'true': self.sources = [i for i in self.sources if not 'HEVC' in i['label']]
